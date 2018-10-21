@@ -17,7 +17,12 @@ Project by Lorenzo Petrangeli, Tommaso Sardelli and Philippe Scorsolini for the 
 - Game end: `14879639146403495`
 - Half field used
 - Played 2 halves of 30 min each
-- All timestamped inputs are ingested in increasing order w.r.t. timestamps
+- All timestamped inputs are totally ordered
+
+## Additional Infos:
+- Use the following coordinates if you opt for an approximation: (0,33965), (0,-33960),(52483,33965),(52483,-33960) [1]
+- "... Results of all queries must be returned as a stream of data" [1]
+- "Answer 10: unless explicitly stated otherwise, each result stream must be updated for every input event."[1]
 
 ## Sensors' Stream (full-game, 4.3 GB):
 
@@ -26,7 +31,7 @@ Where:
 - `sid`: sensor id
 - `ts`: timestamp
 - `x`, `y`, `z`: 3D coordinates w.r.t. the origin in the center of the field [`mm`]
-- other can be ignored
+- other fields can be ignored
 
 ## Referee Events:
 - Game Interruption (7.9KB):
@@ -72,4 +77,7 @@ Using MPI and/or OpenMP you are to create a software that computes the real-time
   - https://aerofs.neslab.it/l/ec01789e77bc4f97a63e3f77009a30fb
   - https://aerofs.neslab.it/l/f7b889e2a2b74925a8e5a515b06b21a8
   - https://aerofs.neslab.it/l/54d2d70b25474e82845598e47f3ba7a8
+- [Original Debs Challange 2013][1]
+
+[1]: http://debs.org/debs-2013-grand-challenge-soccer-monitoring/
 
