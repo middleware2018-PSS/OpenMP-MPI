@@ -64,3 +64,12 @@ Using MPI and/or OpenMP you are to create a software that computes the real-time
 ## To be turned in:
 - complete codebase
 - a max 3 page document illustrating design choices
+
+# Refs
+- Data:
+  - https://aerofs.neslab.it/l/0b15ed33250349c199c37c85a7408dc9
+  - https://aerofs.neslab.it/l/a47fd7abc87b4b73b2c409d8fa18d5ad
+  - https://aerofs.neslab.it/l/ec01789e77bc4f97a63e3f77009a30fb
+  - https://aerofs.neslab.it/l/f7b889e2a2b74925a8e5a515b06b21a8
+  - https://aerofs.neslab.it/l/54d2d70b25474e82845598e47f3ba7a8
+
