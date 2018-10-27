@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 import json
-from math import sqrt
-from functools import reduce
 import sys
+import numpy as np
 
 def convert_ts_to_ms(time):
     t = time.strip().split(":")
@@ -53,16 +52,17 @@ def compute_possession(K, T, m, f, interruptions):
                 and x <=metadata["coord"]["x"]["max"]:
                 # print("ok")
                 # if it's a record from a player
+                coord = np.array([x,y])
                 if sid in metadata["players"].keys():
                     # print("player ", sid, ts)
                     pl, part, team = metadata["players"][sid]
                     if pl in lastPos.keys():
-                        lastPos[pl][part] = (x,y)
+                        lastPos[pl][part] = coord
                     else:
-                        lastPos[pl] = {part:(x,y)}
-                    xp = mean([el[0] for el in lastPos[pl].values()])
-                    yp = mean([el[1] for el in lastPos[pl].values()]) 
-                    lastPos[pl]["center"] = (xp,yp)
+                        lastPos[pl] = {part:coord}
+                    if "center" in lastPos[pl].keys():
+                        lastPos[pl].pop("center")
+                    lastPos[pl]["center"] = np.mean(np.array([el[0:2] for el in lastPos[pl].values()]), axis=0) if len(lastPos[pl]) >= 2 else coord
                 # if it's a record from a ball
                 elif sid in metadata["halfs"][half]["balls"]:
                     # print("ball ", sid, ts)
@@ -70,7 +70,7 @@ def compute_possession(K, T, m, f, interruptions):
                     nearest_player = -1
 #                   print(x, y, lastPos)
                     for player_n, vals in lastPos.items():
-                        dist = sqrt((vals["center"][0]-x)**2 + (vals["center"][1]-x)**2) 
+                        dist = np.linalg.norm(vals["center"]-coord)
                         if dist <= mindist:
                             mindist = dist
                             nearest_player = player_n
