@@ -19,7 +19,7 @@ def compute_possession(K, T, m, f, interruptions):
     K=K*10**3
     T=T*10**12
     half=0
-#    i=0
+    i=0
     metadata=json.load(m)
     # convert keys to ints because json do not accept numeric keys directly
     metadata["players"] = {int(k):v for (k,v) in metadata["players"].items()}
@@ -32,7 +32,7 @@ def compute_possession(K, T, m, f, interruptions):
     for v in metadata["players"].values():
         players_team[v[0]] = v[2]
     players_nums= set([el[0] for el in metadata["players"].values()])
-#   print("nextUpdate is at {}".format(nextUpdate))
+    # print("nextUpdate is at {}".format(nextUpdate))
     for event in interruptions:
         eventType, eventTs = event.strip().split(",")[1:3]
         ms = convert_ts_to_ms(eventTs)
@@ -44,14 +44,14 @@ def compute_possession(K, T, m, f, interruptions):
         for row in f:
 #           print(row)
             sid, ts, x, y = [int(x) for x in row.split(",")[:4]]
-#           i= i + 1 if i < 100000 else 0
+            i= i + 1 if i < 100000 else 0
             # check if record is in game = > between start and end of game, not paused, inside the field
             if ts >= metadata["game"]["start"] and ts <= metadata["game"]["end"] \
                 and ((eventType == "Begin" and ts >= eventTs) or (eventType == "End" and ts <= eventTs)) \
                 and abs(y) <= metadata["coord"]["y"]["max"] \
                 and x >= metadata["coord"]["x"]["min"] \
                 and x <=metadata["coord"]["x"]["max"]:
-#               print("ok")
+                # print("ok")
                 # if it's a record from a player
                 if sid in metadata["players"].keys():
                     # print("player ", sid, ts)
@@ -65,7 +65,7 @@ def compute_possession(K, T, m, f, interruptions):
                     lastPos[pl]["center"] = (xp,yp)
                 # if it's a record from a ball
                 elif sid in metadata["halfs"][half]["balls"]:
-#                   print("ball ", sid, ts)
+                    # print("ball ", sid, ts)
                     mindist = K
                     nearest_player = -1
 #                   print(x, y, lastPos)
@@ -78,7 +78,7 @@ def compute_possession(K, T, m, f, interruptions):
                         delta = ts - lastBall
                         results[nearest_player]= results[nearest_player] + delta if nearest_player in results.keys() else delta
                         team = players_team[nearest_player]
-#                       print("nearest_player at ts {} to ball {} is {} of team {} with dist of ".format(ts,sid,nearest_player, team, mindist))
+                        # print("nearest_player at ts {} to ball {} is {} of team {} with dist of ".format(ts,sid,nearest_player, team, mindist))
                         results[team] = (results[team] + delta) if team in results.keys() else delta
                     lastBall = ts
 # 	             else:
@@ -94,13 +94,13 @@ def compute_possession(K, T, m, f, interruptions):
 #                 e1=x >= metadata["coord"]["x"]["min"]
 #                 f1=x <=metadata["coord"]["x"]["max"]
 #                 print(ts,x,y,eventType, a1 and b1 and ((c1 and c2) or (c3 and c4)) and d1 and e1 and f1)
-        if ts >= nextUpdate:
-            print(ts,nextUpdate, results)
-            nextUpdate+=T
-#    		print("nextUpdate is at {}".format(nextUpdate))
-        if (eventType == "Begin" or eventType == "End") and ts > eventTs:
-#           print("cond: ", eventType, ts)
-            break
+            if ts >= nextUpdate:
+                print(nextUpdate, results)
+                nextUpdate+=T
+#               print("nextUpdate is at {}".format(nextUpdate))
+            if (eventType == "Begin" or eventType == "End") and ts > eventTs:
+#               print("cond: ", eventType, ts)
+                break
 
 #if len(sys.argv) <6:
 #    print("help:\t./script.py K T metadata.json full-game.csv full-game.csv interruptions_stream.csv")
@@ -112,4 +112,4 @@ def compute_possession(K, T, m, f, interruptions):
 #    full_game_file = sys.argv[4]
 #    interruptions_file = sys.argv[5]
 with open("metadata.json") as m, open("full-game.csv") as f, open("interruptions_stream.csv") as interruptions:
-    compute_possession(5,30,m,f,interruptions)
+    compute_possession(5,1,m,f,interruptions)
