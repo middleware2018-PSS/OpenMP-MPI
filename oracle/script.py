@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import csv
 import json
 import sys
 import numpy as np
@@ -19,7 +20,9 @@ def compute_possession(K, T, m, f, interruptions):
     T=T*10**12
     half=0
     # i=0
+
     metadata=json.load(m)
+
     # convert keys to ints because json do not accept numeric keys directly
     metadata["players"] = {int(k):v for (k,v) in metadata["players"].items()}
     metadata["halfs"] = {int(k):v for (k,v) in metadata["halfs"].items()}
@@ -28,12 +31,14 @@ def compute_possession(K, T, m, f, interruptions):
     lastBall=metadata["game"]["start"]   # used store last ball timestamp, to compute possession attribution
     nextUpdate=metadata["game"]["start"]+T    # compute when next update will be outputted
     players_team = {}
+
     for v in metadata["players"].values():
         players_team[v[0]] = v[2]
     players_nums= set([el[0] for el in metadata["players"].values()])
+
     # print("nextUpdate is at {}".format(nextUpdate))
     for event in interruptions:
-        eventType, eventTs = event.strip().split(",")[1:3]
+        eventType, eventTs = event[1:3]
         ms = convert_ts_to_ms(eventTs)
         if ms is 0:
             half+=1
@@ -41,8 +46,11 @@ def compute_possession(K, T, m, f, interruptions):
         eventTs = metadata["halfs"][half]["start"]+ms
 #        print("next Event will be {} at {}".format(eventType, eventTs))
         for row in f:
+            sid, ts, x, y = row[:4]
 #           print(row)
-            sid, ts, x, y = [int(x) for x in row.split(",")[:4]]
+            if (eventType == "End") and ts > eventTs:
+                # print("cond: ", eventType, ts)
+                break
             # i= i + 1 if i < 100000 else 0
             # check if record is in game = > between start and end of game, not paused, inside the field
             if ts >= metadata["game"]["start"] and ts <= metadata["game"]["end"] \
@@ -98,8 +106,8 @@ def compute_possession(K, T, m, f, interruptions):
                 print(nextUpdate, results)
                 nextUpdate+=T
 #               print("nextUpdate is at {}".format(nextUpdate))
-            if (eventType == "Begin" or eventType == "End") and ts > eventTs:
-#               print("cond: ", eventType, ts)
+            if eventType == "Begin" and ts > eventTs:
+                # print("cond: ", eventType, ts)
                 break
 
 if len(sys.argv) <6:
@@ -112,4 +120,4 @@ else:
     full_game_file = sys.argv[4]
     interruptions_file = sys.argv[5]
 with open(metadata_file) as m, open(full_game_file) as f, open(interruptions_file) as interruptions:
-    compute_possession(K,T,m,f,interruptions)
+    compute_possession(K,T,m,csv.reader(f,quoting=csv.QUOTE_NONNUMERIC),csv.reader(interruptions))
