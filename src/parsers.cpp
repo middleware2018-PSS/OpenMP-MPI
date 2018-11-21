@@ -1,7 +1,3 @@
-//
-// Created by Lorenzo Petrangeli on 13/11/18.
-//
-
 #include <iostream>
 #include <algorithm>
 #include <fstream>
@@ -14,59 +10,37 @@
 #include <chrono>
 #include "game.h"
 
-#define SEPARATOR ';'
-#define SEPARATOR1 ','
-
-const unsigned int size = 100000;
+#define SEPARATOR ','
+#define TIMESEPARATOR ':'
 
 using namespace std;
 
-/**
- * convert a given string @param string in a game_timestamp in picoseconds.
- * @param string a given string
- * @return string in picoseconds
- */
 game_timestamp parse_time_picoseconds(string string)
 {
-    string element;
+    std::string element;
     stringstream lineStream(string);
     double time = 0.0;
-    getline(lineStream, element, SEPARATOR);
+    getline(lineStream, element, TIMESEPARATOR);
     time += stof(element) * 3600;
     if (lineStream.rdstate() == ios_base::eofbit)       //if string is 0
         return time * second;
-    getline(lineStream, element, SEPARATOR);
+    getline(lineStream, element, TIMESEPARATOR);
     time += stof(element) * 60;
-    getline(lineStream, element, SEPARATOR);
+    getline(lineStream, element, TIMESEPARATOR);
     time += stof(element);
     return time * second;
 }
 
-
-//TODO change from referee event to game interruption?
-
-/**
- * Parses a single line from a game-interruption file.
- * The format must remain: event_id; event_name; event_time; event_counter.
- * The comment column and the data relative to the statics are not stored because are not in the scope of the project.
- * @param line a single string from file
- * @param begin base timestamp from which start counting
- * @return parsed referee event
- */
 referee_event referee_event_parser(string line, unsigned long int begin)
 {
     stringstream lineStream(line);
-    string element;
+    std::string element;
     referee_event referee_event;
 
     getline(lineStream, element, SEPARATOR); // parse a single object from the csv into string
     referee_event.id = stoul(element);       // set the id of the event
 
     getline(lineStream, element, SEPARATOR);
-
-    //TODO change this part
-    element.erase(remove_if(element.begin(), element.end(), isspace), element.end());   // removes spaces from string
-    transform(element.begin(), element.end(), element.begin(), ::tolower);             // lowercase string
 
     //sets the type of the referee event
     if(element.compare("gameinterruptionbegin") == 0)
@@ -88,38 +62,7 @@ referee_event referee_event_parser(string line, unsigned long int begin)
 
 }
 
-/**
- * Parses a single line from full-game.csv file.
- * The format must remain: sid, ts, x, y, z.
- * The other columns are not stored because are not in the project's scope.
- * @param line is a single line of the file
- * @return the parsed sensor record
- */
-sensor_record sensor_record_parser(string line)
-{
-    sensor_record sensor_record;
-    stringstream lineStream(line);
-    string element;
 
-    getline(lineStream, element, SEPARATOR1);
-    sensor_record.sensor_id = stoul(element);
-    getline(lineStream, element, SEPARATOR1);
-    sensor_record.game_timestamp = stoull(element);
-    getline(lineStream, element, SEPARATOR1);
-    sensor_record.x = stoi(element);
-    getline(lineStream, element, SEPARATOR1);
-    sensor_record.y = stoi(element);
-    getline(lineStream, element, SEPARATOR1);
-    sensor_record.z = stoi(element);
-    return sensor_record;
-
-}
-
-/**
- * Parses a single line from players.csv, that is obtained from metadata.txt using metadata.py
- * @param line is a single line of the file
- * @return a parsed player
- */
 player player_parser(string line)
 {
     stringstream lineStream(line);
@@ -127,26 +70,49 @@ player player_parser(string line)
     player player;
     int a;
 
-    getline(lineStream, element, SEPARATOR1);
+    getline(lineStream, element, SEPARATOR);
     player.name = element;
-    getline(lineStream, element, SEPARATOR1);
-    player.role == element[0];
+    getline(lineStream, element, SEPARATOR);
+    player.role = element[0];
     if (player.role == 'G')
         a = 4;
     else
         a = 2;
-    for (i = 0; i < a; i++) {
-        getline(lineStream, element, SEPARATOR1);
+    for (int i = 0; i < a; i++) {
+        getline(lineStream, element, SEPARATOR);
         player.sensors.push_back(stoul(element));
     }
-    getline(lineStream, element, SEPARATOR1);
+    getline(lineStream, element, SEPARATOR);
     player.team = element[0];
     return player;
+}
 
+sensor_record sensor_record_parser(string line)
+{
+    sensor_record sensor_record;
+    stringstream lineStream(line);
+    string element;
+
+    getline(lineStream, element, SEPARATOR);
+    sensor_record.sensor_id = stoul(element);
+    getline(lineStream, element, SEPARATOR);
+    sensor_record.game_timestamp = stoull(element);
+    getline(lineStream, element, SEPARATOR);
+    sensor_record.x = stoi(element);
+    getline(lineStream, element, SEPARATOR);
+    sensor_record.y = stoi(element);
+    getline(lineStream, element, SEPARATOR);
+    sensor_record.z = stoi(element);
+    return sensor_record;
 
 }
 
 
+/*
+ ***********************************************************************************************************************
+ * LOADERS
+ ***********************************************************************************************************************
+ */
 
 void load_referee_csv(string path, vector<referee_event> &events, unsigned long int begin)
 {
@@ -166,6 +132,38 @@ void load_referee_csv(string path, vector<referee_event> &events, unsigned long 
 
 }
 
+void load_players(string path, vector<player> &players)
+{
+    ifstream file;
+    file.open(path);
+
+    if (!file.is_open())
+        throw runtime_error("File not found: " + path);
+    string line;
+    while(getline(file, line)) {
+        players.push_back(player_parser(line));
+    }
+}
+
+void load_balls(string path, set<unsigned int>& balls)
+{
+    ifstream file;
+    file.open(path);
+    if(!file.is_open())
+        throw runtime_error("File not found: " + path);
+    for(int i = 0; i < 2; i++) {
+        string line;
+        getline(file, line);
+        stringstream lineStream(line);
+        string ball;
+        while(lineStream.rdstate() != ios_base::eofbit) {
+            getline(lineStream, ball, SEPARATOR);
+            balls.insert(stoul(ball));
+        }
+    }
+
+}
+
 void load_sensors_csv(string path, vector<vector<sensor_record>> &sensors)
 {
     ifstream file;
@@ -178,23 +176,23 @@ void load_sensors_csv(string path, vector<vector<sensor_record>> &sensors)
     vector<string> *producer = new vector<string>();
     vector<string> *consumer = new vector<string>();
     do {
-        #pragma omp parallel sections
+#pragma omp parallel sections
         {
-            #pragma omp section
+#pragma omp section
             {
                 producer->clear();
                 string line;
-                while (produce->size() < size && getline(file, line))
+                while (producer->size() < aaasize && getline(file, line))
                     producer->push_back(line);
             }
-            #pragma omp section
+#pragma omp section
             {
                 sensor_record temp;
                 for (string& line: *consumer) {
                     temp = sensor_record_parser(line);
                     if (step.size() > 0) {
                         if ((temp.game_timestamp / player_sensor_sample_time) != (step[0].game_timestamp / player_sensor_sample_time)) {
-                            vector.push_back(step);
+                            sensors.push_back(step);
                             step.clear();
                         }
                     }
@@ -211,38 +209,40 @@ void load_sensors_csv(string path, vector<vector<sensor_record>> &sensors)
 
 }
 
-void load_players(string path, vector<player> &players)
-{
-    ifstream file;
-    file.open(path);
-    if (!file.is_open())
-        throw runtime_error("File not found: " + path);
-    string line;
-    while(getline(file, line)) {
-        players.push_back(player_parser(line));
-    }
-}
 
-/**
- * file created by metadata.txt using balls.py
- * @param path
- * @param balls
- */
-void load_balls(string path, set<unsigned int>& balls)
+void game::load(string& path)
 {
-    ifstream file;
-    file.open(path);
-    if(!file.is_open())
-        throw new runtime_error("File not found: " + path)
-    for(i = 0; i < 2; i++) {
-        string line;
-        getline(file, line);
-        stringstream lineStream(line);
-        string ball;
-        while(lineStream.rdstate() != ios_base::eofbit) {
-            getline(lineStream, ball, SEPARATOR1);
-            balls.insert(stoul(ball));
+    records.reserve(50000000);
+    load_sensors_csv(path + "ex-full-game.csv", records);
+    events.push_back({2010,referee_event::type::INTERRUPTION_END, 0, 0});
+    events.push_back({2011,referee_event::type::INTERRUPTION_END, first_half_starting_time, 0});
+    load_referee_csv(path + "referee-events/game-interruption/1st-half.csv", events, first_half_starting_time);
+    events.push_back({2010, referee_event::type::INTERRUPTION_BEGIN, ball_not_available, 35});
+    events.push_back({2011, referee_event::type::INTERRUPTION_END, second_half_starting_time, 35});
+    load_referee_csv(path + "referee-events/game-interruption/2nd-half.csv", events, second_half_starting_time);
+    events.push_back({6014, referee_event::type::INTERRUPTION_BEGIN, max_timestamp, 39});
+    events.push_back({6015, referee_event::type ::INTERRUPTION_END, max_timestamp, 39});
+
+    load_players(path + "players.csv", players);
+    load_balls(path + "balls.csv", balls);
+    for (int i = 0; i < players.size(); i++) {
+
+        for (sensor_id j : players[i].sensors) {
+
+            if(j != 0)
+                sensor_id_to_player_index[j] = i;
+
         }
+
+        if(players[i].role == 'R')
+            referee_index = i;
+
     }
+
+    for (int i = 0; i < events.size(); i+=2) {
+        game_interruptions.push_back({events[i].gts, events[i+1].gts});
+    }
+
+
 
 }
