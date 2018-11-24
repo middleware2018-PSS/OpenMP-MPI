@@ -23,6 +23,8 @@ int main (int argc, char *argv[]) {
     file.clear();
     file.seekg(0);
     map<int, sensor_record> players_sensors;
+    vector<map<sensor_id, game_timestamp>> possession_results;
+    map<string, game_timestamp> final_possession;
     for (auto event: g.events) {
         //    cout << event.gts << " " << event.type  << " " << event.counter << endl;
         #pragma omp parallel
@@ -75,10 +77,8 @@ int main (int argc, char *argv[]) {
                                         }
                                     }
                                 }
-                                //compute: x = compute( ... )
-                                //critical section update possession time ?
-                                //otherwise return value and reduce afterward
-                                // critical section appending results to list
+                                #pragma omp critical
+                                possession_results.push_back(possession_attributions);
                             }
                             microbatch_players = map<sensor_id, sensor_record>();
                             microbatch_balls = vector<sensor_record>();
@@ -94,6 +94,21 @@ int main (int argc, char *argv[]) {
                     // cout << sensor.ts << " >= " << nextUpdate << " ? " << (sensor.ts >= nextUpdate)<< endl;
 
                     #pragma omp taskwait
+                    for (auto mb : possession_results){
+                        for (auto npt = mb.begin(); npt != mb.end(); npt++){
+                            auto player = g.players[g.sensor_id_to_player_index[npt->first]].name;
+                            auto pa = final_possession.find(player);
+                            if (pa != final_possession.end()) {
+                                final_possession[player] = pa->second + npt->second;
+                            } else{
+                                final_possession.insert(pair(player,npt->second));
+                            }
+                        }
+                    }
+                    cout << "finished update for "<< nextUpdate << " final_possession is:" << endl;
+                    for (auto it = final_possession.begin(); it != final_possession.end(); it++){
+                        cout << it->first << " : " << it->second << endl;
+                    }
                     nextUpdate += T;
                     // reduce all
                     // print current results
