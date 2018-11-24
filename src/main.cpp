@@ -26,7 +26,7 @@ int main (int argc, char *argv[]) {
     for (auto event: g.events) {
         //    cout << event.gts << " " << event.type  << " " << event.counter << endl;
         #pragma omp parallel
-        #pragma omp single nowait
+        #pragma omp single
         {
             map<sensor_id, sensor_record> microbatch_players;
             vector<sensor_record> microbatch_balls;
@@ -34,8 +34,8 @@ int main (int argc, char *argv[]) {
             while (!file.eof()) {
                 file >> line;
                 sensor = sensor_record_parser(line);
-                cout << sensor.ts << " " << sensor.id << " " << sensor.x << " " << sensor.y << " "
-                     << sensor.z << endl;
+                //cout << sensor.ts << " " << sensor.id << " " << sensor.x << " " << sensor.y << " "
+                //     << sensor.z << endl;
                 if (event.type == referee_event::type::INTERRUPTION_END && sensor.ts > event.gts)
                     break;
                 bool b1 = first_half_starting_time <= sensor.ts <= second_half_ending_time;
@@ -47,12 +47,13 @@ int main (int argc, char *argv[]) {
                     && g.is_inside_field(sensor)
                     && ((event.type == referee_event::type::INTERRUPTION_END && sensor.ts <= event.gts)
                         || (event.type == referee_event::type::INTERRUPTION_BEGIN && sensor.ts >= event.gts))) {
-                    cout << b1 << b2 <<b3 << b4 << ", event.gts: " <<  event.gts << ", sensor.ts: " << sensor.ts << ", event.type: " << event.type <<endl;
+                    //cout << b1 << b2 <<b3 << b4 << ", event.gts: " <<  event.gts << ", sensor.ts: " << sensor.ts << ", event.type: " << event.type <<endl;
                     if (g.is_player_sensor_id(sensor.id)) { //is a player
-                        if (microbatch_players.find(sensor.id) == microbatch_players.end()) { //never seen player sensor
+                        if (microbatch_players.find(sensor.id) != microbatch_players.end()) { //never seen player sensor
                             //here execute microbatch computation
                             #pragma omp task firstprivate(microbatch_players, microbatch_balls)
                             {
+                                cout << omp_get_thread_num() << " sais hello " << microbatch_balls.size() << " " << microbatch_players.size() << endl;
                                 auto delta_ts = (microbatch_balls.back().ts - microbatch_balls[0].ts)/ microbatch_balls.size();
                                 map<sensor_id, game_timestamp> possession_attributions;
                                 for(auto ball: microbatch_balls){
@@ -90,11 +91,13 @@ int main (int argc, char *argv[]) {
                     }
                 }
                 if (sensor.ts >= nextUpdate) {
+                    // cout << sensor.ts << " >= " << nextUpdate << " ? " << (sensor.ts >= nextUpdate)<< endl;
+
                     #pragma omp taskwait
                     nextUpdate += T;
                     // reduce all
                     // print current results
-                    cout << "ok"<< endl;
+                    // cout << "ok"<< endl;
                 };
                 if (event.type == referee_event::type::INTERRUPTION_BEGIN && sensor.ts > event.gts)
                     break;
