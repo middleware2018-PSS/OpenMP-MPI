@@ -94,9 +94,9 @@ sensor_record sensor_record_parser(string line)
     string element;
 
     getline(lineStream, element, SEPARATOR);
-    sensor_record.sensor_id = stoul(element);
+    sensor_record.id = stoul(element);
     getline(lineStream, element, SEPARATOR);
-    sensor_record.game_timestamp = stoull(element);
+    sensor_record.ts = stoull(element);
     getline(lineStream, element, SEPARATOR);
     sensor_record.x = stoi(element);
     getline(lineStream, element, SEPARATOR);
@@ -191,7 +191,7 @@ void load_sensors_csv(string path, vector<vector<sensor_record>> &sensors)
                 for (string& line: *consumer) {
                     temp = sensor_record_parser(line);
                     if (step.size() > 0) {
-                        if ((temp.game_timestamp / player_sensor_sample_time) != (step[0].game_timestamp / player_sensor_sample_time)) {
+                        if ((temp.ts / player_sensor_sample_time) != (step[0].ts / player_sensor_sample_time)) {
                             sensors.push_back(step);
                             step.clear();
                         }

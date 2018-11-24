@@ -41,8 +41,8 @@ struct game_interruption {
 
 
 struct sensor_record {
-    sensor_id sensor_id;        // Sensor id
-    game_timestamp game_timestamp; // Timestamp
+    sensor_id id;        // Sensor id
+    game_timestamp ts; // Timestamp
     int x;                          // Position on the x-axis
     int y;                          // Position on the y-axis
     int z;                          // Position on the z-axis
