@@ -19,8 +19,6 @@ using namespace std;
 typedef unsigned long int game_timestamp;                           // Timestamp datatype, in picoseconds
 typedef unsigned int sensor_id;                                     // Sensor id
 
-const unsigned int aaasize = 100000;
-
 const game_timestamp max_timestamp = ULONG_MAX;                     // Max timestamp limit
 const game_timestamp second = 1000000000000;                        // 1 second in picoseconds, as timestamp
 const game_timestamp player_sensor_sample_time = second / 200;      // Player sensor sample time
@@ -89,15 +87,8 @@ public:
     vector<referee_event> events;               // Vector of referee_events
     vector<player> players;                     // Vector of player
     set<sensor_id> balls;                       // Set of balls
-    vector<game_interruption> game_interruptions;        // Vector of game_interruption
     map<sensor_id, unsigned int> sensor_id_to_player_index;     //Map that maps sensor_id to player indexes
-    map<sensor_id, vector<int>> lastPos;
-    map<sensor_id, double> possession_for_sensor;
-    unsigned int referee_index = 0;             // Referee index is 0
-    int period = 0;
-    bool activate_offset = true;
-    sensor_id nearest_sensor;
-
+    unsigned int referee_index;
 
     /**
      * Loads the game CSVs/txts. All the files MUST maintain the given names and relative position.
@@ -124,10 +115,7 @@ public:
     bool is_player_sensor_id(sensor_id sensor_id)
     {
         auto temp = sensor_id_to_player_index.find(sensor_id);
-        if (temp == sensor_id_to_player_index.end() || temp-> second == referee_index )
-            return false;
-        return true;
-
+        return !(temp == sensor_id_to_player_index.end() || temp->second == referee_index );
     }
 
 
@@ -138,15 +126,6 @@ public:
 
         if ( 0 < x < 52477 && -33960 < y < 33941 )
             return true;
-        return false;
-    }
-
-    bool is_interrupted(game_timestamp timestamp) const
-    {
-        for(game_interruption game_interruption : game_interruptions){
-            if (timestamp >= game_interruption.begin && timestamp <= game_interruption.end)
-                return true;
-        }
         return false;
     }
 

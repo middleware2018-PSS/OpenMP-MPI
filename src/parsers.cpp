@@ -23,7 +23,6 @@ sensor_record sensor_record_parser(string line)
     sensor_record sensor_record;
     stringstream lineStream(line);
     string element;
-
     getline(lineStream, element, SEPARATOR);
     sensor_record.id = stoul(element);
     getline(lineStream, element, SEPARATOR);
@@ -40,13 +39,14 @@ sensor_record sensor_record_parser(string line)
 
 game_timestamp parse_time_picoseconds(string string)
 {
+    double time = 0.0;
     std::string element;
     stringstream lineStream(string);
-    double time = 0.0;
     getline(lineStream, element, TIMESEPARATOR);
+    if (string == "0"){
+        return 0;
+    }
     time += stof(element) * 3600;
-    if (lineStream.rdstate() == ios_base::eofbit)       //if string is 0
-        return time * second;
     getline(lineStream, element, TIMESEPARATOR);
     time += stof(element) * 60;
     getline(lineStream, element, TIMESEPARATOR);
@@ -56,6 +56,7 @@ game_timestamp parse_time_picoseconds(string string)
 
 referee_event referee_event_parser(string line, unsigned long int begin)
 {
+    // cout << line << endl;
     stringstream lineStream(line);
     std::string element;
     referee_event referee_event;
@@ -64,25 +65,22 @@ referee_event referee_event_parser(string line, unsigned long int begin)
     referee_event.id = stoul(element);       // set the id of the event
 
     getline(lineStream, element, SEPARATOR);
-
+    //cout << "begin: " << referee_event::type::INTERRUPTION_BEGIN << ", end: " << referee_event::type::INTERRUPTION_END << endl;
     //sets the type of the referee event
-    if(element.compare("gameinterruptionbegin") == 0)
+    if(element.compare("begin") == 0)
         referee_event.type = referee_event::type::INTERRUPTION_BEGIN;
-
-    else if (element.compare("gameinterruptionend") == 0)
-        referee_event.type = referee_event::type::INTERRUPTION_END;
-
-    else
-        referee_event.type = referee_event::type::OTHER;
-
+    else {
+        if (element.compare("end") == 0)
+            referee_event.type = referee_event::type::INTERRUPTION_END;
+        else
+            referee_event.type = referee_event::type::OTHER;
+    }
     getline(lineStream, element, SEPARATOR);
     referee_event.gts = begin + parse_time_picoseconds(element); // set the timestamp of the event, starting from begin
 
     getline(lineStream, element, SEPARATOR);
-    referee_event.counter = stoul(element);                      // set the counter of the event
-
+    referee_event.counter = stoul(element);// set the counter of the event
     return referee_event;
-
 }
 
 
@@ -126,14 +124,13 @@ void load_referee_csv(string path, vector<referee_event> &events, unsigned long 
         throw runtime_error("File not found: " + path);
     }
 
-    string string;
+    string line;
 
-    while(getline(file, string)) {
-        events.push_back(referee_event_parser(string, begin));
+    while(getline(file, line)) {
+        events.push_back(referee_event_parser(line, begin));
     }
 
     file.close();
-
 }
 
 void load_players(string path, vector<player> &players)
@@ -171,36 +168,18 @@ void load_balls(string path, set<unsigned int>& balls)
 
 Game::Game(string& path)
 {
-    events.push_back({2010,referee_event::type::INTERRUPTION_END, 0, 0});
-    events.push_back({2011,referee_event::type::INTERRUPTION_END, first_half_starting_time, 0});
     load_referee_csv(path + "referee-events/game-interruption/1st-half.csv", events, first_half_starting_time);
-    events.push_back({2010, referee_event::type::INTERRUPTION_BEGIN, ball_not_available, 35});
-    events.push_back({2011, referee_event::type::INTERRUPTION_END, second_half_starting_time, 35});
     load_referee_csv(path + "referee-events/game-interruption/2nd-half.csv", events, second_half_starting_time);
-    events.push_back({6014, referee_event::type::INTERRUPTION_BEGIN, max_timestamp, 39});
-    events.push_back({6015, referee_event::type ::INTERRUPTION_END, max_timestamp, 39});
-
     load_players(path + "players.csv", players);
     load_balls(path + "balls.csv", balls);
     for (int i = 0; i < players.size(); i++) {
-
         for (sensor_id j : players[i].sensors) {
-
             if(j != 0)
                 sensor_id_to_player_index[j] = i;
-
         }
-
         if(players[i].role == 'R')
             referee_index = i;
-
     }
-
-    for (int i = 0; i < events.size(); i+=2) {
-        game_interruptions.push_back({events[i].gts, events[i+1].gts});
-    }
-
-
 
 }
 #endif

@@ -5,9 +5,9 @@
 using namespace std;
 
 int main (int argc, char *argv[]) {
-    int K = 0;
-    long int T = 3000000000000; //30 seconds
-    string path = "../";
+    const game_timestamp K = argc > 4 ? atoi(argv[1])*1000 : 3000; // TODO
+    long int T =  argc > 4 ? atoi(argv[2])*100000000000 : 3000000000000; //30 seconds default
+    string path = argc > 4 ? argv[3] : "../";
     game_timestamp lastBall = first_half_starting_time;
     game_timestamp nextUpdate = first_half_starting_time + T;
     //cout << lastPos << endl;
@@ -22,26 +22,87 @@ int main (int argc, char *argv[]) {
         throw runtime_error("File not found: " + path);
     file.clear();
     file.seekg(0);
+    map<int, sensor_record> players_sensors;
+    for (auto event: g.events) {
+        //    cout << event.gts << " " << event.type  << " " << event.counter << endl;
+        #pragma omp parallel
+        #pragma omp single nowait
+        {
+            map<sensor_id, sensor_record> microbatch_players;
+            vector<sensor_record> microbatch_balls;
+            sensor_record sensor;
+            while (!file.eof()) {
+                file >> line;
+                sensor = sensor_record_parser(line);
+                cout << sensor.ts << " " << sensor.id << " " << sensor.x << " " << sensor.y << " "
+                     << sensor.z << endl;
+                if (event.type == referee_event::type::INTERRUPTION_END && sensor.ts > event.gts)
+                    break;
+                bool b1 = first_half_starting_time <= sensor.ts <= second_half_ending_time;
+                bool b2 = g.is_inside_field(sensor);
+                bool b3 = event.type == referee_event::type::INTERRUPTION_END && sensor.ts <= event.gts;
+                bool b4 = event.type == referee_event::type::INTERRUPTION_BEGIN && sensor.ts >= event.gts;
+                //cout << b1 << b2 <<b3 << b4 << ", event.gts: " <<  event.gts << ", sensor.ts: " << sensor.ts << ", event.type: " << event.type <<endl;
+                if (first_half_starting_time <= sensor.ts <= second_half_ending_time
+                    && g.is_inside_field(sensor)
+                    && ((event.type == referee_event::type::INTERRUPTION_END && sensor.ts <= event.gts)
+                        || (event.type == referee_event::type::INTERRUPTION_BEGIN && sensor.ts >= event.gts))) {
+                    cout << b1 << b2 <<b3 << b4 << ", event.gts: " <<  event.gts << ", sensor.ts: " << sensor.ts << ", event.type: " << event.type <<endl;
+                    if (g.is_player_sensor_id(sensor.id)) { //is a player
+                        if (microbatch_players.find(sensor.id) == microbatch_players.end()) { //never seen player sensor
+                            //here execute microbatch computation
+                            #pragma omp task firstprivate(microbatch_players, microbatch_balls)
+                            {
+                                auto delta_ts = (microbatch_balls.back().ts - microbatch_balls[0].ts)/ microbatch_balls.size();
+                                map<sensor_id, game_timestamp> possession_attributions;
+                                for(auto ball: microbatch_balls){
+                                    pair nearest(-1, K); // (sensor, dist)
+                                    for(auto it = microbatch_players.begin(); it != microbatch_players.end(); it++){
+                                        auto dist = it->second.calculate_3D_distance(ball);
+                                        if (nearest.second > dist){
+                                            nearest.first = sensor.id;
+                                            nearest.second = dist;
+                                        }
+                                    }
+                                    auto n = nearest.first;
+                                    if (n >= 0){
+                                        auto pa = possession_attributions.find(n);
+                                        if (pa != possession_attributions.end()) {
+                                            possession_attributions[n] = pa->second + delta_ts;
+                                        } else{
+                                            possession_attributions.insert(pair(n,delta_ts));
+                                        }
+                                    }
+                                }
+                                //compute: x = compute( ... )
+                                //critical section update possession time ?
+                                //otherwise return value and reduce afterward
+                                // critical section appending results to list
+                            }
+                            microbatch_players = map<sensor_id, sensor_record>();
+                            microbatch_balls = vector<sensor_record>();
+                        } else {
+                            microbatch_players[sensor.id] = sensor;
+                        }
+                    } else if (g.balls.find(sensor.id) != g.balls.end()){
+                        //is a ball
+                        microbatch_balls.push_back(sensor);
+                    }
+                }
+                if (sensor.ts >= nextUpdate) {
+                    #pragma omp taskwait
+                    nextUpdate += T;
+                    // reduce all
+                    // print current results
+                    cout << "ok"<< endl;
+                };
+                if (event.type == referee_event::type::INTERRUPTION_BEGIN && sensor.ts > event.gts)
+                    break;
+            }
 
-    #pragma omp parallel
-    #pragma omp single
-    {
-        vector<sensor_record> microbatch;
-        sensor_record parsed_sensor;
-        while (!file.eof()) {
-            file >> line;
-            parsed_sensor = sensor_record_parser(line);
-            //check kind of sensor data
-            if (microbatch.size() >= 100) {
-                #pragma omp task firstprivate(microbatch)
-                {
-                    cout << omp_get_thread_num() << " " << microbatch[0].ts << " -> "<< microbatch.back().ts << endl;
-            }
-            microbatch = vector<sensor_record>();
-            } else {
-                microbatch.push_back(parsed_sensor);
-            }
         }
+
+
     }
     file.close();
 
@@ -56,7 +117,7 @@ int main (int argc, char *argv[]) {
                 //check if ts is between starting and ending time, if game is not interrupted at given ts and if is inside game
             if (first_half_starting_time <= sensor.ts <= second_half_ending_time && g.is_interrupted(sensor.ts) && g.is_inside_field(sensor))
                 //cout << "ok" << endl;
-            //check if the sensor is a player's sensor (or add ! for a ball)
+            //check if the sensor is a player's sensor (or add ! for a ball)/check if the sensor is a player's sensor (
                 if (!g.is_player_sensor_id(sensor.id)) {
                     //cout << "palla!" << endl;
                     cout << sensor.ts << " " << sensor.id << " " << sensor.x << " " << sensor.y << " "
