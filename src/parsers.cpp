@@ -1,3 +1,5 @@
+#ifndef PARSERS
+#define PARSERS
 #include <iostream>
 #include <algorithm>
 #include <fstream>
@@ -8,12 +10,33 @@
 #include <limits>
 #include <climits>
 #include <chrono>
+#include <queue>
 #include "game.h"
 
 #define SEPARATOR ','
 #define TIMESEPARATOR ':'
 
 using namespace std;
+
+sensor_record sensor_record_parser(string line)
+{
+    sensor_record sensor_record;
+    stringstream lineStream(line);
+    string element;
+
+    getline(lineStream, element, SEPARATOR);
+    sensor_record.id = stoul(element);
+    getline(lineStream, element, SEPARATOR);
+    sensor_record.ts = stoull(element);
+    getline(lineStream, element, SEPARATOR);
+    sensor_record.x = stoi(element);
+    getline(lineStream, element, SEPARATOR);
+    sensor_record.y = stoi(element);
+    getline(lineStream, element, SEPARATOR);
+    sensor_record.z = stoi(element);
+    return sensor_record;
+
+}
 
 game_timestamp parse_time_picoseconds(string string)
 {
@@ -87,25 +110,6 @@ player player_parser(string line)
     return player;
 }
 
-sensor_record sensor_record_parser(string line)
-{
-    sensor_record sensor_record;
-    stringstream lineStream(line);
-    string element;
-
-    getline(lineStream, element, SEPARATOR);
-    sensor_record.id = stoul(element);
-    getline(lineStream, element, SEPARATOR);
-    sensor_record.ts = stoull(element);
-    getline(lineStream, element, SEPARATOR);
-    sensor_record.x = stoi(element);
-    getline(lineStream, element, SEPARATOR);
-    sensor_record.y = stoi(element);
-    getline(lineStream, element, SEPARATOR);
-    sensor_record.z = stoi(element);
-    return sensor_record;
-
-}
 
 
 /*
@@ -164,56 +168,9 @@ void load_balls(string path, set<unsigned int>& balls)
 
 }
 
-void load_sensors_csv(string path, vector<vector<sensor_record>> &sensors)
+
+Game::Game(string& path)
 {
-    ifstream file;
-    file.open(path);
-    if (!file.is_open())
-        throw runtime_error("File not found: " + path);
-    file.clear();
-    file.seekg(0);
-    vector<sensor_record> step;
-    vector<string> *producer = new vector<string>();
-    vector<string> *consumer = new vector<string>();
-    do {
-#pragma omp parallel sections
-        {
-#pragma omp section
-            {
-                producer->clear();
-                string line;
-                while (producer->size() < aaasize && getline(file, line))
-                    producer->push_back(line);
-            }
-#pragma omp section
-            {
-                sensor_record temp;
-                for (string& line: *consumer) {
-                    temp = sensor_record_parser(line);
-                    if (step.size() > 0) {
-                        if ((temp.ts / player_sensor_sample_time) != (step[0].ts / player_sensor_sample_time)) {
-                            sensors.push_back(step);
-                            step.clear();
-                        }
-                    }
-                    step.push_back(temp);
-                }
-            };
-        };
-        swap(producer, consumer);
-    } while (consumer->size() > 0);
-
-    file.close();
-    delete producer;
-    delete consumer;
-
-}
-
-
-void game::load(string& path)
-{
-    records.reserve(50000000);
-    load_sensors_csv(path + "ex-full-game.csv", records);
     events.push_back({2010,referee_event::type::INTERRUPTION_END, 0, 0});
     events.push_back({2011,referee_event::type::INTERRUPTION_END, first_half_starting_time, 0});
     load_referee_csv(path + "referee-events/game-interruption/1st-half.csv", events, first_half_starting_time);
@@ -246,3 +203,4 @@ void game::load(string& path)
 
 
 }
+#endif

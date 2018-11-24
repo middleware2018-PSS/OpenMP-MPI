@@ -83,10 +83,9 @@ struct referee_event {
 
 };
 
-class game {
+class Game {
 public:
-
-    vector<vector<sensor_record>> records;      // Vector of vectors of sensor_records
+          // Vector of vectors of sensor_records
     vector<referee_event> events;               // Vector of referee_events
     vector<player> players;                     // Vector of player
     set<sensor_id> balls;                       // Set of balls
@@ -109,7 +108,7 @@ public:
      *
      * @param path the path of the directory containing all the game data (basepath)
      */
-    void load(string& path);
+    Game(string& path);
 
     /*
         game_timestamp total_game_length()
