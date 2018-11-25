@@ -25,6 +25,7 @@ int main (int argc, char *argv[]) {
     vector<map<int, game_timestamp>> possession_results;
     map<string, game_timestamp> final_possession;
     map<char, game_timestamp> final_possession_team;
+    int task_num_per_window =0 ;
     for (auto event: g.events) {
         cout << "WAITING FOR "<< (event.type == referee_event::type::INTERRUPTION_BEGIN ? "BEGIN" : "END") << " AT " << event.gts << endl;
         #pragma omp parallel
@@ -55,6 +56,7 @@ int main (int argc, char *argv[]) {
                     if (g.is_player_sensor_id(sensor.id)) { //is a player
                         if (microbatch_players.find(sensor.id) != microbatch_players.end()) { //never seen player sensor
                             //here execute microbatch computation
+                            task_num_per_window +=1;
                             #pragma omp task firstprivate(microbatch_players, microbatch_balls, delta_ts)
                             {
                                 //cout << omp_get_thread_num() << " delta_ts is " << delta_ts << " -> " << (delta_ts*microbatch_balls.size()) << " " << microbatch_balls.size() << " " << microbatch_players.size() << endl;
@@ -104,7 +106,8 @@ int main (int argc, char *argv[]) {
                     // cout << sensor.ts << " >= " << nextUpdate << " ? " << (sensor.ts >= nextUpdate)<< endl;
                     #pragma omp taskwait
                     // TODO take latency time
-                    cout << "\n\nfinished tasks for window closed at " << nextUpdate << endl;
+                    cout << "\n\nfinished "<< task_num_per_window <<" tasks for window closed at " << nextUpdate << endl;
+                    task_num_per_window=0;
                     // TODO: this loop should be parallelized
                     for (auto mb : possession_results){
                         for (auto npt = mb.begin(); npt != mb.end(); npt++){
