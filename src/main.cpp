@@ -6,10 +6,10 @@ using namespace std;
 
 int main (int argc, char *argv[]) {
     const game_timestamp K = argc > 4 ? atoi(argv[1])*1000 : 3000; // TODO
-    long int T =  argc > 4 ? atoi(argv[2])*100000000000 : 3000000000000; //30 seconds default
+    long int T =  argc > 4 ? atoi(argv[2])*10000000000000 : 30000000000000; //30 seconds default
     string path = argc > 4 ? argv[3] : "../";
     sensor_record last_ball;
-    game_timestamp delta_ts;
+    game_timestamp delta_ts=0;
     game_timestamp nextUpdate = first_half_starting_time + T;
     //cout << lastPos << endl;
     //cout << nextUpdate << endl;
@@ -23,9 +23,11 @@ int main (int argc, char *argv[]) {
     file.seekg(0);
     map<int, sensor_record> players_sensors;
     vector<map<int, game_timestamp>> possession_results;
+    //vector<game_timestamp> no_attribution;
+    //game_timestamp final_no_attribution = 0;
     map<string, game_timestamp> final_possession;
     map<char, game_timestamp> final_possession_team;
-    int task_num_per_window =0 ;
+    int task_num_per_window = 0 ;
     double start = omp_get_wtime();
     cout << "STARTED AT WALLTIME:" << start << endl;
     int window_number = 0;
@@ -43,7 +45,7 @@ int main (int argc, char *argv[]) {
                 //cout << sensor.ts << " " << sensor.id << " " << sensor.x << " " << sensor.y << " "
                 //     << sensor.z << endl;
                 if (event.type == referee_event::type::INTERRUPTION_END && sensor.ts > event.gts) {
-                    cout << "stopped game at " << event.gts << ", now " << sensor.ts << endl;
+                    cout << "END AT " << event.gts << ", NOW IS " << sensor.ts << endl;
                     break;
                 }
                /* bool b1 = first_half_starting_time <= sensor.ts <= second_half_ending_time;
@@ -66,6 +68,7 @@ int main (int argc, char *argv[]) {
                                 map<int, game_timestamp> possession_attributions;
                                 sensor_record last_local_ball;
                                 bool first_ball = true;
+                                game_timestamp none_player_attribution = 0;
                                 for(auto ball: microbatch_balls){
                                     if (!first_ball)
                                         delta_ts = ball.ts - last_local_ball.ts;
@@ -77,21 +80,25 @@ int main (int argc, char *argv[]) {
                                             nearest.second = dist;
                                         }
                                     }
-                                    auto n = g.sensor_id_to_player_index[nearest.first];
-                                    if (n >= 0){
+                                    if (nearest.first >= 0){
+                                        auto n = g.sensor_id_to_player_index[nearest.first];
                                         auto pa = possession_attributions.find(n);
                                         if (pa != possession_attributions.end()) {
                                             possession_attributions[n] = pa->second + delta_ts;
                                         } else{
                                             possession_attributions.insert(pair(n,delta_ts));
                                         }
-                                    } else {
-                                        cout << "Player:None:" << delta_ts << endl;
+                                    /*} else {
+                                        none_player_attribution += delta_ts;*/
                                     }
                                     last_local_ball = ball;
+                                    first_ball=false;
                                 }
+
                                 #pragma omp critical
                                 possession_results.push_back(possession_attributions);
+                                /*#pragma omp critical
+                                no_attribution.push_back(none_player_attribution);*/
                             }
                             microbatch_players.clear();
                             microbatch_balls.clear();
@@ -111,6 +118,13 @@ int main (int argc, char *argv[]) {
                     // TODO take latency time
                     cout << "\n\nfinished "<< task_num_per_window <<" tasks for window nr " << window_number++ << " closed at " << nextUpdate << endl;
                     task_num_per_window=0;
+                    /*game_timestamp microbatch_no_attr = 0;
+                    for (auto att: no_attribution) {
+                        microbatch_no_attr += att;
+                    }
+                    final_no_attribution += microbatch_no_attr;
+                    no_attribution.clear();*/
+                    //cout << "no_attribution size: " << no_attribution.size() << " total: "<< microbatch_no_attr << "/" << final_no_attribution<< endl;
                     // TODO: this loop should be parallelized
                     for (auto mb : possession_results){
                         for (auto npt = mb.begin(); npt != mb.end(); npt++){
@@ -131,18 +145,21 @@ int main (int argc, char *argv[]) {
                         }
                     }
                     // TODO: better printing
-                    cout << "Window:"<< nextUpdate << " Printed after " << (omp_get_wtime() - start) << "s" << endl;
+                    // cout << T << ", " << (final_possession_team.find('A')->second) << ", " << (final_possession_team.find('B')->second) << ", " << final_no_attribution <<endl;
+                    cout << "WINDOW:"<< nextUpdate-T << " -> " << nextUpdate << " PRINTED AFTER " << (omp_get_wtime() - start) << "s" << endl;
+                    //cout << "PLAYER:NONE:" << final_no_attribution << endl;
+
                     for (auto it = final_possession.begin(); it != final_possession.end(); it++){
-                        cout << "Player:" << it->first << ":" << it->second << endl;
+                        cout << "PLAYER:" << it->first << ":" << it->second << endl;
                     }
                     for (auto fpt = final_possession_team.begin(); fpt != final_possession_team.end(); fpt++){
-                        cout << "Team:" << fpt->first << ": " << fpt->second << endl;
+                        cout << "TEAM:" << fpt->first << ": " << fpt->second << endl;
                     }
                     possession_results.clear();
                     nextUpdate += T;
                 }
                 if (event.type == referee_event::type::INTERRUPTION_BEGIN && sensor.ts > event.gts){
-                    cout << "stopped game at " << event.gts << ", now " << sensor.ts << endl;
+                    cout << "BEGIN AT " << event.gts << ", NOW IS " << sensor.ts << endl;
                     break;
                 }
             }
