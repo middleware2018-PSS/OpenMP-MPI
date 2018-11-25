@@ -168,6 +168,7 @@ int main (int argc, char *argv[]) {
 
 
     }
+    cout << "================ END =====================" << endl;
     file.close();
     
     return 0;
