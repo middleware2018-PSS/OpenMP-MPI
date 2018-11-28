@@ -76,7 +76,7 @@ int main (int argc, char *argv[]) {
                                     for(auto it = microbatch_players.begin(); it != microbatch_players.end(); it++){
                                         auto dist = it->second.calculate_3D_distance(ball);
                                         if (nearest.second > dist){
-                                            nearest.first = sensor.id;
+                                            nearest.first = it->second.id;
                                             nearest.second = dist;
                                         }
                                     }
