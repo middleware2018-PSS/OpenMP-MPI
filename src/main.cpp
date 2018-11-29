@@ -42,6 +42,31 @@ map<int, game_timestamp> microbatch_possession(vector<sensor_record> &microbatch
     no_attribution.push_back(none_player_attribution);*/
 }
 
+void aggregate_results(vector<map<int, game_timestamp>> &possession_results, map<char, game_timestamp> &final_possession_team, map<string, game_timestamp> &final_possession, Game g){
+    player player;
+    string name;
+    for (auto mb : possession_results) {
+        for (auto npt = mb.begin(); npt != mb.end(); npt++) {
+            player = g.players[npt->first];
+            name = player.name;
+            auto pa = final_possession.find(name);
+            if (pa != final_possession.end()) {
+                final_possession[name] = pa->second + npt->second;
+            } else {
+                final_possession.insert(pair(name, npt->second));
+            }
+            auto team = final_possession_team.find(player.team);
+            if (team != final_possession_team.end()) {
+                final_possession_team[player.team] = team->second + npt->second;
+            } else {
+                final_possession_team.insert(pair(player.team, npt->second));
+            }
+        }
+    }
+    // TODO: better printing
+    // cout << T << ", " << (final_possession_team.find('A')->second) << ", " << (final_possession_team.find('B')->second) << ", " << final_no_attribution <<endl;
+
+}
 int main (int argc, char *argv[]) {
     map<int, sensor_record> players_sensors;
     vector<map<int, game_timestamp>> possession_results;
@@ -104,7 +129,7 @@ int main (int argc, char *argv[]) {
                             task_num_per_window += 1;
                             delta_ts = sensor.ts - last_ball.ts;
                             //cout << "PRE players " << microbatch_players.size() << " balls" << microbatch_balls.size() << endl;
-                            #pragma omp task shared(g) firstprivate(microbatch_balls, microbatch_players, delta_ts)
+                            #pragma omp task shared(g, possession_results) firstprivate(microbatch_balls, microbatch_players, delta_ts)
                             {
                                 auto poss = microbatch_possession(microbatch_balls, microbatch_players, g, delta_ts);
                                 #pragma omp critical
@@ -131,7 +156,7 @@ int main (int argc, char *argv[]) {
                     cout << "\n\nfinished " << task_num_per_window << " tasks for window nr " << window_number++
                          << " closed at " << nextUpdate - first_half_starting_time << endl;
                     task_num_per_window = 0;
-                    #pragma omp task
+                    #pragma omp task shared(g, final_possession, final_possession_team)  firstprivate(possession_results)
                     {
                         /*game_timestamp microbatch_no_attr = 0;
                         for (auto att: no_attribution) {
@@ -141,26 +166,8 @@ int main (int argc, char *argv[]) {
                         no_attribution.clear();*/
                         //cout << "no_attribution size: " << no_attribution.size() << " total: "<< microbatch_no_attr << "/" << final_no_attribution<< endl;
                         // TODO: this loop should be parallelized
-                        for (auto mb : possession_results) {
-                            for (auto npt = mb.begin(); npt != mb.end(); npt++) {
-                                auto player = g.players[npt->first];
-                                auto name = player.name;
-                                auto pa = final_possession.find(name);
-                                if (pa != final_possession.end()) {
-                                    final_possession[name] = pa->second + npt->second;
-                                } else {
-                                    final_possession.insert(pair(name, npt->second));
-                                }
-                                auto team = final_possession_team.find(player.team);
-                                if (team != final_possession_team.end()) {
-                                    final_possession_team[player.team] = team->second + npt->second;
-                                } else {
-                                    final_possession_team.insert(pair(player.team, npt->second));
-                                }
-                            }
-                        }
-                        // TODO: better printing
-                        // cout << T << ", " << (final_possession_team.find('A')->second) << ", " << (final_possession_team.find('B')->second) << ", " << final_no_attribution <<endl;
+                        aggregate_results(possession_results, final_possession_team, final_possession, g);
+
                         cout << "process: " << omp_get_thread_num() << " lines " << lineNum << " WINDOW:" << nextUpdate - T - first_half_starting_time << " -> " << nextUpdate - first_half_starting_time<< " PRINTED AFTER "
                              << (omp_get_wtime() - start) << "s" << endl;
                         //cout << "PLAYER:NONE:" << final_no_attribution << endl;
@@ -171,8 +178,9 @@ int main (int argc, char *argv[]) {
                         for (auto fpt = final_possession_team.begin(); fpt != final_possession_team.end(); fpt++) {
                             cout << "TEAM:" << fpt->first << ": " << fpt->second << endl;
                         }
-                        possession_results.clear();
+
                     }
+                    possession_results.clear();
                     nextUpdate += T;
                     lineNum =0;
                 }
