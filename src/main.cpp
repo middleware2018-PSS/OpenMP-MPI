@@ -13,13 +13,13 @@ map<int, game_timestamp> microbatch_possession(vector<sensor_record> &microbatch
     //cout << "POST players " << microbatch_players.size() << " balls " << microbatch_balls.size() << endl;
     sensor_record last_local_ball;
     map<int, game_timestamp> possession_attributions;
-    for (auto ball: microbatch_balls) {
+    for (auto ball_sensor: microbatch_balls) {
         pair nearest(-1, K); // (sensor, dist)
-        for (auto it = microbatch_players.begin();
-        it != microbatch_players.end(); it++) {
-            auto dist = it->second.calculate_3D_distance(ball);
+        for (auto player_sensor = microbatch_players.begin();
+             player_sensor != microbatch_players.end(); player_sensor++) {
+            auto dist = player_sensor->second.calculate_3D_distance(ball_sensor);
             if (nearest.second > dist) {
-                nearest.first = it->second.id;
+                nearest.first = player_sensor->second.id;
                 nearest.second = dist;
             }
         }
@@ -35,7 +35,7 @@ map<int, game_timestamp> microbatch_possession(vector<sensor_record> &microbatch
             /*} else {
             none_player_attribution += delta_ts;*/
         }
-        last_local_ball = ball;
+        last_local_ball = ball_sensor;
     }
     return possession_attributions;
     /*#pragma omp critical
@@ -92,10 +92,6 @@ int main (int argc, char *argv[]) {
                 //     << sensor.z << endl;
                 if (event.type == referee_event::type::INTERRUPTION_END && sensor.ts > event.gts) {
                     cout << "END AT " << event.gts  - first_half_starting_time<< ", NOW IS " << sensor.ts - first_half_starting_time << endl;
-                    break;
-                }
-                if (event.type == referee_event::type::INTERRUPTION_BEGIN && sensor.ts > event.gts) {
-                    cout << "BEGIN AT " << event.gts  - first_half_starting_time << ", NOW IS " << sensor.ts  - first_half_starting_time<< endl;
                     break;
                 }
                 if (((event.type == referee_event::type::INTERRUPTION_END && sensor.ts <= event.gts)
@@ -180,7 +176,10 @@ int main (int argc, char *argv[]) {
                     nextUpdate += T;
                     lineNum =0;
                 }
-
+                if (event.type == referee_event::type::INTERRUPTION_BEGIN && sensor.ts > event.gts) {
+                    cout << "BEGIN AT " << event.gts  - first_half_starting_time << ", NOW IS " << sensor.ts  - first_half_starting_time<< endl;
+                    break;
+                }
             }
         }
     }
