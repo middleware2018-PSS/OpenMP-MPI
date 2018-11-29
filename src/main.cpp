@@ -138,11 +138,11 @@ int main (int argc, char *argv[]) {
                             microbatch_players.clear();
                             microbatch_balls.clear();
                         } else {
-                            last_ball = sensor;
                             microbatch_players[sensor.id] = sensor;
                         }
                     } else if (g.balls.find(sensor.id) != g.balls.end()) {
                         //is a ball
+                        last_ball = sensor;
                         microbatch_balls.push_back(sensor);
                     }
                 }
