@@ -20,7 +20,7 @@ void microbatch_possession(vector<sensor_record> &microbatch_balls,
                                                map<sensor_id, sensor_record> &microbatch_players,
                                                vector<map<int, game_timestamp>> &possession_results,
                                                Game &g,
-                                               game_timestamp delta_ts){
+                                               game_timestamp init_delta_ts){
 
     sensor_record last_local_ball;    //the first ball of the given microbatch
     int no_possession = 0;
@@ -29,12 +29,12 @@ void microbatch_possession(vector<sensor_record> &microbatch_balls,
     double dist = 0;
     unsigned int player_index = 0;
     bool first_ball = true;
-
+    game_timestamp delta_ts=0;
     //for every ball record find the nearest player and if the distance is less than K, gives him the possession
     for (auto ball_sensor: microbatch_balls) {
         if ( !first_ball ){
-            delta_ts = last_local_ball.ts - ball_sensor.ts;
-            first_ball = false;
+            delta_ts = ball_sensor.ts - last_local_ball.ts;
+            //cout << delta_ts << endl;
         }
         for (auto player_sensor = microbatch_players.begin();
              player_sensor != microbatch_players.end(); player_sensor++) {
@@ -72,7 +72,7 @@ void microbatch_possession(vector<sensor_record> &microbatch_balls,
 
         }
         last_local_ball = ball_sensor;
-
+        first_ball = false;
         //reset temporary variable
         nearest.first = -1;
         nearest.second = K;
@@ -174,8 +174,8 @@ int main (int argc, char *argv[]) {
 
     // main loop
 
-    //#pragma omp parallel
-    //#pragma omp single
+    #pragma omp parallel
+    #pragma omp single
     {
         while (!file.eof()) {
 
@@ -190,7 +190,7 @@ int main (int argc, char *argv[]) {
             if (type_ts.second >= nextUpdate) {
 
                 // wait for the end of running tasks
-                //#pragma omp taskwait
+                #pragma omp taskwait
                 if (microbatch_balls.size() > 0){
                     microbatch_possession(microbatch_balls, microbatch_players, possession_results, g, delta_ts);
                 }
@@ -202,7 +202,7 @@ int main (int argc, char *argv[]) {
 
                 // TODO : parallelize?
                 // create a task that aggregates partial possession results and print them
-                //#pragma omp task shared(g, final_possession, final_possession_team)  firstprivate(possession_results)
+                #pragma omp task shared(g, final_possession, final_possession_team)  firstprivate(possession_results)
                 {
                     aggregate_results(possession_results, final_possession_team, final_possession, g);
 
@@ -250,7 +250,7 @@ int main (int argc, char *argv[]) {
                             delta_ts = sensor.ts - last_ball.ts;
 
                             //compute microbatched possession
-                            //#pragma omp task shared(g, possession_results) firstprivate(microbatch_balls, microbatch_players, delta_ts) private(temp_poss)
+                            #pragma omp task shared(g, possession_results) firstprivate(microbatch_balls, microbatch_players, delta_ts) private(temp_poss)
                             microbatch_possession(microbatch_balls, microbatch_players, possession_results, g, delta_ts);
 
                             // reset microbatch for players and balls
