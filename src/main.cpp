@@ -22,16 +22,20 @@ void microbatch_possession(vector<sensor_record> &microbatch_balls,
                                                Game &g,
                                                game_timestamp delta_ts){
 
-    sensor_record last_local_ball = microbatch_balls[0];    //the first ball of the given microbatch
+    sensor_record last_local_ball;    //the first ball of the given microbatch
     int no_possession = 0;
     pair nearest(-1, K);
     map<int, game_timestamp> possession_attributions;  // map from player index in g.players to attributed time in the microbatch
-    double dist;
-    unsigned int player_index;
+    double dist = 0;
+    unsigned int player_index = 0;
+    bool first_ball = true;
 
     //for every ball record find the nearest player and if the distance is less than K, gives him the possession
     for (auto ball_sensor: microbatch_balls) {
-
+        if ( !first_ball ){
+            delta_ts = last_local_ball.ts - ball_sensor.ts;
+            first_ball = false;
+        }
         for (auto player_sensor = microbatch_players.begin();
              player_sensor != microbatch_players.end(); player_sensor++) {
 
@@ -67,8 +71,6 @@ void microbatch_possession(vector<sensor_record> &microbatch_balls,
             no_possession += delta_ts;
 
         }
-
-        delta_ts = last_local_ball.ts - ball_sensor.ts;
         last_local_ball = ball_sensor;
 
         //reset temporary variable
@@ -90,7 +92,10 @@ void microbatch_possession(vector<sensor_record> &microbatch_balls,
  * @param final_possession aggregated possession per player
  * @param g the game
  */
-void aggregate_results(vector<map<int, game_timestamp>> &possession_results, map<char, game_timestamp> &final_possession_team, map<string, game_timestamp> &final_possession, Game &g){
+void aggregate_results(vector<map<int, game_timestamp>> &possession_results,
+        map<char, game_timestamp> &final_possession_team,
+        map<string, game_timestamp> &final_possession,
+        Game &g){
 
     //working variables
     player player;
@@ -148,8 +153,8 @@ int main (int argc, char *argv[]) {
     map<string, game_timestamp> final_possession;                   // the final possession for a single player, whose name is the key
     map<char, game_timestamp> final_possession_team;                // the final possession for both teams
 
-    K = argc > 4 ? atoi(argv[1])*1000 : 3000;                       // 3 meters default
-    T =  argc > 4 ? atoi(argv[2])*10000000000000 : 30000000000000;  // 30 seconds default
+    K = argc > 4 ? atoi(argv[1])*1000 : 1000;                       // 3 meters default
+    T =  argc > 4 ? atoi(argv[2])*1000000000000 : 30000000000000;  // 30 seconds default
     string path = argc > 4 ? argv[3] : "../data";                   // '../data' default
 
     game_timestamp nextUpdate = first_half_starting_time + T;       // closing time of the first window, used to compute the successive ones
@@ -169,8 +174,8 @@ int main (int argc, char *argv[]) {
 
     // main loop
 
-    #pragma omp parallel
-    #pragma omp single
+    //#pragma omp parallel
+    //#pragma omp single
     {
         while (!file.eof()) {
 
@@ -185,9 +190,9 @@ int main (int argc, char *argv[]) {
             if (type_ts.second >= nextUpdate) {
 
                 // wait for the end of running tasks
-                #pragma omp taskwait
+                //#pragma omp taskwait
                 if (microbatch_balls.size() > 0){
-                    microbatch_possession(microbatch_balls, microbatch_players,possession_results, g, delta_ts);
+                    microbatch_possession(microbatch_balls, microbatch_players, possession_results, g, delta_ts);
                 }
 
                 cout << "\n\nfinished " << task_num_per_window << " tasks for window nr " << window_number++
@@ -197,7 +202,7 @@ int main (int argc, char *argv[]) {
 
                 // TODO : parallelize?
                 // create a task that aggregates partial possession results and print them
-                #pragma omp task shared(g, final_possession, final_possession_team)  firstprivate(possession_results)
+                //#pragma omp task shared(g, final_possession, final_possession_team)  firstprivate(possession_results)
                 {
                     aggregate_results(possession_results, final_possession_team, final_possession, g);
 
@@ -205,10 +210,10 @@ int main (int argc, char *argv[]) {
                          << (omp_get_wtime() - start) << "s" << endl;
 
                     for (auto it = final_possession.begin(); it != final_possession.end(); it++) {
-                        cout << "PLAYER:" << it->first << ":" << it->second << endl;
+                        cout << "PLAYER:" << it->first << ":" << float(it->second)/1000000000000 << endl;
                     }
                     for (auto fpt = final_possession_team.begin(); fpt != final_possession_team.end(); fpt++) {
-                        cout << "TEAM:" << fpt->first << ": " << fpt->second << endl;
+                        cout << "TEAM:" << fpt->first << ": " << float(fpt->second)/1000000000000 << endl;
 
                     }
 
@@ -245,7 +250,7 @@ int main (int argc, char *argv[]) {
                             delta_ts = sensor.ts - last_ball.ts;
 
                             //compute microbatched possession
-                            #pragma omp task shared(g, possession_results) firstprivate(microbatch_balls, microbatch_players, delta_ts) private(temp_poss)
+                            //#pragma omp task shared(g, possession_results) firstprivate(microbatch_balls, microbatch_players, delta_ts) private(temp_poss)
                             microbatch_possession(microbatch_balls, microbatch_players, possession_results, g, delta_ts);
 
                             // reset microbatch for players and balls
