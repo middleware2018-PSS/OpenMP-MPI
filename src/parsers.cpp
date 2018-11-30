@@ -17,61 +17,89 @@
 
 using namespace std;
 
+/**
+ * parses the first to element from game.csv, common to both referee and player/ball events
+ * @param lineStream the input stringstream from file
+ * @return a pair with a bool (true if it's a referee_event, false otherwhise) and a timestamp
+ */
 pair<bool, game_timestamp> type_and_timestamp_parser(stringstream &lineStream){
+
     bool isR;
     game_timestamp gts;
     string element;
+
     getline(lineStream, element, SEPARATOR);
-    isR = element[0] == 'R';
+    isR = element[0] == 'R';                //set isR to true if it's a referee_event
     getline(lineStream, element, SEPARATOR);
-    gts = stoull(element);
+    gts = stoull(element);                  //parses the timestamp of the event
     return pair <bool, game_timestamp> (isR, gts);
+
 }
 
+/**
+ * checks if a given event is a begin or an end referee event
+ * @param lineStream the input stringstream from file
+ * @return true if it's a begine event, false otherwhise
+ */
 bool is_begin_parser(stringstream &lineStream){
+
     string element;
     getline(lineStream, element, SEPARATOR);
-    return element[0] == 'b';
+    return element[0] == 'b';               //return true if element begins with b, false otherwise
+
 }
 
+/**
+ * parses a the remaining element of player/ball events
+ * @param lineStream the input stringstream from file
+ * @return a sensor record with x,y and z cohordinates and his id
+ */
 sensor_record sensor_record_parser(stringstream &lineStream)
 {
     string element;
     sensor_record sensor;
+
     getline(lineStream, element, SEPARATOR);
-    sensor.id = stoul(element);
+    sensor.id = stoul(element);             //sets the id of the sensor
     getline(lineStream, element, SEPARATOR);
-    sensor.x = stoi(element);
+    sensor.x = stoi(element);               //sets the x cohordinates of the sensor
     getline(lineStream, element, SEPARATOR);
-    sensor.y = stoi(element);
+    sensor.y = stoi(element);               //sets the y cohordinates of the sensor
     getline(lineStream, element, SEPARATOR);
-    sensor.z = stoi(element);
+    sensor.z = stoi(element);               //sets the z cohordinates of the sensor
     return sensor;
 
 }
 
+/**
+ * parses the player.csv file
+ * @param line a line from the given file
+ * @return the parsed player
+ */
 player player_parser(string line)
 {
+
     stringstream lineStream(line);
     string element;
     player player;
     int a;
 
     getline(lineStream, element, SEPARATOR);
-    player.name = element;
+    player.name = element;                  //sets the name of the player
     getline(lineStream, element, SEPARATOR);
-    player.role = element[0];
-    if (player.role == 'G')
+    player.role = element[0];               //sets the role of the player
+    if (player.role == 'G')                 //checks if the player is a goalkeeper
         a = 4;
-    else
+    else                                    //the player is not a goolkeeper
         a = 2;
     for (int i = 0; i < a; i++) {
         getline(lineStream, element, SEPARATOR);
-        player.sensors.push_back(stoul(element));
+        player.sensors.push_back(stoul(element));   //sets the sensors
     }
     getline(lineStream, element, SEPARATOR);
-    player.team = element[0];
+    player.team = element[0];                       //sets the team
     return player;
+
 }
 
 
@@ -82,6 +110,7 @@ player player_parser(string line)
  ***********************************************************************************************************************
  */
 
+//loads player.csv file
 void load_players(string path, vector<player> &players)
 {
     ifstream file;
@@ -95,6 +124,7 @@ void load_players(string path, vector<player> &players)
     }
 }
 
+//loads balls.csv file
 void load_balls(string path, set<unsigned int>& balls)
 {
     ifstream file;
@@ -113,7 +143,7 @@ void load_balls(string path, set<unsigned int>& balls)
     }
 }
 
-
+//game loader
 Game::Game(string& path)
 {
     load_players(path + "/players.csv", players);
