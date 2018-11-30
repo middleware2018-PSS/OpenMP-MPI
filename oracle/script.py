@@ -110,14 +110,15 @@ def compute_possession(K, T, m, f, interruptions):
                 # print("cond: ", eventType, ts)
                 break
 
-if len(sys.argv) <6:
-    print("help:\t./script.py K T metadata.json full-game.csv full-game.csv interruptions_stream.csv")
-    print("\tK must be in meters and T in seconds")
-else:
-    K = int(sys.argv[1])
-    T = int(sys.argv[2])
-    metadata_file = sys.argv[3]
-    full_game_file = sys.argv[4]
-    interruptions_file = sys.argv[5]
-with open(metadata_file) as m, open(full_game_file) as f, open(interruptions_file) as interruptions:
-    compute_possession(K,T,m,csv.reader(f,quoting=csv.QUOTE_NONNUMERIC),csv.reader(interruptions))
+if __name__ == "__main__":
+    if len(sys.argv) <6:
+        print("help:\t./script.py K T metadata.json full-game.csv full-game.csv interruptions_stream.csv")
+        print("\tK must be in meters and T in seconds")
+    else:
+        K = int(sys.argv[1])
+        T = int(sys.argv[2])
+        metadata_file = sys.argv[3]
+        full_game_file = sys.argv[4]
+        interruptions_file = sys.argv[5]
+    with open(metadata_file) as m, open(full_game_file) as f, open(interruptions_file) as interruptions:
+        compute_possession(K,T,m,csv.reader(f,quoting=csv.QUOTE_NONNUMERIC),csv.reader(interruptions))

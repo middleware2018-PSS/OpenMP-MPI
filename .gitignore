@@ -9,4 +9,7 @@ src/cmake-build-debug/*
 data/results
 oracle/full-game.csv
 
+src/results/
+src/data/
+
 src/cmake-build-debug/
