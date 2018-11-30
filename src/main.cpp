@@ -8,10 +8,11 @@ long int T;
 game_timestamp K;
 
 
-map<int, game_timestamp> microbatch_possession(vector<sensor_record> &microbatch_balls, map<sensor_id, sensor_record> &microbatch_players, Game &g, game_timestamp &delta_ts){
+map<int, game_timestamp> microbatch_possession(vector<sensor_record> &microbatch_balls, map<sensor_id, sensor_record> &microbatch_players, Game &g, game_timestamp delta_ts){
     //cout << omp_get_thread_num() << " delta_ts is " << delta_ts << " -> " << (delta_ts*microbatch_balls.size()) << " " << microbatch_balls.size() << " " << microbatch_players.size() << endl;
     //cout << "POST players " << microbatch_players.size() << " balls " << microbatch_balls.size() << endl;
     sensor_record last_local_ball;
+    //cout << delta_ts <<endl;
     map<int, game_timestamp> possession_attributions;
     for (auto ball_sensor: microbatch_balls) {
         pair nearest(-1, K); // (sensor, dist)
@@ -32,8 +33,13 @@ map<int, game_timestamp> microbatch_possession(vector<sensor_record> &microbatch
             } else {
                 possession_attributions.insert(pair(player_index, delta_ts));
             }
+            //cout << "YES, " << delta_ts << endl;
+
             /*} else {
             none_player_attribution += delta_ts;*/
+        } else {
+            //cout << "NO, " << delta_ts << endl;
+
         }
         last_local_ball = ball_sensor;
     }
@@ -83,9 +89,10 @@ int main (int argc, char *argv[]) {
     game_timestamp none_player_attribution = 0;
     int task_num_per_window = 0 ;
     int window_number = 0;
+    bool playing= false;
     K = argc > 4 ? atoi(argv[1])*1000 : 3000; // TODO
     T =  argc > 4 ? atoi(argv[2])*10000000000000 : 30000000000000; //30 seconds default
-    string path = argc > 4 ? argv[3] : "../";
+    string path = argc > 4 ? argv[3] : "../data";
     sensor_record last_ball;
     game_timestamp delta_ts=0;
 
@@ -95,7 +102,7 @@ int main (int argc, char *argv[]) {
     Game g(path);   //loads csvs into structures
     int lineNum = 0;
 
-    file.open(path + "ex-full-game.csv");
+    file.open(path + "/full-game.csv");
     if (!file.is_open())
         throw runtime_error("File not found: " + path);
     // file.clear();
@@ -106,88 +113,83 @@ int main (int argc, char *argv[]) {
     #pragma omp parallel
     #pragma omp single
     {
-        for (auto event: g.events) {
-            cout << "WAITING FOR " << (event.type == referee_event::type::INTERRUPTION_BEGIN ? "BEGIN" : "END")
-                 << " AT " << event.gts  - first_half_starting_time << endl;
-
-            while (!file.eof()) {
-                lineNum++;
-                file >> line;
-                sensor = sensor_record_parser(line);
-                //cout << sensor.ts << " " << sensor.id << " " << sensor.x << " " << sensor.y << " "
-                //     << sensor.z << endl;
-                if (event.type == referee_event::type::INTERRUPTION_END && sensor.ts > event.gts) {
-                    cout << "END AT " << event.gts  - first_half_starting_time<< ", NOW IS " << sensor.ts - first_half_starting_time << endl;
-                    break;
+        while (!file.eof()) {
+            lineNum++;
+            file >> line;
+            cout << line <<endl;
+            stringstream lineStream(line);
+            auto type_ts = type_and_timestamp_parser(lineStream);
+            //print
+            if (type_ts.second >= nextUpdate) {
+                // cout << sensor.ts << " >= " << nextUpdate << " ? " << (sensor.ts >= nextUpdate)<< endl;
+                // TODO take latency time
+                #pragma omp taskwait
+                if (microbatch_balls.size() > 0){
+                    microbatch_possession(microbatch_balls, microbatch_players, g, delta_ts);
                 }
-                if (((event.type == referee_event::type::INTERRUPTION_END && sensor.ts <= event.gts)
-                     || (event.type == referee_event::type::INTERRUPTION_BEGIN && sensor.ts >= event.gts))
-                     && g.is_inside_field(sensor)) {
-                    //cout << b1 << b2 <<b3 << b4 << ", event.gts: " <<  event.gts << ", sensor.ts: " << sensor.ts << ", event.type: " << event.type <<endl;
-                    if (g.is_player_sensor_id(sensor.id)) { //is a player
-                        if (microbatch_players.find(sensor.id) != microbatch_players.end()) { //already seen player sensor
-                            //here execute microbatch computation
-                            task_num_per_window += 1;
-                            delta_ts = sensor.ts - last_ball.ts;
-                            //cout << "PRE players " << microbatch_players.size() << " balls" << microbatch_balls.size() << endl;
-                            #pragma omp task shared(g, possession_results) firstprivate(microbatch_balls, microbatch_players, delta_ts)
-                            {
-                                auto poss = microbatch_possession(microbatch_balls, microbatch_players, g, delta_ts);
-                                #pragma omp critical
-                                possession_results.push_back(poss);
+                cout << "\n\nfinished " << task_num_per_window << " tasks for window nr " << window_number++
+                     << " closed at " << nextUpdate - first_half_starting_time << endl;
+                task_num_per_window = 0;
+                #pragma omp task shared(g, final_possession, final_possession_team)  firstprivate(possession_results)
+                {
+                    /*game_timestamp microbatch_no_attr = 0;
+                    for (auto att: no_attribution) {
+                        microbatch_no_attr += att;
+                    }
+                    final_no_attribution += microbatch_no_attr;
+                    no_attribution.clear();*/
+                    //cout << "no_attribution size: " << no_attribution.size() << " total: "<< microbatch_no_attr << "/" << final_no_attribution<< endl;
+                    // TODO: this loop should be parallelized
+                    aggregate_results(possession_results, final_possession_team, final_possession, g);
+
+                    cout << "process: " << omp_get_thread_num() << " lines " << lineNum << " WINDOW:" << nextUpdate - T - first_half_starting_time << " -> " << nextUpdate - first_half_starting_time<< " PRINTED AFTER "
+                         << (omp_get_wtime() - start) << "s" << endl;
+                    //cout << "PLAYER:NONE:" << final_no_attribution << endl;
+
+                    for (auto it = final_possession.begin(); it != final_possession.end(); it++) {
+                        cout << "PLAYER:" << it->first << ":" << it->second << endl;
+                    }
+                    for (auto fpt = final_possession_team.begin(); fpt != final_possession_team.end(); fpt++) {
+                        cout << "TEAM:" << fpt->first << ": " << fpt->second << endl;
+                    }
+                }
+                possession_results.clear();
+                nextUpdate += T;
+                lineNum =0;
+                //break;
+            }
+            //is referee event
+            if (type_ts.first){
+                playing = is_begin_parser(lineStream);
+            } else {
+                if (playing){
+                    sensor = sensor_record_parser(lineStream);
+                    sensor.ts = type_ts.second;
+                    if (g.is_inside_field(sensor)) {
+                        //cout << b1 << b2 <<b3 << b4 << ", event.gts: " <<  event.gts << ", sensor.ts: " << sensor.ts << ", event.type: " << event.type <<endl;
+                        if (g.is_player_sensor_id(sensor.id)) { //is a player
+                            if (microbatch_players.find(sensor.id) != microbatch_players.end()) { //already seen player sensor
+                                //here execute microbatch computation
+                                task_num_per_window += 1;
+                                delta_ts = sensor.ts - last_ball.ts;
+                                //cout << "PRE players " << microbatch_players.size() << " balls" << microbatch_balls.size() << endl;
+                                #pragma omp task shared(g, possession_results) firstprivate(microbatch_balls, microbatch_players, delta_ts)
+                                {
+                                    auto poss = microbatch_possession(microbatch_balls, microbatch_players, g, delta_ts);
+                                    #pragma omp critical
+                                    possession_results.push_back(poss);
+                                }
+                                microbatch_players.clear();
+                                microbatch_balls.clear();
+                            } else {
+                                microbatch_players[sensor.id] = sensor;
                             }
-                            microbatch_players.clear();
-                            microbatch_balls.clear();
-                        } else {
-                            microbatch_players[sensor.id] = sensor;
+                        } else if (g.balls.find(sensor.id) != g.balls.end()) {
+                            //is a ball
+                            last_ball = sensor;
+                            microbatch_balls.push_back(sensor);
                         }
-                    } else if (g.balls.find(sensor.id) != g.balls.end()) {
-                        //is a ball
-                        last_ball = sensor;
-                        microbatch_balls.push_back(sensor);
                     }
-                }
-                if (sensor.ts >= nextUpdate) {
-                    // cout << sensor.ts << " >= " << nextUpdate << " ? " << (sensor.ts >= nextUpdate)<< endl;
-                    // TODO take latency time
-                    if (microbatch_balls.size() > 0){
-                        microbatch_possession(microbatch_balls, microbatch_players, g, delta_ts);
-                    }
-                    #pragma omp taskwait
-                    cout << "\n\nfinished " << task_num_per_window << " tasks for window nr " << window_number++
-                         << " closed at " << nextUpdate - first_half_starting_time << endl;
-                    task_num_per_window = 0;
-                    #pragma omp task shared(g, final_possession, final_possession_team)  firstprivate(possession_results)
-                    {
-                        /*game_timestamp microbatch_no_attr = 0;
-                        for (auto att: no_attribution) {
-                            microbatch_no_attr += att;
-                        }
-                        final_no_attribution += microbatch_no_attr;
-                        no_attribution.clear();*/
-                        //cout << "no_attribution size: " << no_attribution.size() << " total: "<< microbatch_no_attr << "/" << final_no_attribution<< endl;
-                        // TODO: this loop should be parallelized
-                        aggregate_results(possession_results, final_possession_team, final_possession, g);
-
-                        cout << "process: " << omp_get_thread_num() << " lines " << lineNum << " WINDOW:" << nextUpdate - T - first_half_starting_time << " -> " << nextUpdate - first_half_starting_time<< " PRINTED AFTER "
-                             << (omp_get_wtime() - start) << "s" << endl;
-                        //cout << "PLAYER:NONE:" << final_no_attribution << endl;
-
-                        for (auto it = final_possession.begin(); it != final_possession.end(); it++) {
-                            cout << "PLAYER:" << it->first << ":" << it->second << endl;
-                        }
-                        for (auto fpt = final_possession_team.begin(); fpt != final_possession_team.end(); fpt++) {
-                            cout << "TEAM:" << fpt->first << ": " << fpt->second << endl;
-                        }
-
-                    }
-                    possession_results.clear();
-                    nextUpdate += T;
-                    lineNum =0;
-                }
-                if (event.type == referee_event::type::INTERRUPTION_BEGIN && sensor.ts > event.gts) {
-                    cout << "BEGIN AT " << event.gts  - first_half_starting_time << ", NOW IS " << sensor.ts  - first_half_starting_time<< endl;
-                    break;
                 }
             }
         }

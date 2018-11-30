@@ -17,7 +17,7 @@
 
 using namespace std;
 
-pair<bool, game_timestamp> check_type_and_timestamp_parser(stringstream &lineStream){
+pair<bool, game_timestamp> type_and_timestamp_parser(stringstream &lineStream){
     bool isR;
     game_timestamp gts;
     string element;
@@ -37,15 +37,16 @@ bool is_begin_parser(stringstream &lineStream){
 sensor_record sensor_record_parser(stringstream &lineStream)
 {
     string element;
+    sensor_record sensor;
     getline(lineStream, element, SEPARATOR);
-    sensor_record.id = stoul(element);
+    sensor.id = stoul(element);
     getline(lineStream, element, SEPARATOR);
-    sensor_record.x = stoi(element);
+    sensor.x = stoi(element);
     getline(lineStream, element, SEPARATOR);
-    sensor_record.y = stoi(element);
+    sensor.y = stoi(element);
     getline(lineStream, element, SEPARATOR);
-    sensor_record.z = stoi(element);
-    return sensor_record;
+    sensor.z = stoi(element);
+    return sensor;
 
 }
 
@@ -110,16 +111,13 @@ void load_balls(string path, set<unsigned int>& balls)
             balls.insert(stoul(ball));
         }
     }
-
 }
 
 
 Game::Game(string& path)
 {
-    load_referee_csv(path + "referee-events/game-interruption/1st-half.csv", events, first_half_starting_time);
-    load_referee_csv(path + "referee-events/game-interruption/2nd-half.csv", events, second_half_starting_time);
-    load_players(path + "players.csv", players);
-    load_balls(path + "balls.csv", balls);
+    load_players(path + "/players.csv", players);
+    load_balls(path + "/balls.csv", balls);
     for (int i = 0; i < players.size(); i++) {
         for (sensor_id j : players[i].sensors) {
             if(j != 0)
