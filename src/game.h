@@ -19,15 +19,7 @@ using namespace std;
 typedef unsigned long int game_timestamp;                           // Timestamp datatype, in picoseconds
 typedef unsigned int sensor_id;                                     // Sensor id
 
-const game_timestamp max_timestamp = ULONG_MAX;                     // Max timestamp limit
-const game_timestamp second = 1000000000000;                        // 1 second in picoseconds, as timestamp
-const game_timestamp player_sensor_sample_time = second / 200;      // Player sensor sample time
-const game_timestamp ball_sensor_sample_time = second / 2000;       // Ball sensor sample time
 const game_timestamp first_half_starting_time = 10753295594424116;  // Starting time of the game
-const game_timestamp ball_not_available = 12398000000000000;        // The ball is not available for a certain amount of time. This is the starting time.
-const game_timestamp first_half_ending_time = 12557295594424116;    // Ending time of the 1st half of the game
-const game_timestamp second_half_starting_time = 13086639146403495; // Starting time of the 2nd half of the game
-const game_timestamp second_half_ending_time = 14879639146403495;   // Ending time of the 2nd half of the game
 
 //struct representing sensor records
 struct sensor_record {
@@ -40,9 +32,13 @@ struct sensor_record {
     // calculate distance from a given sensor
     inline double calculate_3D_distance(sensor_record& from_sensor)
     {
-        return sqrt( (x-from_sensor.x) ^ 2 + (y-from_sensor.y) ^ 2 + (z-from_sensor.z) ^ 2);
+        return sqrt( pow(x-from_sensor.x, 2)+ pow(y-from_sensor.y, 2) + pow(z-from_sensor.z, 2));
     }
 
+    inline double calculate_2D_distance(sensor_record& from_sensor)
+    {
+        return sqrt( pow(x-from_sensor.x, 2) + pow(y-from_sensor.y, 2));
+    }
 };
 
 //structure representing a player

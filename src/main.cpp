@@ -6,6 +6,9 @@ using namespace std;
 
 long int T;
 game_timestamp K;
+const long double second = 1000000000000;
+const long int meter = 1000;
+
 
 /**
  * Computes the possession per player during a given microbatch, that is defined as the minimum distance between 2 records of the same player/ball's sensor
@@ -141,18 +144,19 @@ void aggregate_results(vector<map<int, game_timestamp>> &possession_results,
 void print_results(double start, int lineNum, game_timestamp nextUpdate, map<string, game_timestamp> &final_possession, map<char, game_timestamp> &final_possession_team){
 
     //header
-    cout << "lines " << lineNum << " WINDOW:" << nextUpdate - T - first_half_starting_time << " -> " << nextUpdate - first_half_starting_time<< " PRINTED AFTER "
-         << (omp_get_wtime() - start) << "s" << endl;
-
+    cout << "WINDOW_CLOSE:" << nextUpdate/second << " s" << endl
+    << "NR_LINES:" << lineNum << endl
+    << "ELAPSED_TIME:" << (omp_get_wtime() - start) << " s" << endl
+    << "------------------------------------------------------" << endl;
     // print players
     for (auto it = final_possession.begin(); it != final_possession.end(); it++) {
-        cout << "PLAYER:" << it->first << ":" << it->second<< endl;
+        cout << "PLAYER:" << it->first << ":" << it->second/second  << " s" << endl;
     }
+    cout << "------------------------------------------------------" << endl;
 
     // print teams
     for (auto fpt = final_possession_team.begin(); fpt != final_possession_team.end(); fpt++) {
-        cout << "TEAM:" << fpt->first << ": " << fpt->second << endl;
-
+        cout << "TEAM:" << fpt->first << ":" << fpt->second/second  << " s"<< endl;
     }
 }
 
@@ -179,8 +183,8 @@ int main (int argc, char *argv[]) {
     map<string, game_timestamp> final_possession;                   // the final possession for a single player, whose name is the key
     map<char, game_timestamp> final_possession_team;                // the final possession for both teams
 
-    K = argc > 4 ? atoi(argv[1])*1000 : 1000;                       // 3 meters default
-    T =  argc > 4 ? atoi(argv[2])*1000000000000 : 30000000000000;  // 30 seconds default
+    K = argc > 4 ? atoi(argv[1])*meter : 3*meter;                       // 3 meters default
+    T =  argc > 4 ? atoi(argv[2])*second : 30*second;  // 30 seconds default
     string path = argc > 4 ? argv[3] : "../data";                   // '../data' default
 
     game_timestamp nextUpdate = first_half_starting_time + T;       // closing time of the first window, used to compute the successive ones
@@ -189,14 +193,14 @@ int main (int argc, char *argv[]) {
 
     file.open(path + "/full-game.csv");
 
+    cout << "K:" << K/meter << "m" << endl << "T:" << T/second << "s" << endl;
+
     if (!file.is_open())
         throw runtime_error("File not found: " + path);
         file.clear();
         file.seekg(0);
 
     double start = omp_get_wtime();                                 // starting walltime
-
-    cout << "STARTED AT WALLTIME:" << start << endl;
 
     // main loop
 
@@ -220,11 +224,11 @@ int main (int argc, char *argv[]) {
                 if (microbatch_balls.size() > 0){
                     microbatch_possession(microbatch_balls, microbatch_players, possession_results, g, delta_ts);
                 }
+                cout << "======================================================" << endl
+                << "WINDOW_NUM:" << window_number++ << endl << "TASKS:" << task_num_per_window  << endl;
 
-                cout << "\n\nfinished " << task_num_per_window << " tasks for window nr " << window_number++
-                     << " closed at " << nextUpdate - first_half_starting_time << endl;
-
-                task_num_per_window = 0;        //resets
+                //resets
+                task_num_per_window = 0;
 
                 // TODO : parallelize?
                 // create a task that aggregates partial possession results and print them
@@ -247,7 +251,7 @@ int main (int argc, char *argv[]) {
 
                 playing = is_begin_parser(lineStream);
                 // TODO : remove
-                cout << (playing ? "BEGIN " : "END ") << (type_ts.second - first_half_starting_time)<< endl;
+                // cout << (playing ? "BEGIN " : "END ") << (type_ts.second)<< endl;
             } else if (playing) {        //if it's a sensor event and game is playing
 
                 sensor = sensor_record_parser(lineStream);
