@@ -83,8 +83,6 @@ struct referee_event {
 
 class Game {
 public:
-          // Vector of vectors of sensor_records
-    vector<referee_event> events;               // Vector of referee_events
     vector<player> players;                     // Vector of player
     set<sensor_id> balls;                       // Set of balls
     map<sensor_id, unsigned int> sensor_id_to_player_index;     //Map that maps sensor_id to player indexes

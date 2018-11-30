@@ -67,6 +67,7 @@ void aggregate_results(vector<map<int, game_timestamp>> &possession_results, map
     // cout << T << ", " << (final_possession_team.find('A')->second) << ", " << (final_possession_team.find('B')->second) << ", " << final_no_attribution <<endl;
 
 }
+
 int main (int argc, char *argv[]) {
     map<int, sensor_record> players_sensors;
     vector<map<int, game_timestamp>> possession_results;

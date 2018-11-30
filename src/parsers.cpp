@@ -14,19 +14,31 @@
 #include "game.h"
 
 #define SEPARATOR ','
-#define TIMESEPARATOR ':'
 
 using namespace std;
 
-sensor_record sensor_record_parser(string line)
+pair<bool, game_timestamp> check_type_and_timestamp_parser(stringstream &lineStream){
+    bool isR;
+    game_timestamp gts;
+    string element;
+    getline(lineStream, element, SEPARATOR);
+    isR = element[0] == 'R';
+    getline(lineStream, element, SEPARATOR);
+    gts = stoull(element);
+    return pair <bool, game_timestamp> (isR, gts);
+}
+
+bool is_begin_parser(stringstream &lineStream){
+    string element;
+    getline(lineStream, element, SEPARATOR);
+    return element[0] == 'b';
+}
+
+sensor_record sensor_record_parser(stringstream &lineStream)
 {
-    sensor_record sensor_record;
-    stringstream lineStream(line);
     string element;
     getline(lineStream, element, SEPARATOR);
     sensor_record.id = stoul(element);
-    getline(lineStream, element, SEPARATOR);
-    sensor_record.ts = stoull(element);
     getline(lineStream, element, SEPARATOR);
     sensor_record.x = stoi(element);
     getline(lineStream, element, SEPARATOR);
@@ -36,53 +48,6 @@ sensor_record sensor_record_parser(string line)
     return sensor_record;
 
 }
-
-game_timestamp parse_time_picoseconds(string string)
-{
-    double time = 0.0;
-    std::string element;
-    stringstream lineStream(string);
-    getline(lineStream, element, TIMESEPARATOR);
-    if (string == "0"){
-        return 0;
-    }
-    time += stof(element) * 3600;
-    getline(lineStream, element, TIMESEPARATOR);
-    time += stof(element) * 60;
-    getline(lineStream, element, TIMESEPARATOR);
-    time += stof(element);
-    return time * second;
-}
-
-referee_event referee_event_parser(string line, unsigned long int begin)
-{
-    // cout << line << endl;
-    stringstream lineStream(line);
-    std::string element;
-    referee_event referee_event;
-
-    getline(lineStream, element, SEPARATOR); // parse a single object from the csv into string
-    referee_event.id = stoul(element);       // set the id of the event
-
-    getline(lineStream, element, SEPARATOR);
-    //cout << "begin: " << referee_event::type::INTERRUPTION_BEGIN << ", end: " << referee_event::type::INTERRUPTION_END << endl;
-    //sets the type of the referee event
-    if(element.compare("begin") == 0)
-        referee_event.type = referee_event::type::INTERRUPTION_BEGIN;
-    else {
-        if (element.compare("end") == 0)
-            referee_event.type = referee_event::type::INTERRUPTION_END;
-        else
-            referee_event.type = referee_event::type::OTHER;
-    }
-    getline(lineStream, element, SEPARATOR);
-    referee_event.gts = begin + parse_time_picoseconds(element); // set the timestamp of the event, starting from begin
-
-    getline(lineStream, element, SEPARATOR);
-    referee_event.counter = stoul(element);// set the counter of the event
-    return referee_event;
-}
-
 
 player player_parser(string line)
 {
@@ -115,23 +80,6 @@ player player_parser(string line)
  * LOADERS
  ***********************************************************************************************************************
  */
-
-void load_referee_csv(string path, vector<referee_event> &events, unsigned long int begin)
-{
-    ifstream file;
-    file.open(path);
-    if (!file.is_open()) {
-        throw runtime_error("File not found: " + path);
-    }
-
-    string line;
-
-    while(getline(file, line)) {
-        events.push_back(referee_event_parser(line, begin));
-    }
-
-    file.close();
-}
 
 void load_players(string path, vector<player> &players)
 {
