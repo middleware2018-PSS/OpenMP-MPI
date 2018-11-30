@@ -8,14 +8,17 @@ long int T;
 game_timestamp K;
 
 
-map<int, game_timestamp> microbatch_possession(vector<sensor_record> &microbatch_balls, map<sensor_id, sensor_record> &microbatch_players, Game &g, game_timestamp delta_ts){
+map<sensor_id, game_timestamp> microbatch_possession(vector<sensor_record> &microbatch_balls, map<sensor_id, sensor_record> &microbatch_players, Game &g, game_timestamp delta_ts){
     //cout << omp_get_thread_num() << " delta_ts is " << delta_ts << " -> " << (delta_ts*microbatch_balls.size()) << " " << microbatch_balls.size() << " " << microbatch_players.size() << endl;
     //cout << "POST players " << microbatch_players.size() << " balls " << microbatch_balls.size() << endl;
-    sensor_record last_local_ball;
+    sensor_record last_local_ball = microbatch_balls[0];
     //cout << delta_ts <<endl;
-    map<int, game_timestamp> possession_attributions;
+    int no_possession = 0;
+    pair nearest(-1, K);  // (sensor, dist)
+    map<sensor_id, game_timestamp> possession_attributions;
     for (auto ball_sensor: microbatch_balls) {
-        pair nearest(-1, K); // (sensor, dist)
+        nearest.first = -1;
+        nearest.second = K;
         for (auto player_sensor = microbatch_players.begin();
              player_sensor != microbatch_players.end(); player_sensor++) {
             auto dist = player_sensor->second.calculate_3D_distance(ball_sensor);
@@ -39,16 +42,18 @@ map<int, game_timestamp> microbatch_possession(vector<sensor_record> &microbatch
             none_player_attribution += delta_ts;*/
         } else {
             //cout << "NO, " << delta_ts << endl;
-
+            no_possession += delta_ts;
         }
+        delta_ts = last_local_ball.ts - ball_sensor.ts;
         last_local_ball = ball_sensor;
     }
+    // cout << "NO POSSESSION:" << no_possession << endl;
     return possession_attributions;
     /*#pragma omp critical
     no_attribution.push_back(none_player_attribution);*/
 }
 
-void aggregate_results(vector<map<int, game_timestamp>> &possession_results, map<char, game_timestamp> &final_possession_team, map<string, game_timestamp> &final_possession, Game g){
+void aggregate_results(vector<map<sensor_id, game_timestamp>> &possession_results, map<char, game_timestamp> &final_possession_team, map<string, game_timestamp> &final_possession, Game g){
     player player;
     string name;
     for (auto mb : possession_results) {
@@ -76,7 +81,7 @@ void aggregate_results(vector<map<int, game_timestamp>> &possession_results, map
 
 int main (int argc, char *argv[]) {
     map<int, sensor_record> players_sensors;
-    vector<map<int, game_timestamp>> possession_results;
+    vector<map<sensor_id, game_timestamp>> possession_results;
     ifstream file;
     string line;
     //vector<game_timestamp> no_attribution;
@@ -87,6 +92,7 @@ int main (int argc, char *argv[]) {
     vector<sensor_record> microbatch_balls;
     sensor_record sensor;
     game_timestamp none_player_attribution = 0;
+    pair<bool, game_timestamp> type_ts;
     int task_num_per_window = 0 ;
     int window_number = 0;
     bool playing= false;
@@ -116,9 +122,9 @@ int main (int argc, char *argv[]) {
         while (!file.eof()) {
             lineNum++;
             file >> line;
-            cout << line <<endl;
+            // cout << line << endl;
             stringstream lineStream(line);
-            auto type_ts = type_and_timestamp_parser(lineStream);
+            type_ts = type_and_timestamp_parser(lineStream);
             //print
             if (type_ts.second >= nextUpdate) {
                 // cout << sensor.ts << " >= " << nextUpdate << " ? " << (sensor.ts >= nextUpdate)<< endl;
@@ -161,6 +167,7 @@ int main (int argc, char *argv[]) {
             //is referee event
             if (type_ts.first){
                 playing = is_begin_parser(lineStream);
+                cout << (playing ? "BEGIN " : "END ") << (type_ts.second - first_half_starting_time)<< endl;
             } else {
                 if (playing){
                     sensor = sensor_record_parser(lineStream);
@@ -172,6 +179,8 @@ int main (int argc, char *argv[]) {
                                 //here execute microbatch computation
                                 task_num_per_window += 1;
                                 delta_ts = sensor.ts - last_ball.ts;
+                                if (delta_ts < 0)
+                                    cout << delta_ts << " negative " << endl;
                                 //cout << "PRE players " << microbatch_players.size() << " balls" << microbatch_balls.size() << endl;
                                 #pragma omp task shared(g, possession_results) firstprivate(microbatch_balls, microbatch_players, delta_ts)
                                 {
