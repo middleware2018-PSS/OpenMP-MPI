@@ -10,6 +10,6 @@ data/results
 oracle/full-game.csv
 
 src/results/
-src/data/
+src/data/full-game.csv
 
 src/cmake-build-debug/
