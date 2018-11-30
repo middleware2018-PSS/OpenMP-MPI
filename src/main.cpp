@@ -8,7 +8,7 @@ long int T;
 game_timestamp K;
 
 /**
- * computes the possession per player during a given microbatch, that is defined as the minimum distance between 2 records of the same player/ball's sensor
+ * Computes the possession per player during a given microbatch, that is defined as the minimum distance between 2 records of the same player/ball's sensor
  * Appends the microbatched possessiont to possession_attributions
  * @param microbatch_balls a vector of sensor records
  * @param microbatch_players a map from a sensor_id to a sensor_record
@@ -130,6 +130,32 @@ void aggregate_results(vector<map<int, game_timestamp>> &possession_results,
 
 }
 
+/**
+ * prints the possession result per player and per team so far
+ * @param start the game start
+ * @param lineNum the number of lines read in the current window
+ * @param nextUpdate the closing time of the window
+ * @param final_possession possession so far per player
+ * @param final_possession_team possession so far per team
+ */
+void print_results(double start, int lineNum, game_timestamp nextUpdate, map<string, game_timestamp> &final_possession, map<char, game_timestamp> &final_possession_team){
+
+    //header
+    cout << "lines " << lineNum << " WINDOW:" << nextUpdate - T - first_half_starting_time << " -> " << nextUpdate - first_half_starting_time<< " PRINTED AFTER "
+         << (omp_get_wtime() - start) << "s" << endl;
+
+    // print players
+    for (auto it = final_possession.begin(); it != final_possession.end(); it++) {
+        cout << "PLAYER:" << it->first << ":" << it->second<< endl;
+    }
+
+    // print teams
+    for (auto fpt = final_possession_team.begin(); fpt != final_possession_team.end(); fpt++) {
+        cout << "TEAM:" << fpt->first << ": " << fpt->second << endl;
+
+    }
+}
+
 int main (int argc, char *argv[]) {
 
     //working variables
@@ -202,20 +228,10 @@ int main (int argc, char *argv[]) {
 
                 // TODO : parallelize?
                 // create a task that aggregates partial possession results and print them
-                #pragma omp task shared(g, final_possession, final_possession_team)  firstprivate(possession_results)
+                #pragma omp task shared(g, final_possession, final_possession_team, start)  firstprivate(possession_results)
                 {
                     aggregate_results(possession_results, final_possession_team, final_possession, g);
-
-                    cout << "lines " << lineNum << " WINDOW:" << nextUpdate - T - first_half_starting_time << " -> " << nextUpdate - first_half_starting_time<< " PRINTED AFTER "
-                         << (omp_get_wtime() - start) << "s" << endl;
-
-                    for (auto it = final_possession.begin(); it != final_possession.end(); it++) {
-                        cout << "PLAYER:" << it->first << ":" << float(it->second)/1000000000000 << endl;
-                    }
-                    for (auto fpt = final_possession_team.begin(); fpt != final_possession_team.end(); fpt++) {
-                        cout << "TEAM:" << fpt->first << ": " << float(fpt->second)/1000000000000 << endl;
-
-                    }
+                    print_results(start, lineNum, nextUpdate, final_possession, final_possession_team);
 
                 }
 
