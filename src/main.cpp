@@ -176,7 +176,7 @@ int main (int argc, char *argv[]) {
 
     K = argc > 4 ? atoi(argv[1])*meter : 3*meter;                       // 3 meters default
     T =  argc > 4 ? atoi(argv[2])*second : 30*second;  // 30 seconds default
-    string path = argc > 4 ? argv[3] : "../../data";                   // '../data' default
+    string path = argc > 4 ? argv[3] : "../data";                   // '../data' default
 
     game_timestamp nextUpdate = first_half_starting_time + T;       // closing time of the first window, used to compute the successive ones
 
