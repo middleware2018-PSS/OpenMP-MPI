@@ -13,3 +13,4 @@ src/results/
 src/data/full-game.csv
 
 src/cmake-build-debug/
+src/CMakeCache.txt
