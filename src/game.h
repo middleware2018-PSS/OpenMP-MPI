@@ -20,6 +20,8 @@ typedef unsigned long int game_timestamp;                           // Timestamp
 typedef unsigned int sensor_id;                                     // Sensor id
 
 const game_timestamp first_half_starting_time = 10753295594424116;  // Starting time of the game
+const game_timestamp start_no_ball = 12398000000000000;
+const game_timestamp end_no_ball = 12398999999999999;
 
 //struct representing sensor records
 struct sensor_record {
@@ -85,8 +87,6 @@ public:
         return ( 0 < sensor_record.x < 52483 && -33960 <  sensor_record.y < 33960 );
 
     }
-
-
 
 };
 
