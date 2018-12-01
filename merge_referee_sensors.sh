@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-first_half=src/data/referee-events/game-interruption/1st-half.csv
-second_half=src/data/referee-events/game-interruption/2nd-half.csv
+first_half=data/referee-events/game-interruption/1st-half.csv
+second_half=data/referee-events/game-interruption/2nd-half.csv
 full_game=data/full-game.csv
 
 python3 -u oracle/referee_ts_converter.py 10753295594424116 <  $first_half | awk -F, '{print "R,"$3","$2}' | tee game.tmp

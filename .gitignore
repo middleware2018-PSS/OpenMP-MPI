@@ -1,16 +1,6 @@
-
-data/full-game*
-
-data/referee-events/Shot on Goal/
-
-data/referee-events/Ball Possession/
-src/cmake-build-debug/*
-.idea/
-data/results
-oracle/full-game.csv
-
-src/results/
-src/data/full-game.csv
-
 src/cmake-build-debug/
+.idea/
+oracle/full-game.csv
+data/full-game.csv
+
 src/CMakeCache.txt
