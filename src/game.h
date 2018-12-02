@@ -18,10 +18,8 @@ using namespace std;
 
 typedef unsigned long int game_timestamp;                           // Timestamp datatype, in picoseconds
 typedef unsigned int sensor_id;                                     // Sensor id
-
-const game_timestamp first_half_starting_time = 10753295594424116;  // Starting time of the game
-const game_timestamp start_no_ball = 12398000000000000;
-const game_timestamp end_no_ball = 12398999999999999;
+const long double second = 1000000000000;
+const long int meter = 1000;
 
 //struct representing sensor records
 struct sensor_record {

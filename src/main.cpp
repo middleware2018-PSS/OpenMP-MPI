@@ -6,8 +6,10 @@ using namespace std;
 
 long int T;
 game_timestamp K;
-const long double second = 1000000000000;
-const long int meter = 1000;
+
+const game_timestamp first_half_starting_time = 10753295594424116;  // Starting time of the game
+const game_timestamp start_no_ball = 12398000000000000;
+const game_timestamp end_no_ball = 12398999999999999;
 
 
 /**
@@ -76,7 +78,6 @@ void microbatch_possession(vector<pair<sensor_record,game_timestamp>> &microbatc
     possession_results.push_back(possession_attributions);
 }
 
-// TODO : g method?
 /**
  * Aggregates partial microbatches possession times
  * @param possession_results final microbatches' possessions vector
@@ -188,7 +189,7 @@ int main (int argc, char *argv[]) {
 
     K = argc > 4 ? atoi(argv[1])*meter : 3*meter;                       // 3 meters default
     T =  argc > 4 ? atoi(argv[2])*second : 30*second;  // 30 seconds default
-    string path = argc > 4 ? argv[3] : "../data";                   // '../data' default
+    string path = argc > 4 ? argv[3] : "../../data";                   // '../data' default
 
     game_timestamp nextUpdate = first_half_starting_time + T;       // closing time of the first window, used to compute the successive ones
 
@@ -226,7 +227,7 @@ int main (int argc, char *argv[]) {
                 if (microbatch_balls.size() > 0){
                     microbatch_possession(microbatch_balls, microbatch_players, possession_results, g);
                 }
-                // TODO : parallelize?
+
                 // create a task that aggregates partial possession results and print them
                 #pragma omp task shared(g, final_possession, final_possession_team, start)  firstprivate(possession_results, playing, played, last_begin, type_ts, window_number, task_num_per_window)
                 {
@@ -239,6 +240,7 @@ int main (int argc, char *argv[]) {
                 // TODO : change to pointer?
                 window_number++;
                 nextUpdate += T;
+
                 //resets
                 lineNum =0;
                 task_num_per_window = 0;
@@ -248,14 +250,19 @@ int main (int argc, char *argv[]) {
 
             //if parsed event it's referee event, sets game status accordingly
             if (type_ts.first){
+
                 playing = is_begin_parser(lineStream);
+
                 if (playing) {
+
                     last_begin = type_ts.second;
+
                 } else {
+
                     played += type_ts.second - last_begin;
+
                 }
-                // TODO : remove
-                // cout << (playing ? "BEGIN " : "END ") << (type_ts.second - first_half_starting_time)/second << endl;
+
             } else if (playing && (type_ts.second < start_no_ball || type_ts.second > end_no_ball) ) {        //if it's a sensor event and game is playing
 
                 sensor = sensor_record_parser(lineStream);
