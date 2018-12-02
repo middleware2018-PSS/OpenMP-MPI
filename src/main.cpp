@@ -15,62 +15,59 @@ const game_timestamp end_no_ball = 12398999999999999;
 /**
  * Computes the possession per player during a given microbatch, that is defined as the minimum distance between 2 records of the same player/ball's sensor
  * Appends the microbatched possessiont to possession_attributions
- * @param microbatch_balls a vector of pairs sensor record, delta_ts that must be attributed to the player near to it
- * @param microbatch_players a map from a sensor_id to a sensor_record
+ * @param microbatches a vector of pairs where the first element is a microbatch of balls and the second of players associated
  * @param possession_attributions vector to append result to
  * @param g the given game
  */
-void microbatch_possession(vector<pair<sensor_record,game_timestamp>> &microbatch_balls,
-                                               map<sensor_id, sensor_record> &microbatch_players,
+void microbatch_possession(vector<pair<vector<pair<sensor_record,game_timestamp>>, map<sensor_id, sensor_record>>> &microbatches,
                                                vector<map<int, game_timestamp>> &possession_results,
                                                Game &g){
-
     sensor_record last_local_ball;    //the first ball of the given microbatch
     pair nearest(-1, K);
     map<int, game_timestamp> possession_attributions;  // map from player index in g.players to attributed time in the microbatch
     double dist = 0;
     unsigned int player_index = 0;
     bool first_ball = true;
+    for(auto microbatch : microbatches) {
+        //for every ball record find the nearest player and if the distance is less than K, gives him the possession
+        for (auto ball_sensor: microbatch.first) {
 
-    //for every ball record find the nearest player and if the distance is less than K, gives him the possession
-    for (auto ball_sensor: microbatch_balls) {
+            for (auto player_sensor = microbatch.second.begin();
+                 player_sensor != microbatch.second.end(); player_sensor++) {
 
-        for (auto player_sensor = microbatch_players.begin();
-            player_sensor != microbatch_players.end(); player_sensor++) {
+                dist = player_sensor->second.calculate_3D_distance(ball_sensor.first);
 
-            dist = player_sensor->second.calculate_3D_distance(ball_sensor.first);
+                if (nearest.second > dist) {
 
-            if (nearest.second > dist) {
+                    nearest.first = player_sensor->second.id;
+                    nearest.second = dist;
 
-                nearest.first = player_sensor->second.id;
-                nearest.second = dist;
-
-            }
-
-        }
-        // if a nearest sensor have been found
-        if (nearest.first >= 0) {
-
-            player_index = g.sensor_id_to_player_index[nearest.first];
-            auto possession_attr_per_player = possession_attributions.find(player_index);
-
-            //if player already in the map
-            if (possession_attr_per_player != possession_attributions.end()) {
-
-                possession_attributions[player_index] = possession_attr_per_player->second + ball_sensor.second;
-
-            } else {
-
-                possession_attributions.insert(pair(player_index, ball_sensor.second));
+                }
 
             }
+            // if a nearest sensor have been found
+            if (nearest.first >= 0) {
+
+                player_index = g.sensor_id_to_player_index[nearest.first];
+                auto possession_attr_per_player = possession_attributions.find(player_index);
+
+                //if player already in the map
+                if (possession_attr_per_player != possession_attributions.end()) {
+
+                    possession_attributions[player_index] = possession_attr_per_player->second + ball_sensor.second;
+
+                } else {
+
+                    possession_attributions.insert(pair(player_index, ball_sensor.second));
+
+                }
+
+            }
+            //reset temporary variable
+            nearest.first = -1;
+            nearest.second = K;
 
         }
-
-        //reset temporary variable
-        nearest.first = -1;
-        nearest.second = K;
-
     }
 
     //append microbatched possession result to possession_attributions
@@ -94,7 +91,6 @@ void aggregate_results(vector<map<int, game_timestamp>> &possession_results,
     player player;
     string name;
 
-    // TODO : parallelize?
     // for every map of microbatches' results, for every key-value pair in the map, aggregates per player and team
     for (auto mb : possession_results) {
 
@@ -179,17 +175,21 @@ int main (int argc, char *argv[]) {
     int lineNum = 0;
     game_timestamp played = 0;
     game_timestamp last_begin = 0;
+    int microbatch_counter = 0;
+
 
     map<sensor_id, sensor_record> microbatch_players;               // map from a sensor_id to a sensor record, used to build up the microbatches used in the tasks
     vector<pair<sensor_record,game_timestamp>> microbatch_balls;                         // vector of balls, used to build up the microbatches used in the tasks
+    vector<pair<vector<pair<sensor_record,game_timestamp>>, map<sensor_id, sensor_record>>> microbatches;
 
     vector<map<int, game_timestamp>> possession_results;      // a vector used to compute final_possession
     map<string, game_timestamp> final_possession;                   // the final possession for a single player, whose name is the key
     map<char, game_timestamp> final_possession_team;                // the final possession for both teams
 
-    K = argc > 4 ? atoi(argv[1])*meter : 3*meter;                       // 3 meters default
-    T =  argc > 4 ? atoi(argv[2])*second : 30*second;  // 30 seconds default
-    string path = argc > 4 ? argv[3] : "../../data";                   // '../data' default
+    K = argc > 5 ? atoi(argv[1])*meter : 3*meter;                       // 3 meters default
+    T =  argc > 5 ? atoi(argv[2])*second : 30*second;  // 30 seconds default
+    string path = argc > 5 ? argv[3] : "../../data";                   // '../data' default
+    int microbatch_size= argc > 5 ? atoi(argv[4]) : 50;
 
     game_timestamp nextUpdate = first_half_starting_time + T;       // closing time of the first window, used to compute the successive ones
 
@@ -224,8 +224,8 @@ int main (int argc, char *argv[]) {
 
                 // wait for the end of running tasks
                 #pragma omp taskwait
-                if (microbatch_balls.size() > 0){
-                    microbatch_possession(microbatch_balls, microbatch_players, possession_results, g);
+                if (microbatches.size() > 0 && microbatches[0].first.size() > 0){
+                    microbatch_possession(microbatches, possession_results, g);
                 }
 
                 // create a task that aggregates partial possession results and print them
@@ -277,22 +277,29 @@ int main (int argc, char *argv[]) {
                         //if sensor has already been encountered, create task and reset microbatches
                         if (microbatch_players.find(sensor.id) != microbatch_players.end()) {
 
-                            task_num_per_window += 1;
+                            //add an element to the microbatches vector
+                            microbatch_counter++;
+                            microbatches.push_back(pair<vector<pair<sensor_record,game_timestamp>>, map<sensor_id, sensor_record>>(microbatch_balls, microbatch_players));
 
-                            //compute microbatched possession
-                            #pragma omp task shared(g, possession_results) firstprivate(microbatch_balls, microbatch_players)
-                            microbatch_possession(microbatch_balls, microbatch_players, possession_results, g);
+                            //if the required number of microbatches per task is reached, compute microbatched possession
+                            if (microbatch_counter >= microbatch_size) {
 
-                            // reset microbatch for players and balls
+                                #pragma omp task shared(g, possession_results) firstprivate(microbatches)
+                                microbatch_possession(microbatches, possession_results, g);
+
+                                task_num_per_window += 1;
+
+                                //reset
+                                microbatches.clear();
+                                microbatch_counter = 0;
+                            }
+                            //reset
                             microbatch_players.clear();
                             microbatch_balls.clear();
-
-                        } else {
+                        }
 
                             // else is a new player's sensor, add it to the microbatch
                             microbatch_players[sensor.id] = sensor;
-
-                        }
 
                     } else if (g.balls.find(sensor.id) != g.balls.end()) {
 
