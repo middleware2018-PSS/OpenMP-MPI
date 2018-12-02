@@ -75,7 +75,7 @@ void microbatch_possession(vector<pair<sensor_record,game_timestamp>> &microbatc
     }
 
     //append microbatched possession result to possession_attributions
-    #pragma omp critical
+    #pragma omp critical(possession_results)
     possession_results.push_back(possession_attributions);
 }
 
@@ -110,7 +110,7 @@ void aggregate_results(vector<map<int, game_timestamp>> &possession_results,
             auto pa = final_possession.find(name);
             auto team = final_possession_team.find(player.team);
 
-            #pragma omp critical
+            #pragma omp critical(final_possession)
             {
                 if (pa != final_possession.end()) {
                     final_possession[name] = pa->second + map_vectorized[j].second;
@@ -119,7 +119,7 @@ void aggregate_results(vector<map<int, game_timestamp>> &possession_results,
                 }
             }
 
-            #pragma omp critical
+            #pragma omp critical(final_possession_team)
             {
                 if (team != final_possession_team.end()) {
                     final_possession_team[player.team] = team->second + map_vectorized[j].second;
