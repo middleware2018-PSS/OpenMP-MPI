@@ -2,5 +2,6 @@ src/cmake-build-debug/
 .idea/
 oracle/full-game.csv
 data/full-game.csv
+original-data/full-game.csv
 
 src/CMakeCache.txt
