@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 mkdir -p results
-for T in `seq 1 60`;
+for T in `seq 1 1`;
 do
-  for K in `seq 1 5`;
+  for K in `seq 1 1`;
   do
-    sudo docker run -v $PWD/data:/data openmp $K $T . | tee results/result_${K}m_${T}s.txt;
+    echo ${K}m ${T}s : >> results/times.txt
+    sudo time docker run -v $PWD/data:/data openmp $K $T . > results/result_${K}m_${T}s.txt 2>> results/times.txt;
   done;
 done
