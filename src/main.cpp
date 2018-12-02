@@ -130,13 +130,24 @@ void aggregate_results(vector<map<int, game_timestamp>> &possession_results,
  * @param final_possession possession so far per player
  * @param final_possession_team possession so far per team
  */
-void print_results(double start, int lineNum, game_timestamp nextUpdate, map<string, game_timestamp> &final_possession, map<char, game_timestamp> final_possession_team){
+void print_results(double &start, int &lineNum,
+        bool &playing, game_timestamp &played,
+        pair<bool, game_timestamp> &curr_record, game_timestamp &last_begin,
+        int &window_number, int &task_num_per_window,
+        game_timestamp &nextUpdate,
+        map<string, game_timestamp> &final_possession,
+        map<char, game_timestamp> final_possession_team){
 
     //header
-    cout << "WINDOW_CLOSE:" << nextUpdate/second << " s" << endl
-    << "NR_LINES:" << lineNum << endl
-    << "ELAPSED_TIME:" << (omp_get_wtime() - start) << " s" << endl
-    << "------------------------------------------------------" << endl;
+    cout << "======================================================" << endl
+         << "WINDOW_NUM:" << window_number++ << endl
+         << "WINDOW_CLOSE:" << nextUpdate/second << " s" << endl
+         << "TASKS:" << task_num_per_window  << endl
+         << "NR_LINES:" << lineNum << endl
+         << "ELAPSED_TIME:" << (omp_get_wtime() - start) << " s" << endl
+         << "TOTAL_TIME:" << (curr_record.second - first_half_starting_time)/second << " s" << endl
+         << "------------------------------------------------------" << endl;
+
     // print players
     for (auto it = final_possession.begin(); it != final_possession.end(); it++) {
         cout << "PLAYER:" << it->first << ":" << it->second/second  << " s" << endl;
@@ -147,7 +158,8 @@ void print_results(double start, int lineNum, game_timestamp nextUpdate, map<str
     for (auto fpt = final_possession_team.begin(); fpt != final_possession_team.end(); fpt++) {
         cout << "TEAM:" << fpt->first << ":" << fpt->second/second  << " s"<< endl;
     }
-    cout<< "------------------------------------------------------" << endl;
+    cout << "------------------------------------------------------" << endl;
+    cout << "PLAYED:" << (playing ? played + curr_record.second - last_begin : played)/second  << " s" << endl;
 
 }
 
@@ -194,7 +206,6 @@ int main (int argc, char *argv[]) {
     double start = omp_get_wtime();                                 // starting walltime
 
     // main loop
-
     #pragma omp parallel
     #pragma omp single
     {
@@ -215,27 +226,23 @@ int main (int argc, char *argv[]) {
                 if (microbatch_balls.size() > 0){
                     microbatch_possession(microbatch_balls, microbatch_players, possession_results, g);
                 }
-                cout << "======================================================" << endl
-                << "WINDOW_NUM:" << window_number++ << endl << "TASKS:" << task_num_per_window  << endl;
-
-                //resets
-                task_num_per_window = 0;
-
                 // TODO : parallelize?
                 // create a task that aggregates partial possession results and print them
-                #pragma omp task shared(g, final_possession, final_possession_team, start)  firstprivate(possession_results, last_begin, played)
+                #pragma omp task shared(g, final_possession, final_possession_team, start)  firstprivate(possession_results, playing, played, last_begin, type_ts, window_number, task_num_per_window)
                 {
                     aggregate_results(possession_results, final_possession_team, final_possession, g);
-                    print_results(start, lineNum, nextUpdate, final_possession, final_possession_team);
-                    cout << "PLAYED:" << (playing ? played + type_ts.second - last_begin : played)/second  << " s" << endl
-                    << "TOTAL_TIME:" << (type_ts.second - first_half_starting_time)/second << " s" << endl;
-                    //cout<< "------------------------------------------------------" << endl;
+
+                    print_results(start, lineNum, playing, played, type_ts, last_begin, window_number, task_num_per_window, nextUpdate, final_possession, final_possession_team);
+
                 }
 
                 // TODO : change to pointer?
-                possession_results.clear();
+                window_number++;
                 nextUpdate += T;
+                //resets
                 lineNum =0;
+                task_num_per_window = 0;
+                possession_results.clear();
 
             }
 
@@ -243,20 +250,17 @@ int main (int argc, char *argv[]) {
             if (type_ts.first){
                 playing = is_begin_parser(lineStream);
                 if (playing) {
-                    //cout << "BEGIN:" << (type_ts.second - first_half_starting_time)/second << endl;
                     last_begin = type_ts.second;
                 } else {
-                    //cout << "END:" << (type_ts.second - first_half_starting_time)/second << endl;
                     played += type_ts.second - last_begin;
                 }
                 // TODO : remove
-                // cout << (playing ? "BEGIN " : "END ") << (type_ts.second)<< endl;
+                // cout << (playing ? "BEGIN " : "END ") << (type_ts.second - first_half_starting_time)/second << endl;
             } else if (playing && (type_ts.second < start_no_ball || type_ts.second > end_no_ball) ) {        //if it's a sensor event and game is playing
 
                 sensor = sensor_record_parser(lineStream);
                 sensor.ts = type_ts.second;
-                if (sensor.ts == 0)
-                    cout << "ok" << endl;
+
                 //if sensor is inside the game field
                 if (g.is_inside_field(sensor)) {
 
@@ -270,11 +274,7 @@ int main (int argc, char *argv[]) {
 
                             //compute microbatched possession
                             #pragma omp task shared(g, possession_results) firstprivate(microbatch_balls, microbatch_players)
-                            {
-
-                                microbatch_possession(microbatch_balls, microbatch_players, possession_results, g);
-
-                            }
+                            microbatch_possession(microbatch_balls, microbatch_players, possession_results, g);
 
                             // reset microbatch for players and balls
                             microbatch_players.clear();
@@ -288,11 +288,9 @@ int main (int argc, char *argv[]) {
                         }
 
                     } else if (g.balls.find(sensor.id) != g.balls.end()) {
-                        // else if it's a ball
 
-                        //delta_ts = sensor.ts - last_ball.ts;
+                        // else if it's a ball
                         microbatch_balls.push_back(pair<sensor_record,game_timestamp>(sensor,delta_ts));
-                        //last_ball = sensor;
 
                     }
 
