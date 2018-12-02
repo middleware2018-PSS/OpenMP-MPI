@@ -240,7 +240,7 @@ int main (int argc, char *argv[]) {
                 }
 
                 // create a task that aggregates partial possession results and print them
-                #pragma omp task shared(g, final_possession, final_possession_team, start)  firstprivate(possession_results, playing, played, last_begin, type_ts, window_number, task_num_per_window)
+                #pragma omp task shared(g, final_possession, final_possession_team, start)  firstprivate(possession_results, playing, played, last_begin, type_ts, window_number, task_num_per_window, lineNum)
                 {
                     aggregate_results(possession_results, final_possession_team, final_possession, g);
 
