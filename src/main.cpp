@@ -1,6 +1,7 @@
 #include <iostream>
 #include "parsers.cpp"
 #include <omp.h>
+#include <vector>
 
 using namespace std;
 
@@ -96,25 +97,35 @@ void aggregate_results(vector<map<int, game_timestamp>> &possession_results,
 
     // TODO : parallelize?
     // for every map of microbatches' results, for every key-value pair in the map, aggregates per player and team
-    for (auto mb : possession_results) {
+    #pragma omp parallel for
+    for (int i=0; i < possession_results.size() ; i++) {
 
-        for (auto npt = mb.begin(); npt != mb.end(); npt++) {
+        vector<pair<int, game_timestamp>> map_vectorized (possession_results[i].begin(), possession_results[i].end());
 
-            player = g.players[npt->first];
+        for (int j=0; j < map_vectorized.size(); j++) {
+
+            player = g.players[map_vectorized[j].first];
+
             name = player.name;
             auto pa = final_possession.find(name);
             auto team = final_possession_team.find(player.team);
 
-            if (pa != final_possession.end()) {
-                final_possession[name] = pa->second + npt->second;
-            } else {
-                final_possession.insert(pair(name, npt->second));
+            #pragma omp critical
+            {
+                if (pa != final_possession.end()) {
+                    final_possession[name] = pa->second + map_vectorized[j].second;
+                } else {
+                    final_possession.insert(pair(name, map_vectorized[j].second));
+                }
             }
 
-            if (team != final_possession_team.end()) {
-                final_possession_team[player.team] = team->second + npt->second;
-            } else {
-                final_possession_team.insert(pair(player.team, npt->second));
+            #pragma omp critical
+            {
+                if (team != final_possession_team.end()) {
+                    final_possession_team[player.team] = team->second + map_vectorized[j].second;
+                } else {
+                    final_possession_team.insert(pair(player.team, map_vectorized[j].second));
+                }
             }
 
         }
