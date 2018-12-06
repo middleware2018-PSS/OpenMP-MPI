@@ -1,0 +1,15 @@
+serial,100,1m32.479s
+parallel,100,1m23.343s
+serial,150,1m32.662s
+parallel,150,1m23.359s
+serial,200,1m32.017s
+parallel,200,1m23.812s
+serial,250,1m34.077s
+parallel,250,1m24.043s
+serial,300,1m33.564s
+parallel,300,1m24.335s
+serial,350,1m32.893s
+parallel,350,1m24.722s
+serial,400,1m34.908s
+parallel,400,1m25.180s
+
