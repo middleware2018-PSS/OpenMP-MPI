@@ -71,7 +71,7 @@ void microbatch_possession(vector<pair<vector<pair<sensor_record,game_timestamp>
     }
 
     //append microbatched possession result to possession_attributions
-    #pragma omp critical
+    //#pragma omp critical
     possession_results.push_back(possession_attributions);
 }
 
@@ -186,10 +186,10 @@ int main (int argc, char *argv[]) {
     map<string, game_timestamp> final_possession;                   // the final possession for a single player, whose name is the key
     map<char, game_timestamp> final_possession_team;                // the final possession for both teams
 
-    K = argc > 5 ? atoi(argv[1])*meter : 3*meter;                       // 3 meters default
-    T =  argc > 5 ? atoi(argv[2])*second : 30*second;  // 30 seconds default
-    string path = argc > 5 ? argv[3] : "../../data";                   // '../data' default
-    int microbatch_size= argc > 5 ? atoi(argv[4]) : 50;
+    K = argc > 4 ? atoi(argv[1])*meter : 3*meter;                       // 3 meters default
+    T =  argc > 4 ? atoi(argv[2])*second : 30*second;  // 30 seconds default
+    string path = argc > 4 ? argv[3] : "../../data";                   // '../data' default
+    int microbatch_size= argc > 4 ? atoi(argv[4]) : 50;
 
     game_timestamp nextUpdate = first_half_starting_time + T;       // closing time of the first window, used to compute the successive ones
 
