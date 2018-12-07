@@ -1,0 +1,1950 @@
+K:5m
+T:60s
+======================================================
+WINDOW_NUM:0
+WINDOW_CLOSE:10813.3 s
+TASKS:11
+NR_LINES:2337783
+ELAPSED_TIME:2.90268 s
+TOTAL_TIME:60 s
+------------------------------------------------------
+PLAYER:Ben Muller:0.4415 s
+PLAYER:Christopher Lee:7.1245 s
+PLAYER:Leo Langhans:0.084 s
+PLAYER:Leon Heinze:0.2765 s
+PLAYER:Vale Reitstetter:3.18 s
+PLAYER:Willi Sommer:0.0045 s
+------------------------------------------------------
+TEAM:A:0.0045 s
+TEAM:B:11.1065 s
+------------------------------------------------------
+PLAYED:10.259 s
+======================================================
+WINDOW_NUM:2
+WINDOW_CLOSE:10873.3 s
+TASKS:0
+NR_LINES:789465
+ELAPSED_TIME:3.76168 s
+TOTAL_TIME:120 s
+------------------------------------------------------
+PLAYER:Ben Muller:0.4415 s
+PLAYER:Christopher Lee:7.321 s
+PLAYER:Leo Langhans:0.084 s
+PLAYER:Leon Heinze:0.2765 s
+PLAYER:Vale Reitstetter:3.18 s
+PLAYER:Willi Sommer:0.0045 s
+------------------------------------------------------
+TEAM:A:0.0045 s
+TEAM:B:11.303 s
+------------------------------------------------------
+PLAYED:10.259 s
+======================================================
+WINDOW_NUM:4
+WINDOW_CLOSE:10933.3 s
+TASKS:0
+NR_LINES:785012
+ELAPSED_TIME:4.61901 s
+TOTAL_TIME:180 s
+------------------------------------------------------
+PLAYER:Ben Muller:0.4415 s
+PLAYER:Christopher Lee:7.5175 s
+PLAYER:Leo Langhans:0.084 s
+PLAYER:Leon Heinze:0.2765 s
+PLAYER:Vale Reitstetter:3.18 s
+PLAYER:Willi Sommer:0.0045 s
+------------------------------------------------------
+TEAM:A:0.0045 s
+TEAM:B:11.4995 s
+------------------------------------------------------
+PLAYED:10.259 s
+======================================================
+WINDOW_NUM:6
+WINDOW_CLOSE:10993.3 s
+TASKS:37
+NR_LINES:784962
+ELAPSED_TIME:6.65563 s
+TOTAL_TIME:240 s
+------------------------------------------------------
+PLAYER:Ben Muller:0.4415 s
+PLAYER:Christopher Lee:7.714 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Leo Langhans:0.084 s
+PLAYER:Leon Heinze:0.444 s
+PLAYER:Nick Gertje:3.41 s
+PLAYER:Niklas Welzlein:0.446 s
+PLAYER:Vale Reitstetter:15.3555 s
+PLAYER:Willi Sommer:3.0595 s
+------------------------------------------------------
+TEAM:A:7.4665 s
+TEAM:B:24.039 s
+------------------------------------------------------
+PLAYED:44.083 s
+======================================================
+WINDOW_NUM:8
+WINDOW_CLOSE:11053.3 s
+TASKS:0
+NR_LINES:785420
+ELAPSED_TIME:7.50595 s
+TOTAL_TIME:300 s
+------------------------------------------------------
+PLAYER:Ben Muller:0.4415 s
+PLAYER:Christopher Lee:7.714 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Leo Langhans:0.084 s
+PLAYER:Leon Heinze:0.444 s
+PLAYER:Nick Gertje:3.41 s
+PLAYER:Niklas Welzlein:0.446 s
+PLAYER:Vale Reitstetter:15.3555 s
+PLAYER:Willi Sommer:3.233 s
+------------------------------------------------------
+TEAM:A:7.64 s
+TEAM:B:24.039 s
+------------------------------------------------------
+PLAYED:44.083 s
+======================================================
+WINDOW_NUM:10
+WINDOW_CLOSE:11113.3 s
+TASKS:7
+NR_LINES:780754
+ELAPSED_TIME:8.59095 s
+TOTAL_TIME:360 s
+------------------------------------------------------
+PLAYER:Ben Muller:0.4415 s
+PLAYER:Christopher Lee:7.714 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Kevin Baer:2.274 s
+PLAYER:Leo Langhans:0.084 s
+PLAYER:Leon Heinze:0.444 s
+PLAYER:Nick Gertje:4.5435 s
+PLAYER:Niklas Welzlein:0.446 s
+PLAYER:Philipp Harlass:0.026 s
+PLAYER:Vale Reitstetter:15.3555 s
+PLAYER:Willi Sommer:6.0695 s
+------------------------------------------------------
+TEAM:A:11.636 s
+TEAM:B:26.313 s
+------------------------------------------------------
+PLAYED:50.85 s
+======================================================
+WINDOW_NUM:12
+WINDOW_CLOSE:11173.3 s
+TASKS:22
+NR_LINES:786797
+ELAPSED_TIME:10.1548 s
+TOTAL_TIME:420 s
+------------------------------------------------------
+PLAYER:Ben Muller:1.3405 s
+PLAYER:Christopher Lee:7.714 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Erik Engelhardt:0.449 s
+PLAYER:Kevin Baer:2.274 s
+PLAYER:Leo Langhans:0.084 s
+PLAYER:Leon Heinze:0.444 s
+PLAYER:Nick Gertje:7.7635 s
+PLAYER:Niklas Welzlein:0.446 s
+PLAYER:Philipp Harlass:7.42 s
+PLAYER:Roman Hartleb:0.577 s
+PLAYER:Vale Reitstetter:15.6 s
+PLAYER:Willi Sommer:8.876 s
+------------------------------------------------------
+TEAM:A:26.0825 s
+TEAM:B:27.4565 s
+------------------------------------------------------
+PLAYED:70.564 s
+======================================================
+WINDOW_NUM:14
+WINDOW_CLOSE:11233.3 s
+TASKS:35
+NR_LINES:743177
+ELAPSED_TIME:12.007 s
+TOTAL_TIME:480 s
+------------------------------------------------------
+PLAYER:Ben Muller:4.0675 s
+PLAYER:Christopher Lee:12.5715 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Erik Engelhardt:0.449 s
+PLAYER:Kevin Baer:2.3025 s
+PLAYER:Leo Langhans:0.962 s
+PLAYER:Leon Heinze:21.6165 s
+PLAYER:Leon Krapf:0.128 s
+PLAYER:Luca Ziegler:2.248 s
+PLAYER:Nick Gertje:7.7635 s
+PLAYER:Niklas Welzlein:0.446 s
+PLAYER:Philipp Harlass:7.42 s
+PLAYER:Roman Hartleb:0.577 s
+PLAYER:Vale Reitstetter:15.6 s
+PLAYER:Willi Sommer:9.0115 s
+------------------------------------------------------
+TEAM:A:26.218 s
+TEAM:B:59.496 s
+------------------------------------------------------
+PLAYED:102.826 s
+======================================================
+WINDOW_NUM:16
+WINDOW_CLOSE:11293.3 s
+TASKS:19
+NR_LINES:763287
+ELAPSED_TIME:13.458 s
+TOTAL_TIME:540 s
+------------------------------------------------------
+PLAYER:Ben Muller:4.766 s
+PLAYER:Christopher Lee:12.5715 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Erik Engelhardt:2.272 s
+PLAYER:Kevin Baer:2.3025 s
+PLAYER:Leo Langhans:0.962 s
+PLAYER:Leon Heinze:21.621 s
+PLAYER:Leon Krapf:0.128 s
+PLAYER:Luca Ziegler:2.248 s
+PLAYER:Nick Gertje:7.7635 s
+PLAYER:Niklas Welzlein:0.446 s
+PLAYER:Philipp Harlass:17.585 s
+PLAYER:Roman Hartleb:0.577 s
+PLAYER:Vale Reitstetter:16.02 s
+PLAYER:Willi Sommer:12.44 s
+------------------------------------------------------
+TEAM:A:41.6345 s
+TEAM:B:60.619 s
+------------------------------------------------------
+PLAYED:120.275 s
+======================================================
+WINDOW_NUM:18
+WINDOW_CLOSE:11353.3 s
+TASKS:15
+NR_LINES:760843
+ELAPSED_TIME:14.7472 s
+TOTAL_TIME:600 s
+------------------------------------------------------
+PLAYER:Ben Muller:5.4445 s
+PLAYER:Christopher Lee:12.5715 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Erik Engelhardt:2.3805 s
+PLAYER:Kevin Baer:2.3025 s
+PLAYER:Leo Langhans:0.962 s
+PLAYER:Leon Heinze:21.621 s
+PLAYER:Leon Krapf:5.2795 s
+PLAYER:Luca Ziegler:4.8335 s
+PLAYER:Nick Gertje:7.7635 s
+PLAYER:Niklas Welzlein:0.446 s
+PLAYER:Philipp Harlass:20.1065 s
+PLAYER:Roman Hartleb:0.577 s
+PLAYER:Sandro Schneider:2.2525 s
+PLAYER:Vale Reitstetter:16.0245 s
+PLAYER:Willi Sommer:12.44 s
+------------------------------------------------------
+TEAM:A:46.517 s
+TEAM:B:69.039 s
+------------------------------------------------------
+PLAYED:134.095 s
+======================================================
+WINDOW_NUM:20
+WINDOW_CLOSE:11413.3 s
+TASKS:20
+NR_LINES:761403
+ELAPSED_TIME:16.1937 s
+TOTAL_TIME:660 s
+------------------------------------------------------
+PLAYER:Ben Muller:5.696 s
+PLAYER:Christopher Lee:12.5715 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Erik Engelhardt:2.3805 s
+PLAYER:Kevin Baer:2.3025 s
+PLAYER:Leo Langhans:0.962 s
+PLAYER:Leon Heinze:21.621 s
+PLAYER:Leon Krapf:5.2795 s
+PLAYER:Luca Ziegler:4.9705 s
+PLAYER:Nick Gertje:7.7635 s
+PLAYER:Niklas Welzlein:13.2155 s
+PLAYER:Philipp Harlass:20.1065 s
+PLAYER:Roman Hartleb:0.577 s
+PLAYER:Sandro Schneider:2.2525 s
+PLAYER:Vale Reitstetter:16.0245 s
+PLAYER:Willi Sommer:14.5445 s
+------------------------------------------------------
+TEAM:A:61.391 s
+TEAM:B:69.4275 s
+------------------------------------------------------
+PLAYED:152.301 s
+======================================================
+WINDOW_NUM:22
+WINDOW_CLOSE:11473.3 s
+TASKS:23
+NR_LINES:763991
+ELAPSED_TIME:17.7504 s
+TOTAL_TIME:720 s
+------------------------------------------------------
+PLAYER:Ben Muller:7.446 s
+PLAYER:Christopher Lee:12.6205 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Erik Engelhardt:3.9515 s
+PLAYER:Kevin Baer:2.3025 s
+PLAYER:Leo Langhans:1.294 s
+PLAYER:Leon Heinze:22.263 s
+PLAYER:Leon Krapf:5.2795 s
+PLAYER:Luca Ziegler:4.9705 s
+PLAYER:Nick Gertje:11.234 s
+PLAYER:Niklas Welzlein:13.2155 s
+PLAYER:Philipp Harlass:26.8145 s
+PLAYER:Roman Hartleb:1.314 s
+PLAYER:Sandro Schneider:2.2525 s
+PLAYER:Vale Reitstetter:16.0245 s
+PLAYER:Willi Sommer:16.8945 s
+------------------------------------------------------
+TEAM:A:76.2275 s
+TEAM:B:72.2005 s
+------------------------------------------------------
+PLAYED:173.339 s
+======================================================
+WINDOW_NUM:24
+WINDOW_CLOSE:11533.3 s
+TASKS:15
+NR_LINES:768577
+ELAPSED_TIME:19.0604 s
+TOTAL_TIME:780 s
+------------------------------------------------------
+PLAYER:Ben Muller:7.446 s
+PLAYER:Christopher Lee:12.6205 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Erik Engelhardt:3.9515 s
+PLAYER:Kevin Baer:2.3025 s
+PLAYER:Leo Langhans:1.294 s
+PLAYER:Leon Heinze:22.263 s
+PLAYER:Leon Krapf:11.3925 s
+PLAYER:Luca Ziegler:4.9705 s
+PLAYER:Nick Gertje:11.234 s
+PLAYER:Niklas Welzlein:13.2155 s
+PLAYER:Philipp Harlass:26.8145 s
+PLAYER:Roman Hartleb:1.795 s
+PLAYER:Sandro Schneider:2.2525 s
+PLAYER:Vale Reitstetter:16.0245 s
+PLAYER:Willi Sommer:16.8945 s
+------------------------------------------------------
+TEAM:A:76.7085 s
+TEAM:B:78.3135 s
+------------------------------------------------------
+PLAYED:187.112 s
+======================================================
+WINDOW_NUM:26
+WINDOW_CLOSE:11593.3 s
+TASKS:47
+NR_LINES:768298
+ELAPSED_TIME:21.3801 s
+TOTAL_TIME:840 s
+------------------------------------------------------
+PLAYER:Ben Muller:7.446 s
+PLAYER:Christopher Lee:14.583 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Erik Engelhardt:30.222 s
+PLAYER:Kevin Baer:2.3025 s
+PLAYER:Leo Langhans:1.294 s
+PLAYER:Leon Heinze:22.263 s
+PLAYER:Leon Krapf:15.5065 s
+PLAYER:Luca Ziegler:4.9705 s
+PLAYER:Nick Gertje:11.791 s
+PLAYER:Niklas Welzlein:13.2155 s
+PLAYER:Philipp Harlass:27.515 s
+PLAYER:Roman Hartleb:5.207 s
+PLAYER:Sandro Schneider:4.8025 s
+PLAYER:Vale Reitstetter:16.0245 s
+PLAYER:Willi Sommer:18.361 s
+------------------------------------------------------
+TEAM:A:111.665 s
+TEAM:B:84.39 s
+------------------------------------------------------
+PLAYED:230.002 s
+======================================================
+WINDOW_NUM:28
+WINDOW_CLOSE:11653.3 s
+TASKS:2
+NR_LINES:762240
+ELAPSED_TIME:22.2684 s
+TOTAL_TIME:900 s
+------------------------------------------------------
+PLAYER:Ben Muller:7.446 s
+PLAYER:Christopher Lee:14.583 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Erik Engelhardt:30.222 s
+PLAYER:Kevin Baer:3.9665 s
+PLAYER:Leo Langhans:1.294 s
+PLAYER:Leon Heinze:22.263 s
+PLAYER:Leon Krapf:15.5065 s
+PLAYER:Luca Ziegler:4.9705 s
+PLAYER:Nick Gertje:11.791 s
+PLAYER:Niklas Welzlein:13.2155 s
+PLAYER:Philipp Harlass:27.515 s
+PLAYER:Roman Hartleb:5.207 s
+PLAYER:Sandro Schneider:4.8025 s
+PLAYER:Vale Reitstetter:16.0245 s
+PLAYER:Willi Sommer:18.8195 s
+------------------------------------------------------
+TEAM:A:112.123 s
+TEAM:B:86.054 s
+------------------------------------------------------
+PLAYED:231.734 s
+======================================================
+WINDOW_NUM:30
+WINDOW_CLOSE:11713.3 s
+TASKS:16
+NR_LINES:765128
+ELAPSED_TIME:23.5991 s
+TOTAL_TIME:960 s
+------------------------------------------------------
+PLAYER:Ben Muller:7.446 s
+PLAYER:Christopher Lee:21.675 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Erik Engelhardt:30.222 s
+PLAYER:Kevin Baer:4.329 s
+PLAYER:Leo Langhans:1.294 s
+PLAYER:Leon Heinze:22.263 s
+PLAYER:Leon Krapf:15.5065 s
+PLAYER:Luca Ziegler:4.9705 s
+PLAYER:Nick Gertje:13.369 s
+PLAYER:Niklas Welzlein:13.2155 s
+PLAYER:Philipp Harlass:27.515 s
+PLAYER:Roman Hartleb:5.207 s
+PLAYER:Sandro Schneider:4.8475 s
+PLAYER:Vale Reitstetter:18.702 s
+PLAYER:Willi Sommer:21.018 s
+------------------------------------------------------
+TEAM:A:115.945 s
+TEAM:B:96.186 s
+------------------------------------------------------
+PLAYED:246.224 s
+======================================================
+WINDOW_NUM:32
+WINDOW_CLOSE:11773.3 s
+TASKS:1
+NR_LINES:763493
+ELAPSED_TIME:24.45 s
+TOTAL_TIME:1020 s
+------------------------------------------------------
+PLAYER:Ben Muller:7.446 s
+PLAYER:Christopher Lee:21.675 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Erik Engelhardt:30.222 s
+PLAYER:Kevin Baer:4.329 s
+PLAYER:Leo Langhans:1.294 s
+PLAYER:Leon Heinze:22.263 s
+PLAYER:Leon Krapf:15.5065 s
+PLAYER:Luca Ziegler:4.9705 s
+PLAYER:Nick Gertje:13.369 s
+PLAYER:Niklas Welzlein:13.2565 s
+PLAYER:Philipp Harlass:27.515 s
+PLAYER:Roman Hartleb:5.207 s
+PLAYER:Sandro Schneider:4.8475 s
+PLAYER:Vale Reitstetter:18.702 s
+PLAYER:Willi Sommer:21.0625 s
+------------------------------------------------------
+TEAM:A:116.03 s
+TEAM:B:96.186 s
+------------------------------------------------------
+PLAYED:247.119 s
+======================================================
+WINDOW_NUM:34
+WINDOW_CLOSE:11833.3 s
+TASKS:0
+NR_LINES:740085
+ELAPSED_TIME:25.2494 s
+TOTAL_TIME:1080 s
+------------------------------------------------------
+PLAYER:Ben Muller:7.446 s
+PLAYER:Christopher Lee:21.675 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Erik Engelhardt:30.222 s
+PLAYER:Kevin Baer:4.329 s
+PLAYER:Leo Langhans:1.294 s
+PLAYER:Leon Heinze:22.263 s
+PLAYER:Leon Krapf:15.5065 s
+PLAYER:Luca Ziegler:4.9705 s
+PLAYER:Nick Gertje:13.369 s
+PLAYER:Niklas Welzlein:13.2975 s
+PLAYER:Philipp Harlass:27.515 s
+PLAYER:Roman Hartleb:5.207 s
+PLAYER:Sandro Schneider:4.8475 s
+PLAYER:Vale Reitstetter:18.702 s
+PLAYER:Willi Sommer:21.0625 s
+------------------------------------------------------
+TEAM:A:116.072 s
+TEAM:B:96.186 s
+------------------------------------------------------
+PLAYED:247.119 s
+======================================================
+WINDOW_NUM:36
+WINDOW_CLOSE:11893.3 s
+TASKS:32
+NR_LINES:759619
+ELAPSED_TIME:27.0681 s
+TOTAL_TIME:1140 s
+------------------------------------------------------
+PLAYER:Ben Muller:8.285 s
+PLAYER:Christopher Lee:21.8175 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Erik Engelhardt:31.4205 s
+PLAYER:Kevin Baer:4.329 s
+PLAYER:Leo Langhans:1.294 s
+PLAYER:Leon Heinze:22.263 s
+PLAYER:Leon Krapf:15.8435 s
+PLAYER:Luca Ziegler:4.9705 s
+PLAYER:Nick Gertje:13.369 s
+PLAYER:Niklas Welzlein:13.3425 s
+PLAYER:Philipp Harlass:32.0555 s
+PLAYER:Roman Hartleb:6.1175 s
+PLAYER:Sandro Schneider:4.8475 s
+PLAYER:Vale Reitstetter:19.076 s
+PLAYER:Willi Sommer:36.26 s
+------------------------------------------------------
+TEAM:A:137.963 s
+TEAM:B:97.8785 s
+------------------------------------------------------
+PLAYED:276.605 s
+======================================================
+WINDOW_NUM:38
+WINDOW_CLOSE:11953.3 s
+TASKS:2
+NR_LINES:761148
+ELAPSED_TIME:27.9504 s
+TOTAL_TIME:1200 s
+------------------------------------------------------
+PLAYER:Ben Muller:8.285 s
+PLAYER:Christopher Lee:21.8175 s
+PLAYER:Dennis Dotterweich:0.551 s
+PLAYER:Erik Engelhardt:31.4205 s
+PLAYER:Kevin Baer:4.329 s
+PLAYER:Leo Langhans:1.294 s
+PLAYER:Leon Heinze:22.263 s
+PLAYER:Leon Krapf:15.8435 s
+PLAYER:Luca Ziegler:4.9705 s
+PLAYER:Nick Gertje:13.369 s
+PLAYER:Niklas Welzlein:13.3425 s
+PLAYER:Philipp Harlass:32.0555 s
+PLAYER:Roman Hartleb:6.3185 s
+PLAYER:Sandro Schneider:4.8475 s
+PLAYER:Vale Reitstetter:19.546 s
+PLAYER:Willi Sommer:36.2685 s
+------------------------------------------------------
+TEAM:A:138.173 s
+TEAM:B:98.3485 s
+------------------------------------------------------
+PLAYED:278.329 s
+======================================================
+WINDOW_NUM:40
+WINDOW_CLOSE:12013.3 s
+TASKS:20
+NR_LINES:765318
+ELAPSED_TIME:29.4228 s
+TOTAL_TIME:1260 s
+------------------------------------------------------
+PLAYER:Ben Muller:8.4315 s
+PLAYER:Christopher Lee:21.8175 s
+PLAYER:Dennis Dotterweich:6.2175 s
+PLAYER:Erik Engelhardt:34.411 s
+PLAYER:Kevin Baer:4.329 s
+PLAYER:Leo Langhans:1.294 s
+PLAYER:Leon Heinze:22.263 s
+PLAYER:Leon Krapf:15.8435 s
+PLAYER:Luca Ziegler:4.9705 s
+PLAYER:Nick Gertje:13.369 s
+PLAYER:Niklas Welzlein:15.5755 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:6.3185 s
+PLAYER:Sandro Schneider:4.8475 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.278 s
+------------------------------------------------------
+TEAM:A:154.269 s
+TEAM:B:98.79 s
+------------------------------------------------------
+PLAYED:296.971 s
+======================================================
+WINDOW_NUM:42
+WINDOW_CLOSE:12073.3 s
+TASKS:20
+NR_LINES:754051
+ELAPSED_TIME:30.8456 s
+TOTAL_TIME:1320 s
+------------------------------------------------------
+PLAYER:Ben Muller:8.436 s
+PLAYER:Christopher Lee:23.642 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:37.161 s
+PLAYER:Kevin Baer:6.64 s
+PLAYER:Leo Langhans:7.976 s
+PLAYER:Leon Heinze:22.263 s
+PLAYER:Leon Krapf:18.474 s
+PLAYER:Luca Ziegler:5.4615 s
+PLAYER:Nick Gertje:13.369 s
+PLAYER:Niklas Welzlein:15.5755 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:6.3185 s
+PLAYER:Sandro Schneider:4.8475 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.2825 s
+------------------------------------------------------
+TEAM:A:157.091 s
+TEAM:B:112.733 s
+------------------------------------------------------
+PLAYED:314.918 s
+======================================================
+WINDOW_NUM:44
+WINDOW_CLOSE:12133.3 s
+TASKS:27
+NR_LINES:737351
+ELAPSED_TIME:32.4272 s
+TOTAL_TIME:1380 s
+------------------------------------------------------
+PLAYER:Ben Muller:8.4625 s
+PLAYER:Christopher Lee:23.6635 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.3625 s
+PLAYER:Kevin Baer:6.64 s
+PLAYER:Leo Langhans:8.3195 s
+PLAYER:Leon Heinze:22.281 s
+PLAYER:Leon Krapf:18.474 s
+PLAYER:Luca Ziegler:5.4615 s
+PLAYER:Nick Gertje:17.7575 s
+PLAYER:Niklas Welzlein:15.5755 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.5985 s
+PLAYER:Sandro Schneider:12.8025 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:180.452 s
+TEAM:B:113.143 s
+------------------------------------------------------
+PLAYED:339.629 s
+======================================================
+WINDOW_NUM:46
+WINDOW_CLOSE:12193.3 s
+TASKS:10
+NR_LINES:722085
+ELAPSED_TIME:33.5085 s
+TOTAL_TIME:1440 s
+------------------------------------------------------
+PLAYER:Ben Muller:10.457 s
+PLAYER:Christopher Lee:23.6635 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.5095 s
+PLAYER:Kevin Baer:11.1955 s
+PLAYER:Leo Langhans:8.3195 s
+PLAYER:Leon Heinze:22.281 s
+PLAYER:Leon Krapf:18.474 s
+PLAYER:Luca Ziegler:5.4615 s
+PLAYER:Nick Gertje:17.7575 s
+PLAYER:Niklas Welzlein:15.5755 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9545 s
+PLAYER:Sandro Schneider:13.0015 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:181.154 s
+TEAM:B:119.693 s
+------------------------------------------------------
+PLAYED:349.005 s
+======================================================
+WINDOW_NUM:48
+WINDOW_CLOSE:12253.3 s
+TASKS:17
+NR_LINES:701716
+ELAPSED_TIME:34.7242 s
+TOTAL_TIME:1500 s
+------------------------------------------------------
+PLAYER:Ben Muller:11.072 s
+PLAYER:Christopher Lee:24.6245 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.5095 s
+PLAYER:Kevin Baer:11.5605 s
+PLAYER:Leo Langhans:8.3195 s
+PLAYER:Leon Heinze:22.281 s
+PLAYER:Leon Krapf:23.289 s
+PLAYER:Luca Ziegler:5.4615 s
+PLAYER:Nick Gertje:17.7575 s
+PLAYER:Niklas Welzlein:15.5755 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9545 s
+PLAYER:Sandro Schneider:13.2045 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:181.357 s
+TEAM:B:126.449 s
+------------------------------------------------------
+PLAYED:364.358 s
+======================================================
+WINDOW_NUM:50
+WINDOW_CLOSE:12313.3 s
+TASKS:11
+NR_LINES:474019
+ELAPSED_TIME:35.5418 s
+TOTAL_TIME:1560 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.378 s
+PLAYER:Christopher Lee:24.7835 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.5095 s
+PLAYER:Kevin Baer:11.5605 s
+PLAYER:Leo Langhans:9.214 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:23.289 s
+PLAYER:Luca Ziegler:5.4615 s
+PLAYER:Nick Gertje:17.7575 s
+PLAYER:Niklas Welzlein:15.5755 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9545 s
+PLAYER:Sandro Schneider:14.7075 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:182.86 s
+TEAM:B:134.944 s
+------------------------------------------------------
+PLAYED:374.265 s
+======================================================
+WINDOW_NUM:52
+WINDOW_CLOSE:12373.3 s
+TASKS:28
+NR_LINES:347395
+ELAPSED_TIME:36.2625 s
+TOTAL_TIME:1620 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.6145 s
+PLAYER:Christopher Lee:26.9965 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.5095 s
+PLAYER:Kevin Baer:11.6915 s
+PLAYER:Leo Langhans:9.214 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:40.896 s
+PLAYER:Luca Ziegler:5.467 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.6935 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9545 s
+PLAYER:Sandro Schneider:14.7075 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:183.086 s
+TEAM:B:155.136 s
+------------------------------------------------------
+PLAYED:399.763 s
+======================================================
+WINDOW_NUM:54
+WINDOW_CLOSE:12433.3 s
+TASKS:40
+NR_LINES:252333
+ELAPSED_TIME:36.8733 s
+TOTAL_TIME:1680 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.6145 s
+PLAYER:Christopher Lee:26.9965 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.801 s
+PLAYER:Kevin Baer:12.0265 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:40.896 s
+PLAYER:Luca Ziegler:5.642 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9545 s
+PLAYER:Sandro Schneider:14.7075 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:183.43 s
+TEAM:B:166.383 s
+------------------------------------------------------
+PLAYED:437.339 s
+======================================================
+WINDOW_NUM:56
+WINDOW_CLOSE:12493.3 s
+TASKS:18
+NR_LINES:280311
+ELAPSED_TIME:37.3267 s
+TOTAL_TIME:1740 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.6145 s
+PLAYER:Christopher Lee:26.9965 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.801 s
+PLAYER:Kevin Baer:12.0265 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:40.896 s
+PLAYER:Luca Ziegler:5.642 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9545 s
+PLAYER:Sandro Schneider:14.7075 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:183.43 s
+TEAM:B:166.383 s
+------------------------------------------------------
+PLAYED:453.617 s
+======================================================
+WINDOW_NUM:58
+WINDOW_CLOSE:12553.3 s
+TASKS:16
+NR_LINES:334551
+ELAPSED_TIME:37.8632 s
+TOTAL_TIME:1800 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.6145 s
+PLAYER:Christopher Lee:26.9965 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.801 s
+PLAYER:Kevin Baer:12.0265 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:40.896 s
+PLAYER:Luca Ziegler:5.642 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9545 s
+PLAYER:Sandro Schneider:14.7075 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:183.43 s
+TEAM:B:166.383 s
+------------------------------------------------------
+PLAYED:468.711 s
+======================================================
+WINDOW_NUM:60
+WINDOW_CLOSE:12613.3 s
+TASKS:0
+NR_LINES:56957
+ELAPSED_TIME:37.9268 s
+TOTAL_TIME:2307.11 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.6145 s
+PLAYER:Christopher Lee:26.9965 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.801 s
+PLAYER:Kevin Baer:12.0265 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:40.896 s
+PLAYER:Luca Ziegler:5.642 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9545 s
+PLAYER:Sandro Schneider:14.7075 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:183.43 s
+TEAM:B:166.383 s
+------------------------------------------------------
+PLAYED:468.711 s
+======================================================
+WINDOW_NUM:62
+WINDOW_CLOSE:12673.3 s
+TASKS:0
+NR_LINES:1
+ELAPSED_TIME:37.9287 s
+TOTAL_TIME:2307.75 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.6145 s
+PLAYER:Christopher Lee:26.9965 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.801 s
+PLAYER:Kevin Baer:12.0265 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:40.896 s
+PLAYER:Luca Ziegler:5.642 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9545 s
+PLAYER:Sandro Schneider:14.7075 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:183.43 s
+TEAM:B:166.383 s
+------------------------------------------------------
+PLAYED:468.711 s
+======================================================
+WINDOW_NUM:64
+WINDOW_CLOSE:12733.3 s
+TASKS:0
+NR_LINES:1
+ELAPSED_TIME:37.9306 s
+TOTAL_TIME:2307.75 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.6145 s
+PLAYER:Christopher Lee:26.9965 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.801 s
+PLAYER:Kevin Baer:12.0265 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:40.896 s
+PLAYER:Luca Ziegler:5.642 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9545 s
+PLAYER:Sandro Schneider:14.7075 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:183.43 s
+TEAM:B:166.383 s
+------------------------------------------------------
+PLAYED:468.711 s
+======================================================
+WINDOW_NUM:66
+WINDOW_CLOSE:12793.3 s
+TASKS:0
+NR_LINES:1
+ELAPSED_TIME:37.9325 s
+TOTAL_TIME:2307.76 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.6145 s
+PLAYER:Christopher Lee:26.9965 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.801 s
+PLAYER:Kevin Baer:12.0265 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:40.896 s
+PLAYER:Luca Ziegler:5.642 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9545 s
+PLAYER:Sandro Schneider:14.7075 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:183.43 s
+TEAM:B:166.383 s
+------------------------------------------------------
+PLAYED:468.711 s
+======================================================
+WINDOW_NUM:68
+WINDOW_CLOSE:12853.3 s
+TASKS:0
+NR_LINES:1
+ELAPSED_TIME:37.9343 s
+TOTAL_TIME:2307.76 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.6145 s
+PLAYER:Christopher Lee:26.9965 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.801 s
+PLAYER:Kevin Baer:12.0265 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:40.896 s
+PLAYER:Luca Ziegler:5.642 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9545 s
+PLAYER:Sandro Schneider:14.7075 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:183.43 s
+TEAM:B:166.383 s
+------------------------------------------------------
+PLAYED:468.711 s
+======================================================
+WINDOW_NUM:70
+WINDOW_CLOSE:12913.3 s
+TASKS:0
+NR_LINES:1
+ELAPSED_TIME:37.9362 s
+TOTAL_TIME:2307.77 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.6145 s
+PLAYER:Christopher Lee:26.9965 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.801 s
+PLAYER:Kevin Baer:12.0265 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:40.896 s
+PLAYER:Luca Ziegler:5.642 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9545 s
+PLAYER:Sandro Schneider:14.7075 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:183.43 s
+TEAM:B:166.383 s
+------------------------------------------------------
+PLAYED:468.711 s
+======================================================
+WINDOW_NUM:72
+WINDOW_CLOSE:12973.3 s
+TASKS:0
+NR_LINES:1
+ELAPSED_TIME:37.9381 s
+TOTAL_TIME:2307.77 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.6145 s
+PLAYER:Christopher Lee:26.9965 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.801 s
+PLAYER:Kevin Baer:12.0265 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:40.896 s
+PLAYER:Luca Ziegler:5.642 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9545 s
+PLAYER:Sandro Schneider:14.7075 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:183.43 s
+TEAM:B:166.383 s
+------------------------------------------------------
+PLAYED:468.711 s
+======================================================
+WINDOW_NUM:74
+WINDOW_CLOSE:13033.3 s
+TASKS:0
+NR_LINES:1
+ELAPSED_TIME:37.9399 s
+TOTAL_TIME:2307.83 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.6145 s
+PLAYER:Christopher Lee:26.9965 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:45.801 s
+PLAYER:Kevin Baer:12.0265 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:40.896 s
+PLAYER:Luca Ziegler:5.642 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9545 s
+PLAYER:Sandro Schneider:14.7075 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:183.43 s
+TEAM:B:166.383 s
+------------------------------------------------------
+PLAYED:468.711 s
+======================================================
+WINDOW_NUM:76
+WINDOW_CLOSE:13093.3 s
+TASKS:1
+NR_LINES:472592
+ELAPSED_TIME:38.4713 s
+TOTAL_TIME:2340 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.6145 s
+PLAYER:Christopher Lee:26.9965 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:46.2345 s
+PLAYER:Kevin Baer:12.0265 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:40.896 s
+PLAYER:Luca Ziegler:5.642 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.959 s
+PLAYER:Sandro Schneider:14.712 s
+PLAYER:Vale Reitstetter:19.841 s
+PLAYER:Willi Sommer:36.8185 s
+------------------------------------------------------
+TEAM:A:183.872 s
+TEAM:B:166.383 s
+------------------------------------------------------
+PLAYED:469.166 s
+======================================================
+WINDOW_NUM:78
+WINDOW_CLOSE:13153.3 s
+TASKS:32
+NR_LINES:886700
+ELAPSED_TIME:40.6579 s
+TOTAL_TIME:2400 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.6145 s
+PLAYER:Christopher Lee:26.9965 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:46.8415 s
+PLAYER:Kevin Baer:12.9995 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:46.624 s
+PLAYER:Luca Ziegler:5.642 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:8.9635 s
+PLAYER:Sandro Schneider:14.7165 s
+PLAYER:Vale Reitstetter:23.316 s
+PLAYER:Willi Sommer:51.853 s
+------------------------------------------------------
+TEAM:A:199.523 s
+TEAM:B:176.559 s
+------------------------------------------------------
+PLAYED:498.607 s
+======================================================
+WINDOW_NUM:80
+WINDOW_CLOSE:13213.3 s
+TASKS:13
+NR_LINES:883711
+ELAPSED_TIME:42.1261 s
+TOTAL_TIME:2460 s
+------------------------------------------------------
+PLAYER:Ben Muller:14.6145 s
+PLAYER:Christopher Lee:28.9735 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:47.188 s
+PLAYER:Kevin Baer:12.9995 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:46.624 s
+PLAYER:Luca Ziegler:5.642 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:12.499 s
+PLAYER:Sandro Schneider:14.7165 s
+PLAYER:Vale Reitstetter:28.5435 s
+PLAYER:Willi Sommer:51.853 s
+------------------------------------------------------
+TEAM:A:203.404 s
+TEAM:B:183.764 s
+------------------------------------------------------
+PLAYED:511.029 s
+======================================================
+WINDOW_NUM:82
+WINDOW_CLOSE:13273.3 s
+TASKS:38
+NR_LINES:896025
+ELAPSED_TIME:44.5619 s
+TOTAL_TIME:2520 s
+------------------------------------------------------
+PLAYER:Ben Muller:19.3935 s
+PLAYER:Christopher Lee:32.5015 s
+PLAYER:Dennis Dotterweich:6.285 s
+PLAYER:Erik Engelhardt:48.513 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:51.1615 s
+PLAYER:Luca Ziegler:7.4145 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:12.499 s
+PLAYER:Sandro Schneider:16.9065 s
+PLAYER:Vale Reitstetter:34.283 s
+PLAYER:Willi Sommer:51.853 s
+------------------------------------------------------
+TEAM:A:206.919 s
+TEAM:B:210.223 s
+------------------------------------------------------
+PLAYED:545.467 s
+======================================================
+WINDOW_NUM:84
+WINDOW_CLOSE:13333.3 s
+TASKS:7
+NR_LINES:892660
+ELAPSED_TIME:45.8161 s
+TOTAL_TIME:2580 s
+------------------------------------------------------
+PLAYER:Ben Muller:19.3935 s
+PLAYER:Christopher Lee:32.839 s
+PLAYER:Dennis Dotterweich:6.3395 s
+PLAYER:Erik Engelhardt:48.513 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:55.2695 s
+PLAYER:Luca Ziegler:8.719 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:12.499 s
+PLAYER:Sandro Schneider:16.9065 s
+PLAYER:Vale Reitstetter:34.283 s
+PLAYER:Willi Sommer:51.853 s
+------------------------------------------------------
+TEAM:A:206.974 s
+TEAM:B:215.973 s
+------------------------------------------------------
+PLAYED:551.885 s
+======================================================
+WINDOW_NUM:86
+WINDOW_CLOSE:13393.3 s
+TASKS:16
+NR_LINES:888152
+ELAPSED_TIME:47.3705 s
+TOTAL_TIME:2640 s
+------------------------------------------------------
+PLAYER:Ben Muller:25.474 s
+PLAYER:Christopher Lee:33.8375 s
+PLAYER:Dennis Dotterweich:6.3395 s
+PLAYER:Erik Engelhardt:49.8975 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:57.773 s
+PLAYER:Luca Ziegler:8.719 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:12.499 s
+PLAYER:Sandro Schneider:16.9065 s
+PLAYER:Vale Reitstetter:36.0965 s
+PLAYER:Willi Sommer:51.853 s
+------------------------------------------------------
+TEAM:A:208.358 s
+TEAM:B:227.368 s
+------------------------------------------------------
+PLAYED:566.103 s
+======================================================
+WINDOW_NUM:88
+WINDOW_CLOSE:13453.3 s
+TASKS:10
+NR_LINES:892995
+ELAPSED_TIME:48.7217 s
+TOTAL_TIME:2700 s
+------------------------------------------------------
+PLAYER:Ben Muller:25.903 s
+PLAYER:Christopher Lee:33.8375 s
+PLAYER:Dennis Dotterweich:6.3395 s
+PLAYER:Erik Engelhardt:49.8975 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:19.951 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:57.773 s
+PLAYER:Luca Ziegler:8.719 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:12.499 s
+PLAYER:Sandro Schneider:16.9065 s
+PLAYER:Vale Reitstetter:42.777 s
+PLAYER:Willi Sommer:51.853 s
+------------------------------------------------------
+TEAM:A:208.358 s
+TEAM:B:234.478 s
+------------------------------------------------------
+PLAYED:575.323 s
+======================================================
+WINDOW_NUM:90
+WINDOW_CLOSE:13513.3 s
+TASKS:16
+NR_LINES:888593
+ELAPSED_TIME:50.3034 s
+TOTAL_TIME:2760 s
+------------------------------------------------------
+PLAYER:Ben Muller:27.3165 s
+PLAYER:Christopher Lee:34.3085 s
+PLAYER:Dennis Dotterweich:6.3395 s
+PLAYER:Erik Engelhardt:49.8975 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:25.0005 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:57.773 s
+PLAYER:Luca Ziegler:8.7235 s
+PLAYER:Nick Gertje:17.8655 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.252 s
+PLAYER:Roman Hartleb:13.193 s
+PLAYER:Sandro Schneider:19.037 s
+PLAYER:Vale Reitstetter:42.777 s
+PLAYER:Willi Sommer:51.853 s
+------------------------------------------------------
+TEAM:A:211.183 s
+TEAM:B:241.416 s
+------------------------------------------------------
+PLAYED:590.303 s
+======================================================
+WINDOW_NUM:92
+WINDOW_CLOSE:13573.3 s
+TASKS:14
+NR_LINES:876560
+ELAPSED_TIME:51.832 s
+TOTAL_TIME:2820 s
+------------------------------------------------------
+PLAYER:Ben Muller:27.3165 s
+PLAYER:Christopher Lee:34.3085 s
+PLAYER:Dennis Dotterweich:6.3395 s
+PLAYER:Erik Engelhardt:49.8975 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:25.0005 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:57.773 s
+PLAYER:Luca Ziegler:8.7235 s
+PLAYER:Nick Gertje:27.2475 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.8815 s
+PLAYER:Roman Hartleb:13.193 s
+PLAYER:Sandro Schneider:19.037 s
+PLAYER:Vale Reitstetter:43.812 s
+PLAYER:Willi Sommer:51.853 s
+------------------------------------------------------
+TEAM:A:221.195 s
+TEAM:B:242.451 s
+------------------------------------------------------
+PLAYED:603.378 s
+======================================================
+WINDOW_NUM:94
+WINDOW_CLOSE:13633.3 s
+TASKS:40
+NR_LINES:884376
+ELAPSED_TIME:54.367 s
+TOTAL_TIME:2880 s
+------------------------------------------------------
+PLAYER:Ben Muller:27.848 s
+PLAYER:Christopher Lee:38.7745 s
+PLAYER:Dennis Dotterweich:6.356 s
+PLAYER:Erik Engelhardt:49.8975 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:25.0005 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:57.773 s
+PLAYER:Luca Ziegler:8.7235 s
+PLAYER:Nick Gertje:37.549 s
+PLAYER:Niklas Welzlein:15.7455 s
+PLAYER:Philipp Harlass:37.8815 s
+PLAYER:Roman Hartleb:13.193 s
+PLAYER:Sandro Schneider:19.037 s
+PLAYER:Vale Reitstetter:52.725 s
+PLAYER:Willi Sommer:52.415 s
+------------------------------------------------------
+TEAM:A:232.074 s
+TEAM:B:256.362 s
+------------------------------------------------------
+PLAYED:639.483 s
+======================================================
+WINDOW_NUM:96
+WINDOW_CLOSE:13693.3 s
+TASKS:10
+NR_LINES:890496
+ELAPSED_TIME:55.7486 s
+TOTAL_TIME:2940 s
+------------------------------------------------------
+PLAYER:Ben Muller:27.848 s
+PLAYER:Christopher Lee:38.7745 s
+PLAYER:Dennis Dotterweich:10.532 s
+PLAYER:Erik Engelhardt:49.8975 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:25.0005 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:57.773 s
+PLAYER:Luca Ziegler:8.7235 s
+PLAYER:Nick Gertje:37.549 s
+PLAYER:Niklas Welzlein:15.804 s
+PLAYER:Philipp Harlass:37.8815 s
+PLAYER:Roman Hartleb:13.193 s
+PLAYER:Sandro Schneider:19.037 s
+PLAYER:Vale Reitstetter:53.402 s
+PLAYER:Willi Sommer:52.415 s
+------------------------------------------------------
+TEAM:A:236.309 s
+TEAM:B:257.039 s
+------------------------------------------------------
+PLAYED:648.306 s
+======================================================
+WINDOW_NUM:98
+WINDOW_CLOSE:13753.3 s
+TASKS:10
+NR_LINES:886117
+ELAPSED_TIME:57.1487 s
+TOTAL_TIME:3000 s
+------------------------------------------------------
+PLAYER:Ben Muller:27.848 s
+PLAYER:Christopher Lee:38.7745 s
+PLAYER:Dennis Dotterweich:10.532 s
+PLAYER:Erik Engelhardt:49.8975 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:25.0005 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:57.773 s
+PLAYER:Luca Ziegler:8.7235 s
+PLAYER:Nick Gertje:46.423 s
+PLAYER:Niklas Welzlein:15.806 s
+PLAYER:Philipp Harlass:37.8815 s
+PLAYER:Roman Hartleb:13.193 s
+PLAYER:Sandro Schneider:19.037 s
+PLAYER:Vale Reitstetter:53.402 s
+PLAYER:Willi Sommer:52.415 s
+------------------------------------------------------
+TEAM:A:245.185 s
+TEAM:B:257.039 s
+------------------------------------------------------
+PLAYED:657.679 s
+======================================================
+WINDOW_NUM:100
+WINDOW_CLOSE:13813.3 s
+TASKS:41
+NR_LINES:895004
+ELAPSED_TIME:59.8352 s
+TOTAL_TIME:3060 s
+------------------------------------------------------
+PLAYER:Ben Muller:27.848 s
+PLAYER:Christopher Lee:38.7745 s
+PLAYER:Dennis Dotterweich:10.532 s
+PLAYER:Erik Engelhardt:49.8975 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:25.0005 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:57.773 s
+PLAYER:Luca Ziegler:8.7235 s
+PLAYER:Nick Gertje:81.7045 s
+PLAYER:Niklas Welzlein:15.806 s
+PLAYER:Philipp Harlass:37.8815 s
+PLAYER:Roman Hartleb:13.193 s
+PLAYER:Sandro Schneider:19.037 s
+PLAYER:Vale Reitstetter:53.402 s
+PLAYER:Willi Sommer:53.078 s
+------------------------------------------------------
+TEAM:A:281.13 s
+TEAM:B:257.039 s
+------------------------------------------------------
+PLAYED:695.57 s
+======================================================
+WINDOW_NUM:102
+WINDOW_CLOSE:13873.3 s
+TASKS:15
+NR_LINES:881351
+ELAPSED_TIME:61.4009 s
+TOTAL_TIME:3120 s
+------------------------------------------------------
+PLAYER:Ben Muller:27.848 s
+PLAYER:Christopher Lee:38.7745 s
+PLAYER:Dennis Dotterweich:10.532 s
+PLAYER:Erik Engelhardt:49.8975 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:25.0005 s
+PLAYER:Leon Heinze:26.416 s
+PLAYER:Leon Krapf:57.773 s
+PLAYER:Luca Ziegler:8.7235 s
+PLAYER:Nick Gertje:81.7045 s
+PLAYER:Niklas Welzlein:15.806 s
+PLAYER:Philipp Harlass:45.867 s
+PLAYER:Roman Hartleb:13.2535 s
+PLAYER:Sandro Schneider:19.037 s
+PLAYER:Vale Reitstetter:53.402 s
+PLAYER:Willi Sommer:53.6545 s
+------------------------------------------------------
+TEAM:A:289.752 s
+TEAM:B:257.039 s
+------------------------------------------------------
+PLAYED:709.021 s
+======================================================
+WINDOW_NUM:104
+WINDOW_CLOSE:13933.3 s
+TASKS:34
+NR_LINES:889690
+ELAPSED_TIME:63.6436 s
+TOTAL_TIME:3180 s
+------------------------------------------------------
+PLAYER:Ben Muller:28.451 s
+PLAYER:Christopher Lee:39.7565 s
+PLAYER:Dennis Dotterweich:10.532 s
+PLAYER:Erik Engelhardt:49.98 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:27.766 s
+PLAYER:Leon Heinze:26.7305 s
+PLAYER:Leon Krapf:68.3415 s
+PLAYER:Luca Ziegler:8.7235 s
+PLAYER:Nick Gertje:81.7045 s
+PLAYER:Niklas Welzlein:15.806 s
+PLAYER:Philipp Harlass:47.9335 s
+PLAYER:Roman Hartleb:14.324 s
+PLAYER:Sandro Schneider:20.6415 s
+PLAYER:Vale Reitstetter:53.6625 s
+PLAYER:Willi Sommer:53.6545 s
+------------------------------------------------------
+TEAM:A:294.576 s
+TEAM:B:272.533 s
+------------------------------------------------------
+PLAYED:739.845 s
+======================================================
+WINDOW_NUM:106
+WINDOW_CLOSE:13993.3 s
+TASKS:7
+NR_LINES:891295
+ELAPSED_TIME:64.9041 s
+TOTAL_TIME:3240 s
+------------------------------------------------------
+PLAYER:Ben Muller:28.451 s
+PLAYER:Christopher Lee:39.7565 s
+PLAYER:Dennis Dotterweich:10.532 s
+PLAYER:Erik Engelhardt:49.98 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:27.7845 s
+PLAYER:Leon Heinze:28.2935 s
+PLAYER:Leon Krapf:72.773 s
+PLAYER:Luca Ziegler:9.0625 s
+PLAYER:Nick Gertje:81.7045 s
+PLAYER:Niklas Welzlein:15.806 s
+PLAYER:Philipp Harlass:47.9335 s
+PLAYER:Roman Hartleb:14.324 s
+PLAYER:Sandro Schneider:20.6415 s
+PLAYER:Vale Reitstetter:53.6625 s
+PLAYER:Willi Sommer:53.6545 s
+------------------------------------------------------
+TEAM:A:294.576 s
+TEAM:B:278.885 s
+------------------------------------------------------
+PLAYED:746.819 s
+======================================================
+WINDOW_NUM:108
+WINDOW_CLOSE:14053.3 s
+TASKS:18
+NR_LINES:890939
+ELAPSED_TIME:66.5654 s
+TOTAL_TIME:3300 s
+------------------------------------------------------
+PLAYER:Ben Muller:28.9115 s
+PLAYER:Christopher Lee:39.7565 s
+PLAYER:Dennis Dotterweich:10.532 s
+PLAYER:Erik Engelhardt:57.1205 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:27.7845 s
+PLAYER:Leon Heinze:29.6695 s
+PLAYER:Leon Krapf:73.0275 s
+PLAYER:Luca Ziegler:9.4005 s
+PLAYER:Nick Gertje:84.5345 s
+PLAYER:Niklas Welzlein:15.806 s
+PLAYER:Philipp Harlass:47.9335 s
+PLAYER:Roman Hartleb:16.326 s
+PLAYER:Sandro Schneider:21.2565 s
+PLAYER:Vale Reitstetter:53.6625 s
+PLAYER:Willi Sommer:53.6545 s
+------------------------------------------------------
+TEAM:A:307.164 s
+TEAM:B:281.314 s
+------------------------------------------------------
+PLAYED:763.401 s
+======================================================
+WINDOW_NUM:110
+WINDOW_CLOSE:14113.3 s
+TASKS:7
+NR_LINES:884665
+ELAPSED_TIME:67.7912 s
+TOTAL_TIME:3360 s
+------------------------------------------------------
+PLAYER:Ben Muller:28.9115 s
+PLAYER:Christopher Lee:39.7565 s
+PLAYER:Dennis Dotterweich:10.532 s
+PLAYER:Erik Engelhardt:57.806 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:27.7845 s
+PLAYER:Leon Heinze:30.2 s
+PLAYER:Leon Krapf:73.0275 s
+PLAYER:Luca Ziegler:9.4005 s
+PLAYER:Nick Gertje:88.812 s
+PLAYER:Niklas Welzlein:16.5595 s
+PLAYER:Philipp Harlass:47.9335 s
+PLAYER:Roman Hartleb:16.326 s
+PLAYER:Sandro Schneider:21.2625 s
+PLAYER:Vale Reitstetter:53.6625 s
+PLAYER:Willi Sommer:54.135 s
+------------------------------------------------------
+TEAM:A:313.366 s
+TEAM:B:281.845 s
+------------------------------------------------------
+PLAYED:769.888 s
+======================================================
+WINDOW_NUM:112
+WINDOW_CLOSE:14173.3 s
+TASKS:39
+NR_LINES:883583
+ELAPSED_TIME:70.2033 s
+TOTAL_TIME:3420 s
+------------------------------------------------------
+PLAYER:Ben Muller:28.9115 s
+PLAYER:Christopher Lee:39.7565 s
+PLAYER:Dennis Dotterweich:10.532 s
+PLAYER:Erik Engelhardt:57.806 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:27.7845 s
+PLAYER:Leon Heinze:30.2 s
+PLAYER:Leon Krapf:92.5715 s
+PLAYER:Luca Ziegler:9.4005 s
+PLAYER:Nick Gertje:88.812 s
+PLAYER:Niklas Welzlein:17.2275 s
+PLAYER:Philipp Harlass:47.9335 s
+PLAYER:Roman Hartleb:16.326 s
+PLAYER:Sandro Schneider:22.7915 s
+PLAYER:Vale Reitstetter:53.6625 s
+PLAYER:Willi Sommer:54.26 s
+------------------------------------------------------
+TEAM:A:315.689 s
+TEAM:B:301.389 s
+------------------------------------------------------
+PLAYED:804.831 s
+======================================================
+WINDOW_NUM:114
+WINDOW_CLOSE:14233.3 s
+TASKS:28
+NR_LINES:901556
+ELAPSED_TIME:72.2829 s
+TOTAL_TIME:3480 s
+------------------------------------------------------
+PLAYER:Ben Muller:28.9115 s
+PLAYER:Christopher Lee:39.7565 s
+PLAYER:Dennis Dotterweich:14.823 s
+PLAYER:Erik Engelhardt:58.0295 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:31.4355 s
+PLAYER:Leon Heinze:30.2 s
+PLAYER:Leon Krapf:107.154 s
+PLAYER:Luca Ziegler:9.4115 s
+PLAYER:Nick Gertje:88.812 s
+PLAYER:Niklas Welzlein:17.2275 s
+PLAYER:Philipp Harlass:47.9335 s
+PLAYER:Roman Hartleb:16.326 s
+PLAYER:Sandro Schneider:22.7915 s
+PLAYER:Vale Reitstetter:53.6625 s
+PLAYER:Willi Sommer:54.26 s
+------------------------------------------------------
+TEAM:A:320.203 s
+TEAM:B:319.634 s
+------------------------------------------------------
+PLAYED:830.772 s
+======================================================
+WINDOW_NUM:116
+WINDOW_CLOSE:14293.3 s
+TASKS:19
+NR_LINES:893857
+ELAPSED_TIME:73.9787 s
+TOTAL_TIME:3540 s
+------------------------------------------------------
+PLAYER:Ben Muller:28.9115 s
+PLAYER:Christopher Lee:39.7565 s
+PLAYER:Dennis Dotterweich:19.288 s
+PLAYER:Erik Engelhardt:58.0295 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:31.4355 s
+PLAYER:Leon Heinze:30.2 s
+PLAYER:Leon Krapf:110.253 s
+PLAYER:Luca Ziegler:9.7515 s
+PLAYER:Nick Gertje:88.812 s
+PLAYER:Niklas Welzlein:17.2275 s
+PLAYER:Philipp Harlass:53.8325 s
+PLAYER:Roman Hartleb:16.762 s
+PLAYER:Sandro Schneider:22.7915 s
+PLAYER:Vale Reitstetter:53.6625 s
+PLAYER:Willi Sommer:54.26 s
+------------------------------------------------------
+TEAM:A:331.003 s
+TEAM:B:323.072 s
+------------------------------------------------------
+PLAYED:848.239 s
+======================================================
+WINDOW_NUM:118
+WINDOW_CLOSE:14353.3 s
+TASKS:11
+NR_LINES:892773
+ELAPSED_TIME:75.3492 s
+TOTAL_TIME:3600 s
+------------------------------------------------------
+PLAYER:Ben Muller:28.9115 s
+PLAYER:Christopher Lee:39.7565 s
+PLAYER:Dennis Dotterweich:19.288 s
+PLAYER:Erik Engelhardt:58.0295 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:31.4355 s
+PLAYER:Leon Heinze:30.403 s
+PLAYER:Leon Krapf:110.272 s
+PLAYER:Luca Ziegler:10.0955 s
+PLAYER:Nick Gertje:88.812 s
+PLAYER:Niklas Welzlein:17.2275 s
+PLAYER:Philipp Harlass:53.8325 s
+PLAYER:Roman Hartleb:16.762 s
+PLAYER:Sandro Schneider:22.7915 s
+PLAYER:Vale Reitstetter:59.296 s
+PLAYER:Willi Sommer:54.26 s
+------------------------------------------------------
+TEAM:A:331.003 s
+TEAM:B:329.271 s
+------------------------------------------------------
+PLAYED:858.083 s
+======================================================
+WINDOW_NUM:120
+WINDOW_CLOSE:14413.3 s
+TASKS:35
+NR_LINES:889477
+ELAPSED_TIME:77.6381 s
+TOTAL_TIME:3660 s
+------------------------------------------------------
+PLAYER:Ben Muller:28.9115 s
+PLAYER:Christopher Lee:40.0295 s
+PLAYER:Dennis Dotterweich:19.288 s
+PLAYER:Erik Engelhardt:58.0295 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:31.4355 s
+PLAYER:Leon Heinze:30.5235 s
+PLAYER:Leon Krapf:110.324 s
+PLAYER:Luca Ziegler:10.0955 s
+PLAYER:Nick Gertje:88.812 s
+PLAYER:Niklas Welzlein:17.2275 s
+PLAYER:Philipp Harlass:53.8325 s
+PLAYER:Roman Hartleb:16.762 s
+PLAYER:Sandro Schneider:24.991 s
+PLAYER:Vale Reitstetter:59.3765 s
+PLAYER:Willi Sommer:67.076 s
+------------------------------------------------------
+TEAM:A:346.018 s
+TEAM:B:329.797 s
+------------------------------------------------------
+PLAYED:890.192 s
+======================================================
+WINDOW_NUM:122
+WINDOW_CLOSE:14473.3 s
+TASKS:0
+NR_LINES:888930
+ELAPSED_TIME:78.6027 s
+TOTAL_TIME:3720 s
+------------------------------------------------------
+PLAYER:Ben Muller:28.9115 s
+PLAYER:Christopher Lee:40.0295 s
+PLAYER:Dennis Dotterweich:19.288 s
+PLAYER:Erik Engelhardt:58.0295 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:31.4355 s
+PLAYER:Leon Heinze:30.5235 s
+PLAYER:Leon Krapf:110.324 s
+PLAYER:Luca Ziegler:10.0955 s
+PLAYER:Nick Gertje:88.812 s
+PLAYER:Niklas Welzlein:17.2275 s
+PLAYER:Philipp Harlass:53.8325 s
+PLAYER:Roman Hartleb:16.762 s
+PLAYER:Sandro Schneider:25.329 s
+PLAYER:Vale Reitstetter:59.3765 s
+PLAYER:Willi Sommer:67.076 s
+------------------------------------------------------
+TEAM:A:346.357 s
+TEAM:B:329.797 s
+------------------------------------------------------
+PLAYED:890.192 s
+======================================================
+WINDOW_NUM:124
+WINDOW_CLOSE:14533.3 s
+TASKS:18
+NR_LINES:902975
+ELAPSED_TIME:80.2771 s
+TOTAL_TIME:3780 s
+------------------------------------------------------
+PLAYER:Ben Muller:28.9115 s
+PLAYER:Christopher Lee:40.0295 s
+PLAYER:Dennis Dotterweich:19.288 s
+PLAYER:Erik Engelhardt:58.0305 s
+PLAYER:Kevin Baer:19.1015 s
+PLAYER:Leo Langhans:31.4355 s
+PLAYER:Leon Heinze:30.5235 s
+PLAYER:Leon Krapf:110.324 s
+PLAYER:Luca Ziegler:10.0955 s
+PLAYER:Nick Gertje:88.812 s
+PLAYER:Niklas Welzlein:17.2275 s
+PLAYER:Philipp Harlass:53.8325 s
+PLAYER:Roman Hartleb:16.762 s
+PLAYER:Sandro Schneider:35.331 s
+PLAYER:Vale Reitstetter:59.3765 s
+PLAYER:Willi Sommer:67.5145 s
+------------------------------------------------------
+TEAM:A:356.798 s
+TEAM:B:329.797 s
+------------------------------------------------------
+PLAYED:906.816 s
+======================================================
+WINDOW_NUM:126
+WINDOW_CLOSE:14593.3 s
+TASKS:17
+NR_LINES:895288
+ELAPSED_TIME:81.8743 s
+TOTAL_TIME:3840 s
+------------------------------------------------------
+PLAYER:Ben Muller:28.9115 s
+PLAYER:Christopher Lee:40.0295 s
+PLAYER:Dennis Dotterweich:19.288 s
+PLAYER:Erik Engelhardt:58.0305 s
+PLAYER:Kevin Baer:21.71 s
+PLAYER:Leo Langhans:31.4355 s
+PLAYER:Leon Heinze:31.5045 s
+PLAYER:Leon Krapf:110.324 s
+PLAYER:Luca Ziegler:10.0955 s
+PLAYER:Nick Gertje:90.06 s
+PLAYER:Niklas Welzlein:17.2275 s
+PLAYER:Philipp Harlass:53.8325 s
+PLAYER:Roman Hartleb:16.8095 s
+PLAYER:Sandro Schneider:35.4035 s
+PLAYER:Vale Reitstetter:59.3765 s
+PLAYER:Willi Sommer:73.85 s
+------------------------------------------------------
+TEAM:A:364.502 s
+TEAM:B:333.387 s
+------------------------------------------------------
+PLAYED:921.879 s
+======================================================
+WINDOW_NUM:128
+WINDOW_CLOSE:14653.3 s
+TASKS:5
+NR_LINES:905215
+ELAPSED_TIME:83.0492 s
+TOTAL_TIME:3900 s
+------------------------------------------------------
+PLAYER:Ben Muller:29.275 s
+PLAYER:Christopher Lee:40.0295 s
+PLAYER:Dennis Dotterweich:19.3 s
+PLAYER:Erik Engelhardt:58.0305 s
+PLAYER:Kevin Baer:23.7215 s
+PLAYER:Leo Langhans:31.4355 s
+PLAYER:Leon Heinze:31.5045 s
+PLAYER:Leon Krapf:110.324 s
+PLAYER:Luca Ziegler:11.6905 s
+PLAYER:Nick Gertje:90.06 s
+PLAYER:Niklas Welzlein:17.2275 s
+PLAYER:Philipp Harlass:53.8325 s
+PLAYER:Roman Hartleb:16.8095 s
+PLAYER:Sandro Schneider:35.4035 s
+PLAYER:Vale Reitstetter:59.3765 s
+PLAYER:Willi Sommer:73.88 s
+------------------------------------------------------
+TEAM:A:364.544 s
+TEAM:B:337.357 s
+------------------------------------------------------
+PLAYED:926.499 s
+======================================================
+WINDOW_NUM:130
+WINDOW_CLOSE:14713.3 s
+TASKS:37
+NR_LINES:894537
+ELAPSED_TIME:85.4426 s
+TOTAL_TIME:3960 s
+------------------------------------------------------
+PLAYER:Ben Muller:29.3445 s
+PLAYER:Christopher Lee:40.0295 s
+PLAYER:Dennis Dotterweich:19.3 s
+PLAYER:Erik Engelhardt:64.9305 s
+PLAYER:Kevin Baer:24.5575 s
+PLAYER:Leo Langhans:31.4355 s
+PLAYER:Leon Heinze:31.5045 s
+PLAYER:Leon Krapf:115.67 s
+PLAYER:Luca Ziegler:12.221 s
+PLAYER:Nick Gertje:93.6295 s
+PLAYER:Niklas Welzlein:17.467 s
+PLAYER:Philipp Harlass:53.8325 s
+PLAYER:Roman Hartleb:17.3845 s
+PLAYER:Sandro Schneider:44.542 s
+PLAYER:Vale Reitstetter:59.3765 s
+PLAYER:Willi Sommer:74.18 s
+------------------------------------------------------
+TEAM:A:385.266 s
+TEAM:B:344.139 s
+------------------------------------------------------
+PLAYED:960.552 s
+======================================================
+WINDOW_NUM:132
+WINDOW_CLOSE:14773.3 s
+TASKS:21
+NR_LINES:902701
+ELAPSED_TIME:87.2709 s
+TOTAL_TIME:4020 s
+------------------------------------------------------
+PLAYER:Ben Muller:29.374 s
+PLAYER:Christopher Lee:40.0295 s
+PLAYER:Dennis Dotterweich:28.6845 s
+PLAYER:Erik Engelhardt:65.272 s
+PLAYER:Kevin Baer:25.007 s
+PLAYER:Leo Langhans:31.746 s
+PLAYER:Leon Heinze:31.5045 s
+PLAYER:Leon Krapf:115.924 s
+PLAYER:Luca Ziegler:12.221 s
+PLAYER:Nick Gertje:96.6925 s
+PLAYER:Niklas Welzlein:19.637 s
+PLAYER:Philipp Harlass:53.8325 s
+PLAYER:Roman Hartleb:17.3845 s
+PLAYER:Sandro Schneider:44.542 s
+PLAYER:Vale Reitstetter:59.3765 s
+PLAYER:Willi Sommer:74.18 s
+------------------------------------------------------
+TEAM:A:400.225 s
+TEAM:B:345.182 s
+------------------------------------------------------
+PLAYED:980.287 s
+======================================================
+WINDOW_NUM:134
+WINDOW_CLOSE:14833.3 s
+TASKS:25
+NR_LINES:895076
+ELAPSED_TIME:89.1932 s
+TOTAL_TIME:4080 s
+------------------------------------------------------
+PLAYER:Ben Muller:30.818 s
+PLAYER:Christopher Lee:40.6875 s
+PLAYER:Dennis Dotterweich:28.6845 s
+PLAYER:Erik Engelhardt:65.272 s
+PLAYER:Kevin Baer:25.007 s
+PLAYER:Leo Langhans:33.108 s
+PLAYER:Leon Heinze:36.344 s
+PLAYER:Leon Krapf:121.907 s
+PLAYER:Luca Ziegler:12.221 s
+PLAYER:Nick Gertje:96.6925 s
+PLAYER:Niklas Welzlein:19.637 s
+PLAYER:Philipp Harlass:53.837 s
+PLAYER:Roman Hartleb:17.4245 s
+PLAYER:Sandro Schneider:44.743 s
+PLAYER:Vale Reitstetter:59.5595 s
+PLAYER:Willi Sommer:77.393 s
+------------------------------------------------------
+TEAM:A:403.683 s
+TEAM:B:359.652 s
+------------------------------------------------------
+PLAYED:1002.58 s
+======================================================
+WINDOW_NUM:136
+WINDOW_CLOSE:14893.3 s
+TASKS:41
+NR_LINES:891499
+ELAPSED_TIME:91.7328 s
+TOTAL_TIME:4140 s
+------------------------------------------------------
+PLAYER:Ben Muller:31.1015 s
+PLAYER:Christopher Lee:40.6875 s
+PLAYER:Dennis Dotterweich:29.137 s
+PLAYER:Erik Engelhardt:79.395 s
+PLAYER:Kevin Baer:25.007 s
+PLAYER:Leo Langhans:36.8935 s
+PLAYER:Leon Heinze:36.344 s
+PLAYER:Leon Krapf:121.97 s
+PLAYER:Luca Ziegler:16.026 s
+PLAYER:Nick Gertje:96.6925 s
+PLAYER:Niklas Welzlein:19.9585 s
+PLAYER:Philipp Harlass:53.837 s
+PLAYER:Roman Hartleb:19.0625 s
+PLAYER:Sandro Schneider:44.743 s
+PLAYER:Vale Reitstetter:66.268 s
+PLAYER:Willi Sommer:77.393 s
+------------------------------------------------------
+TEAM:A:420.218 s
+TEAM:B:374.297 s
+------------------------------------------------------
+PLAYED:1040.35 s
+================ END =====================

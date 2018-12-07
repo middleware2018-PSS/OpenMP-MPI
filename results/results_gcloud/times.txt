@@ -1,0 +1,240 @@
+serial,1m,10s:
+real	1m33.265s
+user	1m31.711s
+sys	0m1.544s
+parallel,1m,10s:
+real	1m27.304s
+user	2m15.834s
+sys	0m2.158s
+serial,2m,10s:
+real	1m34.387s
+user	1m32.848s
+sys	0m1.528s
+parallel,2m,10s:
+real	1m26.066s
+user	2m14.666s
+sys	0m1.799s
+serial,3m,10s:
+real	1m33.856s
+user	1m32.308s
+sys	0m1.532s
+parallel,3m,10s:
+real	1m26.462s
+user	2m15.618s
+sys	0m1.932s
+serial,4m,10s:
+real	1m35.386s
+user	1m33.864s
+sys	0m1.508s
+parallel,4m,10s:
+real	1m25.747s
+user	2m15.112s
+sys	0m1.683s
+serial,5m,10s:
+real	1m34.288s
+user	1m32.506s
+sys	0m1.768s
+parallel,5m,10s:
+real	1m26.061s
+user	2m15.667s
+sys	0m1.731s
+serial,1m,20s:
+real	1m32.120s
+user	1m30.599s
+sys	0m1.508s
+parallel,1m,20s:
+real	1m24.610s
+user	2m8.954s
+sys	0m1.890s
+serial,2m,20s:
+real	1m32.826s
+user	1m31.179s
+sys	0m1.636s
+parallel,2m,20s:
+real	1m23.769s
+user	2m8.674s
+sys	0m1.570s
+serial,3m,20s:
+real	1m32.424s
+user	1m30.930s
+sys	0m1.480s
+parallel,3m,20s:
+real	1m24.294s
+user	2m9.188s
+sys	0m1.738s
+serial,4m,20s:
+real	1m32.598s
+user	1m31.043s
+sys	0m1.540s
+parallel,4m,20s:
+real	1m23.981s
+user	2m8.834s
+sys	0m1.757s
+serial,5m,20s:
+real	1m32.433s
+user	1m30.897s
+sys	0m1.520s
+parallel,5m,20s:
+real	1m24.614s
+user	2m10.168s
+sys	0m1.818s
+serial,1m,30s:
+real	1m32.285s
+user	1m30.946s
+sys	0m1.328s
+parallel,1m,30s:
+real	1m23.995s
+user	2m7.256s
+sys	0m1.879s
+serial,2m,30s:
+real	1m32.628s
+user	1m31.034s
+sys	0m1.580s
+parallel,2m,30s:
+real	1m24.160s
+user	2m7.366s
+sys	0m1.828s
+serial,3m,30s:
+real	1m32.837s
+user	1m31.193s
+sys	0m1.632s
+parallel,3m,30s:
+real	1m24.218s
+user	2m7.912s
+sys	0m1.802s
+serial,4m,30s:
+real	1m33.502s
+user	1m31.864s
+sys	0m1.628s
+parallel,4m,30s:
+real	1m23.725s
+user	2m7.458s
+sys	0m1.818s
+serial,5m,30s:
+real	1m31.958s
+user	1m30.521s
+sys	0m1.428s
+parallel,5m,30s:
+real	1m23.761s
+user	2m7.402s
+sys	0m1.688s
+serial,1m,40s:
+real	1m32.206s
+user	1m30.585s
+sys	0m1.608s
+parallel,1m,40s:
+real	1m23.374s
+user	2m5.729s
+sys	0m1.730s
+serial,2m,40s:
+real	1m32.064s
+user	1m30.559s
+sys	0m1.492s
+parallel,2m,40s:
+real	1m24.047s
+user	2m6.802s
+sys	0m1.846s
+serial,3m,40s:
+real	1m32.069s
+user	1m30.471s
+sys	0m1.584s
+parallel,3m,40s:
+real	1m23.043s
+user	2m5.788s
+sys	0m1.731s
+serial,4m,40s:
+real	1m32.751s
+user	1m31.153s
+sys	0m1.588s
+parallel,4m,40s:
+real	1m23.651s
+user	2m6.315s
+sys	0m1.831s
+serial,5m,40s:
+real	1m31.809s
+user	1m30.244s
+sys	0m1.552s
+parallel,5m,40s:
+real	1m23.319s
+user	2m6.537s
+sys	0m1.665s
+serial,1m,50s:
+real	1m32.024s
+user	1m30.447s
+sys	0m1.564s
+parallel,1m,50s:
+real	1m23.143s
+user	2m5.108s
+sys	0m1.737s
+serial,2m,50s:
+real	1m31.636s
+user	1m30.035s
+sys	0m1.592s
+parallel,2m,50s:
+real	1m23.446s
+user	2m5.759s
+sys	0m1.733s
+serial,3m,50s:
+real	1m33.408s
+user	1m31.911s
+sys	0m1.484s
+parallel,3m,50s:
+real	1m23.296s
+user	2m5.642s
+sys	0m1.842s
+serial,4m,50s:
+real	1m31.550s
+user	1m30.023s
+sys	0m1.516s
+parallel,4m,50s:
+real	1m23.541s
+user	2m5.527s
+sys	0m1.763s
+serial,5m,50s:
+real	1m31.718s
+user	1m30.128s
+sys	0m1.580s
+parallel,5m,50s:
+real	1m23.169s
+user	2m5.994s
+sys	0m1.706s
+serial,1m,60s:
+real	1m31.688s
+user	1m30.113s
+sys	0m1.564s
+parallel,1m,60s:
+real	1m23.301s
+user	2m5.520s
+sys	0m1.601s
+serial,2m,60s:
+real	1m31.417s
+user	1m29.920s
+sys	0m1.488s
+parallel,2m,60s:
+real	1m22.992s
+user	2m5.459s
+sys	0m1.804s
+serial,3m,60s:
+real	1m32.071s
+user	1m30.436s
+sys	0m1.624s
+parallel,3m,60s:
+real	1m23.072s
+user	2m4.938s
+sys	0m1.705s
+serial,4m,60s:
+real	1m33.268s
+user	1m31.796s
+sys	0m1.460s
+parallel,4m,60s:
+real	1m23.190s
+user	2m5.655s
+sys	0m1.719s
+serial,5m,60s:
+real	1m31.776s
+user	1m30.196s
+sys	0m1.572s
+parallel,5m,60s:
+real	1m23.095s
+user	2m6.111s
+sys	0m1.827s
