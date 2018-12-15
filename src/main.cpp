@@ -71,7 +71,7 @@ void microbatch_possession(vector<pair<vector<pair<sensor_record,game_timestamp>
     }
 
     //append microbatched possession result to possession_attributions
-    //#pragma omp critical
+    #pragma omp critical
     possession_results.push_back(possession_attributions);
 }
 
