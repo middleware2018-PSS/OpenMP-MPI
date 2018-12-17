@@ -5,3 +5,5 @@ data/full-game.csv
 original-data/full-game.csv
 
 src/CMakeCache.txt
+
+*.DS_Store
